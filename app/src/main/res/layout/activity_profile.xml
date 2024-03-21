@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="25dp"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:columnCount="1"
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="85dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/ninh_image_avatar_test" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Lê Khắc Ninh"
+            android:textSize="28dp" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="1"
+        android:rowCount="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2"
+        app:layout_constraintVertical_bias="0.912">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_cabinet"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Tủ sách của bạn"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
+
+        <Button
+            android:id="@+id/editProfile"
+            android:onClick="EditProFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_infor_account"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Thông tin tài khoản"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_key"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Thay đổi mật khẩu"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_pencil"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Viết lách"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_logout_icon"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Đăng Xuất"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
+
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
