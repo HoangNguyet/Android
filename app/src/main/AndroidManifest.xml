@@ -18,18 +18,19 @@
         <activity
             android:name=".activity.MainDangKy"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"-->
-<!--            android:name=".activity.UserProfileActivity"-->
-<!--            android:exported="false" />-->
-<!--        Test-->
-        <activity android:name=".activity.UserProfileEditActivity"
+        <activity
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".activity.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".activity.UserProfileEditActivity"
             android:exported="false"
             >
         </activity>
+<!--        Test-->
         <activity
-            android:name=".activity.UserProfileActivity"
+            android:name=".activity.MainDangNhap"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
