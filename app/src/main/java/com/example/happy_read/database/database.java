@@ -127,12 +127,8 @@ public class database extends SQLiteOpenHelper {
             "'2023-10-24', " + //Create_at
             "'2023-11-14', " + //Update_at
             "'drawable/doraemon.jpg', " + //ImageInterView
-            "3101, " +//View
-<<<<<<< HEAD
-            "1)";//UserId
-=======
+            "3101, " +//View//UserId
             "'admin')";//UserId
->>>>>>> Nguyetcute
     private String sql3 = "INSERT INTO stories VALUES (null," +
             "'Conan', " +
             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
