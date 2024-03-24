@@ -20,7 +20,11 @@
             android:exported="false" />
         <activity
             android:name=".activity.MainDangNhap"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.MainHome"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

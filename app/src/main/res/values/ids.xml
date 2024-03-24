@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="ed_username" type="id" />
+    <item name="ed_password" type="id" />
+    <item name="btn_dangnhap" type="id" />
+    <item name="btn_dangki" type="id" />
+</resources>
