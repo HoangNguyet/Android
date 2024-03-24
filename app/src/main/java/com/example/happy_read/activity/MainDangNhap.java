@@ -70,6 +70,14 @@ public class MainDangNhap extends AppCompatActivity {
 
 
         //xử lý sự kiện khi người dùng nhấn nút "Đăng ký"
+        btndangki.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Chuyen sang form dang ky
+                Intent intent = new Intent(MainDangNhap.this, MainDangKy.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -1,89 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainDangKy"
-    android:orientation="vertical">
+    android:background="@drawable/conan5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:text="Đăng kí"
-        android:textColor="#03A9F4"
-        android:textSize="34dp"
-        android:textStyle="bold">
-    </TextView>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tên đăng nhập"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp">
-    </TextView>
-    <EditText
-        android:layout_marginTop="10dp"
-        android:id="@+id/ed_username"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:hint="Điền tên đăng nhập"
-        android:layout_gravity="center"
-        android:drawableRight="@drawable/user">
-    </EditText>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mật khẩu"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp">
-    </TextView>
-    <EditText
-        android:id="@+id/ed_password"
-        android:layout_marginTop="10dp"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:hint="Điền mật khẩu"
-        android:layout_gravity="center"
-        android:drawableRight="@drawable/pass">
-    </EditText>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp">
-    </TextView>
-    <EditText
-        android:id="@+id/ed_email"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:hint="Điền email"
-        android:layout_gravity="center"
-        android:drawableRight="@drawable/email">
-    </EditText>
 
-    <Button
-        android:id="@+id/btndangki"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#337A83"
-        android:text="Đăng kí"
-        android:textColorHighlight="#673AB7"
-        android:textColorLink="#673AB7"></Button>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnback"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#337A83"
-        android:text="Trở lại"></Button>
-</LinearLayout>
+        <!-- Tiêu đề -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:text="Đăng ký"
+            android:textColor="#009688"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <!-- Tên đăng nhập -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên đăng nhập"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/ed_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Điền tên đăng nhập" />
+
+        <!-- Mật khẩu -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mật khẩu"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/ed_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Điền mật khẩu" />
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/ed_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Điền email" />
+
+        <!-- Họ và tên -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Họ và tên"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/ed_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Điền họ và tên" />
+
+        <!-- Ảnh đại diện -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ảnh đại diện"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/ed_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL ảnh đại diện" />
+
+        <!-- Giới tính -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giới tính"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nam" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nữ" />
+
+            <!-- Các lựa chọn khác nếu cần -->
+        </RadioGroup>
+        <!-- Ngày sinh -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp" />
+        <EditText
+            android:id="@+id/ed_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập ngày sinh" />
+        <!-- Nút đăng ký và nút trở lại -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/btndangki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#337A83"
+                android:text="Đăng ký"
+                android:textColor="#E9E6EF"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#337A83"
+                android:text="Trở lại"
+                android:textColor="#EDEDED"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
