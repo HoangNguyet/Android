@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -103,19 +104,28 @@ public class MainDangKy extends AppCompatActivity {
             values.put(database.COLUMN_USERS_GENDER, gender);
             values.put(database.COLUMN_USERS_BIRTHDAY, birthday);
 
-            // Thực hiện insert dữ liệu vào bảng USERS
-            long newRowId = db.insert(database.TABLE_USERS, null, values);
 
-            // Kiểm tra kết quả insert
-            if (newRowId != -1) {
-                // Insert thành công
-                Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                // Insert thất bại
-                Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+            //Kiểm tra xem username đã tồn tại chưa
+            Cursor cussor = db.rawQuery("select * from " + database.TABLE_USERS + " where " + database.COLUMN_USERS_NAME + " = ?", new String[]{username});
+            if(cussor.getCount() > 0){
+                // Username đã tồn tại
+                Toast.makeText(this, "Username đã tồn tại", Toast.LENGTH_SHORT).show();
             }
+            else {
+                // Thực hiện insert dữ liệu vào bảng USERS
+                long newRowId = db.insert(database.TABLE_USERS, null, values);
 
+                // Kiểm tra kết quả insert
+                if (newRowId != -1) {
+                    // Insert thành công
+                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    // Insert thất bại
+                    Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                }
+
+            }
             // Đóng kết nối đến cơ sở dữ liệu
             db.close();
         }

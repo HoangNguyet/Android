@@ -54,7 +54,8 @@ public class MainDangNhap extends AppCompatActivity {
                     //Đăng nhập thành công
                     Toast.makeText(MainDangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     // Chuyển sang trang quên mật khẩu
-                    Intent intent = new Intent(MainDangNhap.this,ForgotPassWordActivity.class);
+                    Intent intent = new Intent(MainDangNhap.this, ChangePassWordActivity.class);
+                    intent.putExtra("USERNAME", username); //Truyền tên người dùng qua intent
                     startActivity(intent);
                     finish(); // Kết thúc Activity hiện tại sau khi chuyển sang trang quên mật khẩu
                 } else {

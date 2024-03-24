@@ -8,12 +8,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Quên Mật Khẩu"
+        android:layout_marginTop="20dp"
+        android:text="Thay đổi mật khẩu"
         android:textColor="#009688"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"></TextView>
+        android:textSize="34sp"
+        android:textStyle="bold">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/txthello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="#009688"
+            android:text="Xin chào_"
+            android:textColor="#009688"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtusername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:text=""
+            android:textColor="#009688"
+            android:textStyle="bold" />
+    </LinearLayout>
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -28,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:ems="10"
-        android:hint="Nhập mật khẩu cũ"
+        android:hint="Nhập mật khẩu hiện tại"
         android:inputType="textPassword"
         android:textSize="16sp" />
 
@@ -64,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:ems="10"
-        android:hint="Xác nhận mật khẩu"
+        android:hint="Nhập lại mật khẩu mới"
         android:inputType="textPassword"
         android:textSize="16sp" />
 
