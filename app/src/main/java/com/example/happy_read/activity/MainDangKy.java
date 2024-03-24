@@ -20,7 +20,7 @@ import com.example.happy_read.database.database;
 
 public class MainDangKy extends AppCompatActivity {
 
-    private EditText edusername, edpassword, edemail, edfullname, edimage, edbirthday;
+    private EditText edusername, edpassword, edemail,edpassword2, edfullname, edbirthday;
     private  RadioGroup radiogender;
     private Button btndangky, btnback;
     private database database;
@@ -34,11 +34,11 @@ public class MainDangKy extends AppCompatActivity {
         //Khởi tạo các thành phần trong giao diện
         edusername = findViewById(R.id.ed_username);
         edpassword = findViewById(R.id.ed_password);
-        edemail = findViewById(R.id.ed_password);
-        edfullname = findViewById(R.id.ed_fullname);
-        edimage = findViewById(R.id.ed_image);
-        edbirthday = findViewById(R.id.ed_birthday);
-        radiogender = findViewById(R.id.radioGroupGender);
+        edpassword2 = findViewById(R.id.ed_mk2);
+        edemail = findViewById(R.id.ed_email);
+//        edfullname = findViewById(R.id.ed_fullname);
+//        edbirthday = findViewById(R.id.ed_birthday);
+//        radiogender = findViewById(R.id.radioGroupGender);
         btndangky = findViewById(R.id.btndangki);
         btnback = findViewById(R.id.btnback);
         database = new database(this);
@@ -50,25 +50,25 @@ public class MainDangKy extends AppCompatActivity {
                 //Lấy thông tin từ các trường edittext
                 String username = edusername.getText().toString().trim();
                 String password = edpassword.getText().toString().trim();
+                String password2 = edpassword2.getText().toString().trim();
                 String email = edemail.getText().toString().trim();
-                String fullname = edfullname.getText().toString().trim();
-                String image = edimage.getText().toString().trim();
-                String birthday = edbirthday.getText().toString().trim();
-                String gender = "";//lấy giá trị radio nếu có
-                int selectedId = radiogender.getCheckedRadioButtonId();
-                if (selectedId != -1) {
-                    RadioButton selectedRadioButton = findViewById(selectedId);
-                    gender = selectedRadioButton.getText().toString();
-                }
+//                String fullname = edfullname.getText().toString().trim();
+//                String birthday = edbirthday.getText().toString().trim();
+//                String gender = "";//lấy giá trị radio nếu có
+//                int selectedId = radiogender.getCheckedRadioButtonId();
+//                if (selectedId != -1) {
+//                    RadioButton selectedRadioButton = findViewById(selectedId);
+//                    gender = selectedRadioButton.getText().toString();
+//                }
 
                 //Kiểm tra xem người dùng nhập đầy đủ thông tin chưa
-                if (username.isEmpty() || email.isEmpty() || password.isEmpty() || fullname.isEmpty() || gender.isEmpty() || birthday.isEmpty()) {
+                if (username.isEmpty() || email.isEmpty() || password.isEmpty() || password2.isEmpty()) {
                     Toast.makeText(MainDangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 // Thêm người dùng vào cơ dữ liệu
-                addUserToDatabase(username, password, email, fullname, image, gender, birthday);
+                addUserToDatabase(username, password, email);
             }
         });
 
@@ -89,7 +89,7 @@ public class MainDangKy extends AppCompatActivity {
         }
 
         // Phương thức thêm người dùng vào cơ sở dữ liệu
-        private void addUserToDatabase(String username, String password, String email, String fullname, String image, String gender, String birthday) {
+        private void addUserToDatabase(String username, String password, String email) {
             // Mở kết nối đến cơ sở dữ liệu
             SQLiteDatabase db = database.getWritableDatabase();
 
@@ -98,11 +98,11 @@ public class MainDangKy extends AppCompatActivity {
             values.put(database.COLUMN_USERS_NAME, username);
             values.put(database.COLUMN_USERS_PASSWORD, password);
             values.put(database.COLUMN_USERS_EMAIL, email);
-            values.put(database.COLUMN_USERS_FULLNAME, fullname);
+            values.put(database.COLUMN_USERS_FULLNAME, "");
             values.put(database.COLUMN_USERS_ROLE, "user");
-            values.put(database.COLUMN_USERS_IMAGE, image);
-            values.put(database.COLUMN_USERS_GENDER, gender);
-            values.put(database.COLUMN_USERS_BIRTHDAY, birthday);
+            values.put(database.COLUMN_USERS_IMAGE, "");
+            values.put(database.COLUMN_USERS_GENDER, "");
+            values.put(database.COLUMN_USERS_BIRTHDAY, "");
 
 
             //Kiểm tra xem username đã tồn tại chưa
