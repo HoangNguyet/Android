@@ -128,7 +128,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-11-14', " + //Update_at
             "'drawable/doraemon.jpg', " + //ImageInterView
             "3101, " +//View
-            "1)";//UserId
+            "'admin')";//UserId
     private String sql3 = "INSERT INTO stories VALUES (null," +
             "'Conan', " +
             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
@@ -141,7 +141,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-09-25', " +
             "'drawable/conan.jpg', " +
             "1500, " +
-            "2)";
+            "'admin')";
 
     private String sql4 = "INSERT INTO stories VALUES (null," +
             "'One Piece', " +
@@ -154,7 +154,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-08-20', " +
             "'drawable/one_piece.jpg', " +
             "2500, " +
-            "1)";
+            "'admin')";
 
     private String sql5 = "INSERT INTO stories VALUES (null," +
             "'Naruto', " +
@@ -167,7 +167,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-30', " +
             "'drawable/naruto.jpg', " +
             "2000, " +
-            "1)";
+            "'admin')";
 
     private String sql6 = "INSERT INTO stories VALUES (null, " +
             "'Dragon Ball', " +
@@ -180,7 +180,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-05', " +
             "'drawable/dragon_ball.jpg', " +
             "1800, " +
-            "2)";
+            "'admin')";
 
     private String sql7 = "INSERT INTO stories VALUES (null, " +
             "'Attack on Titan', " +
@@ -194,7 +194,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-05-25', " +
             "'drawable/attack_on_titan.jpg', " +
             "2200, " +
-            "1)";
+            "'admin')";
 
     private String sql8 = "INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)";
     private String sql9 = "INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)";
@@ -221,7 +221,7 @@ public class database extends SQLiteOpenHelper {
         db.execSQL(sql8);
         db.execSQL(sql9);
         db.execSQL(sql10);
-        Log.d("err","a");
+        Log.d("err", "a");
     }
 
     @Override
@@ -231,6 +231,7 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
         onCreate(db);
     }
+}
 //    public void SayHello() {
 //        Log.d("E","E");
 //        SQLiteDatabase db = this.getWritableDatabase();
@@ -248,4 +249,3 @@ public class database extends SQLiteOpenHelper {
 //            Log.d("ERoor",e.getMessage());
 //        }
 //    }
-}
