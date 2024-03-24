@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
-    private int _id;
-    private String _name;
+    //_name is id
+    private String _userName;
     private String _password;
     private String _email;
     private String _fullName;
@@ -17,12 +17,9 @@ public class User {
 
 
     //Getter
-    public int GetId() {
-        return _id;
-    }
 
     public String GetName() {
-        return _name;
+        return _userName;
     }
 
     public String GetPassword() {
@@ -55,11 +52,11 @@ public class User {
 
     //Setter
     //I dont want to user change role email and id
-    public void SetName(String name) throws Exception {
+    private void SetName(String name) throws Exception {
         if(name.isEmpty()){
             throw new Exception("Tên không được để trống");
         }
-        _name = name;
+        _userName = name;
     }
 
     public void SetPassword(String password) throws Exception {
@@ -99,10 +96,21 @@ public class User {
         }
         _email = email;
     }
-    public User(String _name, String _password,String _email, String _role) throws  Exception{
+    public User(String _userName, String _password,String _email, String _role) throws  Exception{
         this._role = _role;
-        SetName(_name);
+        SetName(_userName);
         SetPassword(_password);
         SetName(_email);
+    }
+
+    public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay) throws Exception {
+        SetName(_userName);
+        SetPassword(_password);
+        SetEmail(_email);
+        SetFullName(_fullName);
+        this._role = _role;
+        SetImagePath(_imagePath);
+        SetGender(_gender);
+        SetBirhDay(_birthDay);
     }
 }

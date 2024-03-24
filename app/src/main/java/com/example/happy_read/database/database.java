@@ -24,7 +24,6 @@ public class database extends SQLiteOpenHelper {
 
     // Tên bảng và các cột của bảng user
     public static final String TABLE_USERS = "users";
-    public static final String COLUMN_USERS_ID = "id";
     public static final String COLUMN_USERS_NAME = "username";
     public static final String COLUMN_USERS_PASSWORD = "password";
     public static final String COLUMN_USERS_EMAIL = "email";
@@ -45,12 +44,12 @@ public class database extends SQLiteOpenHelper {
     public static final String COLUMN_STORIES_UPDATED_AT = "updated_at"; // Chỉnh sửa ngày
     public static final String COLUMN_STORIES_IMAGE = "image"; // ảnh
     public static final String COLUMN_STORIES_VIEWS = "views"; //số lượt xem
-    public static final String COLUMN_STORIES_USERS_ID = "user_id";
+    public static final String COLUMN_STORIES_USERS_NAME = "user_name";
 
     //Tên bảng và các cột của bảng ratings(đánh giá)
     public static final String TABLE_RATINGS = "ratings";
     public static final String COLUMN_RATINGS_ID = "id";
-    public static final String COLUMN_RATINGS_USER_ID = "user_id";
+    public static final String COLUMN_RATINGS_USER_NAME = "user_name";
     public static final String COLUMN_RATINGS_STORY_ID = "story_id";
     public static final String COLUMN_RATINGS_RATING = "rating"; // điểm đánh giá của người dùng
     public static final String COLUMN_RATINGS_COMMENT = "comment";
@@ -59,8 +58,7 @@ public class database extends SQLiteOpenHelper {
     // Câu lệnh tạo bảng user
     private static final String SQL_CREATE_TABLE_USERS =
             "CREATE TABLE " + TABLE_USERS + " (" +
-                    COLUMN_USERS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_USERS_NAME + " TEXT NOT NULL, " +
+                    COLUMN_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
                     COLUMN_USERS_PASSWORD + " TEXT NOT NULL, " +
                     COLUMN_USERS_EMAIL + " TEXT NOT NULL, " +
                     COLUMN_USERS_FULLNAME + " TEXT NOT NULL, " +
@@ -82,9 +80,9 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_STORIES_UPDATED_AT + " TEXT NOT NULL, " +
                     COLUMN_STORIES_IMAGE + " TEXT, " +
                     COLUMN_STORIES_VIEWS + " INTEGER NOT NULL, " +
-                    COLUMN_STORIES_USERS_ID + " INTEGER NOT NULL, " +
-                    "FOREIGN KEY (" + COLUMN_STORIES_USERS_ID + ") REFERENCES " +
-                    TABLE_USERS + "(" + COLUMN_USERS_ID + ")" +
+                    COLUMN_STORIES_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+                    "FOREIGN KEY (" + COLUMN_STORIES_USERS_NAME + ") REFERENCES " +
+                    TABLE_USERS + "(" + COLUMN_USERS_NAME + ")" +
                     ")";
 
     //Câu lệnh tạo bảng ratings
@@ -92,12 +90,12 @@ public class database extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_RATINGS =
             "CREATE TABLE " + TABLE_RATINGS + " (" +
                     COLUMN_RATINGS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_RATINGS_USER_ID + " INTEGER NOT NULL, " +
+                    COLUMN_RATINGS_USER_NAME + " TEXT PRIMARY KEY NOT NULL, " +
                     COLUMN_RATINGS_STORY_ID + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_RATING + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_COMMENT + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_ISFAVORITE + " INTEGER NOT NULL CHECK (" + COLUMN_RATINGS_ISFAVORITE + " IN (0,1)), " +
-                    "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_ID + ", " + COLUMN_RATINGS_STORY_ID + ")" +
+                    "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +
                     ")";
 
     // Câu lệnh xóa bảng user
