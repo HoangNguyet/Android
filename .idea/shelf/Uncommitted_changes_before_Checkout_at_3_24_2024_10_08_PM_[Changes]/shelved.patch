@@ -1,0 +1,930 @@
+Index: app/src/main/java/com/example/happy_read/activity/MainDangNhap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.happy_read.activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport android.os.Bundle;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.view.View;\r\nimport android.widget.Toast;\r\n\r\nimport com.example.happy_read.R;\r\nimport com.example.happy_read.database.database;\r\n\r\npublic class MainDangNhap extends AppCompatActivity {\r\n\r\n    private EditText edUserName, edPassword;\r\n    private Button btndangnhap, btndangki;\r\n    private database database;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main_dang_nhap);\r\n\r\n        // Khởi tạo các thành phần trong giao diện\r\n        edUserName = findViewById(R.id.ed_username);\r\n        edPassword = findViewById(R.id.ed_password);\r\n        btndangki = findViewById(R.id.btn_dangki);\r\n        btndangnhap = findViewById(R.id.btn_dangnhap);\r\n        database = new database(this);\r\n\r\n        //xử lý sự kiện khi người dùng nhấn nút \"Đăng nhập\"\r\n        btndangnhap.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                String username = edUserName.getText().toString().trim();\r\n                String password = edPassword.getText().toString().trim();\r\n                //Kiểm tra xem người dùng đã nhập đầy đủ thông tin chưa\r\n                if (username.isEmpty() || password.isEmpty()) {\r\n                    Toast.makeText(MainDangNhap.this, \"Vui lòng nhập tên đăng nhập và mật khẩu\", Toast.LENGTH_SHORT).show();\r\n                    return;\r\n                }\r\n            }\r\n        });\r\n\r\n        //xử lý sự kiện khi người dùng nhấn nút \"Đăng ký\"\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/happy_read/activity/MainDangNhap.java b/app/src/main/java/com/example/happy_read/activity/MainDangNhap.java
+--- a/app/src/main/java/com/example/happy_read/activity/MainDangNhap.java	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/java/com/example/happy_read/activity/MainDangNhap.java	(date 1711292339686)
+@@ -1,6 +1,10 @@
+ package com.example.happy_read.activity;
+ 
+ import androidx.appcompat.app.AppCompatActivity;
++
++import android.content.Intent;
++import android.database.Cursor;
++import android.database.sqlite.SQLiteDatabase;
+ import android.os.Bundle;
+ import android.widget.Button;
+ import android.widget.EditText;
+@@ -39,10 +43,42 @@
+                     Toast.makeText(MainDangNhap.this, "Vui lòng nhập tên đăng nhập và mật khẩu", Toast.LENGTH_SHORT).show();
+                     return;
+                 }
++
++                //Thực hiện truy vấn vào cơ sở dữ liệu để kiểm tra đăng nhập
++                SQLiteDatabase db = database.getReadableDatabase(); // mo ket noi doc den co so du lieu, thao tac de lay mot doi tuong sqlite de thuc hien cac truy van
++                String selection = "select * from "  + database.TABLE_USERS + " where " + database.COLUMN_USERS_NAME + " = ? and "
++                        + database.COLUMN_USERS_PASSWORD + " =?";
++                String[] selectionArgs = {username, password};
++                Cursor cursor = db.rawQuery(selection, selectionArgs);
++                if (cursor != null && cursor.moveToFirst()) {
++                    //Đăng nhập thành công
++                    Toast.makeText(MainDangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
++                    // Chuyển sang trang quên mật khẩu
++                    Intent intent = new Intent(MainDangNhap.this, ChangePassWordActivity.class);
++                    intent.putExtra("USERNAME", username); //Truyền tên người dùng qua intent
++                    startActivity(intent);
++                    finish(); // Kết thúc Activity hiện tại sau khi chuyển sang trang quên mật khẩu
++                } else {
++                    //Đăng nhập thất bại
++                    Toast.makeText(MainDangNhap.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
++                }
++                //Đóng cursor sau khi sử dụng xong
++                if (cursor != null) {
++                    cursor.close();
++                }
+             }
+         });
++
+ 
+         //xử lý sự kiện khi người dùng nhấn nút "Đăng ký"
++        btndangki.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                //Chuyen sang form dang ky
++                Intent intent = new Intent(MainDangNhap.this, MainDangKy.class);
++                startActivity(intent);
++            }
++        });
+ 
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/happy_read/activity/MainDangKy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.happy_read.activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport com.example.happy_read.R;\r\n\r\npublic class MainDangKy extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main_dang_ky);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/happy_read/activity/MainDangKy.java b/app/src/main/java/com/example/happy_read/activity/MainDangKy.java
+--- a/app/src/main/java/com/example/happy_read/activity/MainDangKy.java	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/java/com/example/happy_read/activity/MainDangKy.java	(date 1711292339685)
+@@ -1,16 +1,132 @@
+ package com.example.happy_read.activity;
+ 
++
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.content.ContentValues;
++import android.content.Intent;
++import android.database.Cursor;
++import android.database.sqlite.SQLiteDatabase;
+ import android.os.Bundle;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.RadioButton;
++import android.widget.Toast;
++import android.widget.RadioGroup;
+ 
+ import com.example.happy_read.R;
++import com.example.happy_read.database.database;
+ 
+ public class MainDangKy extends AppCompatActivity {
+ 
++    private EditText edusername, edpassword, edemail,edpassword2, edfullname, edbirthday;
++    private  RadioGroup radiogender;
++    private Button btndangky, btnback;
++    private database database;
++
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main_dang_ky);
++
++        //Khởi tạo các thành phần trong giao diện
++        edusername = findViewById(R.id.ed_username);
++        edpassword = findViewById(R.id.ed_password);
++        edpassword2 = findViewById(R.id.ed_mk2);
++        edemail = findViewById(R.id.ed_email);
++//        edfullname = findViewById(R.id.ed_fullname);
++//        edbirthday = findViewById(R.id.ed_birthday);
++//        radiogender = findViewById(R.id.radioGroupGender);
++        btndangky = findViewById(R.id.btndangki);
++        btnback = findViewById(R.id.btnback);
++        database = new database(this);
++
++        //Xử lý sự kiện khi người dùng bấm nút đăng ký
++        btndangky.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                //Lấy thông tin từ các trường edittext
++                String username = edusername.getText().toString().trim();
++                String password = edpassword.getText().toString().trim();
++                String password2 = edpassword2.getText().toString().trim();
++                String email = edemail.getText().toString().trim();
++//                String fullname = edfullname.getText().toString().trim();
++//                String birthday = edbirthday.getText().toString().trim();
++//                String gender = "";//lấy giá trị radio nếu có
++//                int selectedId = radiogender.getCheckedRadioButtonId();
++//                if (selectedId != -1) {
++//                    RadioButton selectedRadioButton = findViewById(selectedId);
++//                    gender = selectedRadioButton.getText().toString();
++//                }
++
++                //Kiểm tra xem người dùng nhập đầy đủ thông tin chưa
++                if (username.isEmpty() || email.isEmpty() || password.isEmpty() || password2.isEmpty()) {
++                    Toast.makeText(MainDangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
++                    return;
++                }
++
++                // Thêm người dùng vào cơ dữ liệu
++                addUserToDatabase(username, password, email);
++            }
++        });
++
++        //Xử lý xự kiện khi người dùng bấm nút trở lại
++        btnback.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                // Khi người dùng click vào trở lại sẽ trở về trang đăng nhập
++                finish();
++            }
++        });
+     }
++
++        @Override
++        public void onBackPressed() {
++            super.onBackPressed();
++            finish();
++        }
++
++        // Phương thức thêm người dùng vào cơ sở dữ liệu
++        private void addUserToDatabase(String username, String password, String email) {
++            // Mở kết nối đến cơ sở dữ liệu
++            SQLiteDatabase db = database.getWritableDatabase();
++
++            // Tạo đối tượng ContentValues để chứa các cặp key-value
++            ContentValues values = new ContentValues();
++            values.put(database.COLUMN_USERS_NAME, username);
++            values.put(database.COLUMN_USERS_PASSWORD, password);
++            values.put(database.COLUMN_USERS_EMAIL, email);
++            values.put(database.COLUMN_USERS_FULLNAME, "");
++            values.put(database.COLUMN_USERS_ROLE, "user");
++            values.put(database.COLUMN_USERS_IMAGE, "");
++            values.put(database.COLUMN_USERS_GENDER, "");
++            values.put(database.COLUMN_USERS_BIRTHDAY, "");
++
++
++            //Kiểm tra xem username đã tồn tại chưa
++            Cursor cussor = db.rawQuery("select * from " + database.TABLE_USERS + " where " + database.COLUMN_USERS_NAME + " = ?", new String[]{username});
++            if(cussor.getCount() > 0){
++                // Username đã tồn tại
++                Toast.makeText(this, "Username đã tồn tại", Toast.LENGTH_SHORT).show();
++            }
++            else {
++                // Thực hiện insert dữ liệu vào bảng USERS
++                long newRowId = db.insert(database.TABLE_USERS, null, values);
++
++                // Kiểm tra kết quả insert
++                if (newRowId != -1) {
++                    // Insert thành công
++                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
++                    finish();
++                } else {
++                    // Insert thất bại
++                    Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
++                }
++
++            }
++            // Đóng kết nối đến cơ sở dữ liệu
++            db.close();
++        }
+ }
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Happy_Read\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".activity.MainActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activity.MainDangKy\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".activity.MainDangNhap\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/AndroidManifest.xml	(date 1711292339681)
+@@ -19,6 +19,9 @@
+             android:name=".activity.MainDangKy"
+             android:exported="false" />
+         <activity
++            android:name=".activity.ChangePassWordActivity"
++            android:exported="false" />
++        <activity
+             android:name=".activity.MainDangNhap"
+             android:exported="true">
+             <intent-filter>
+Index: app/src/main/res/layout/activity_main_dang_ky.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activity.MainDangKy\"\r\n    android:orientation=\"vertical\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"center\"\r\n        android:layout_marginTop=\"60dp\"\r\n        android:text=\"Đăng kí\"\r\n        android:textColor=\"#03A9F4\"\r\n        android:textSize=\"34dp\"\r\n        android:textStyle=\"bold\">\r\n    </TextView>\r\n    <TextView\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Tên đăng nhập\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:textSize=\"20dp\">\r\n    </TextView>\r\n    <EditText\r\n        android:layout_marginTop=\"10dp\"\r\n        android:id=\"@+id/ed_username\"\r\n        android:layout_width=\"220dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"Điền tên đăng nhập\"\r\n        android:layout_gravity=\"center\"\r\n        android:drawableRight=\"@drawable/user\">\r\n    </EditText>\r\n    <TextView\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Mật khẩu\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:textSize=\"20dp\">\r\n    </TextView>\r\n    <EditText\r\n        android:id=\"@+id/ed_password\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_width=\"220dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"Điền mật khẩu\"\r\n        android:layout_gravity=\"center\"\r\n        android:drawableRight=\"@drawable/pass\">\r\n    </EditText>\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Email\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:textSize=\"20dp\">\r\n    </TextView>\r\n    <EditText\r\n        android:id=\"@+id/ed_email\"\r\n        android:layout_width=\"220dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:hint=\"Điền email\"\r\n        android:layout_gravity=\"center\"\r\n        android:drawableRight=\"@drawable/email\">\r\n    </EditText>\r\n\r\n    <Button\r\n        android:id=\"@+id/btndangki\"\r\n        android:layout_width=\"200dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"center\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:backgroundTint=\"#337A83\"\r\n        android:text=\"Đăng kí\"\r\n        android:textColorHighlight=\"#673AB7\"\r\n        android:textColorLink=\"#673AB7\"></Button>\r\n\r\n    <Button\r\n        android:id=\"@+id/btnback\"\r\n        android:layout_width=\"230dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"center\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:backgroundTint=\"#337A83\"\r\n        android:text=\"Trở lại\"></Button>\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main_dang_ky.xml b/app/src/main/res/layout/activity_main_dang_ky.xml
+--- a/app/src/main/res/layout/activity_main_dang_ky.xml	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/res/layout/activity_main_dang_ky.xml	(date 1711292339731)
+@@ -1,89 +1,149 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".activity.MainDangKy"
+-    android:orientation="vertical">
++    android:background="@drawable/conan5">
++
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="60dp"
+-        android:text="Đăng kí"
+-        android:textColor="#03A9F4"
+-        android:textSize="34dp"
+-        android:textStyle="bold">
+-    </TextView>
+-    <TextView
+-        android:layout_marginTop="10dp"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Tên đăng nhập"
+-        android:layout_marginLeft="20dp"
+-        android:textSize="20dp">
+-    </TextView>
+-    <EditText
+-        android:layout_marginTop="10dp"
+-        android:id="@+id/ed_username"
+-        android:layout_width="220dp"
+-        android:layout_height="wrap_content"
+-        android:hint="Điền tên đăng nhập"
+-        android:layout_gravity="center"
+-        android:drawableRight="@drawable/user">
+-    </EditText>
+-    <TextView
+-        android:layout_marginTop="10dp"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Mật khẩu"
+-        android:layout_marginLeft="20dp"
+-        android:textSize="20dp">
+-    </TextView>
+-    <EditText
+-        android:id="@+id/ed_password"
+-        android:layout_marginTop="10dp"
+-        android:layout_width="220dp"
+-        android:layout_height="wrap_content"
+-        android:hint="Điền mật khẩu"
+-        android:layout_gravity="center"
+-        android:drawableRight="@drawable/pass">
+-    </EditText>
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Email"
+-        android:layout_marginLeft="20dp"
+-        android:textSize="20dp">
+-    </TextView>
+-    <EditText
+-        android:id="@+id/ed_email"
+-        android:layout_width="220dp"
+-        android:layout_height="wrap_content"
+-        android:hint="Điền email"
+-        android:layout_gravity="center"
+-        android:drawableRight="@drawable/email">
+-    </EditText>
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        android:padding="16dp">
++
++        <!-- Tiêu đề -->
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center"
++            android:layout_marginBottom="24dp"
++            android:text="Đăng ký"
++            android:textColor="#009688"
++            android:textSize="34sp"
++            android:textStyle="bold" />
++
++        <!-- Tên đăng nhập -->
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Tên đăng nhập"
++            android:textSize="20sp" />
++
++        <EditText
++            android:id="@+id/ed_username"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="Điền tên đăng nhập" />
++
++        <!-- Mật khẩu -->
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Mật khẩu"
++            android:textSize="20sp"
++            android:layout_marginTop="16dp" />
++
++        <EditText
++            android:id="@+id/ed_password"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="Điền mật khẩu" />
++
++        <!-- Ngày sinh -->
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Xác nhận mật khẩu"
++            android:textSize="20sp"
++            android:layout_marginTop="16dp" />
++        <EditText
++            android:id="@+id/ed_mk2"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="Nhập lại mật khẩu" />
++        <!-- Email -->
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Email"
++            android:textSize="20sp"
++            android:layout_marginTop="16dp" />
++
++        <EditText
++            android:id="@+id/ed_email"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="Điền email" />
++
++<!--        &lt;!&ndash; Họ và tên &ndash;&gt;-->
++<!--        <TextView-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:text="Họ và tên"-->
++<!--            android:textSize="20sp"-->
++<!--            android:layout_marginTop="16dp" />-->
++
++<!--        <EditText-->
++<!--            android:id="@+id/ed_fullname"-->
++<!--            android:layout_width="match_parent"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:hint="Điền họ và tên" />-->
++
++
++<!--        &lt;!&ndash; Giới tính &ndash;&gt;-->
++<!--        <TextView-->
++<!--            android:layout_width="wrap_content"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:text="Giới tính"-->
++<!--            android:textSize="20sp"-->
++<!--            android:layout_marginTop="16dp" />-->
++
++<!--        <RadioGroup-->
++<!--            android:id="@+id/radioGroupGender"-->
++<!--            android:layout_width="match_parent"-->
++<!--            android:layout_height="wrap_content"-->
++<!--            android:orientation="horizontal">-->
++
++<!--            <RadioButton-->
++<!--                android:id="@+id/radioMale"-->
++<!--                android:layout_width="wrap_content"-->
++<!--                android:layout_height="wrap_content"-->
++<!--                android:text="Nam" />-->
++
++<!--            <RadioButton-->
++<!--                android:id="@+id/radioFemale"-->
++<!--                android:layout_width="wrap_content"-->
++<!--                android:layout_height="wrap_content"-->
++<!--                android:text="Nữ" />-->
++
++<!--            &lt;!&ndash; Các lựa chọn khác nếu cần &ndash;&gt;-->
++<!--        </RadioGroup>-->
++        <!-- Nút đăng ký và nút trở lại -->
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="horizontal"
++            android:gravity="center"
++            android:layout_marginTop="24dp">
+ 
+-    <Button
+-        android:id="@+id/btndangki"
+-        android:layout_width="200dp"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="10dp"
+-        android:backgroundTint="#337A83"
+-        android:text="Đăng kí"
+-        android:textColorHighlight="#673AB7"
+-        android:textColorLink="#673AB7"></Button>
++            <Button
++                android:id="@+id/btndangki"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginEnd="16dp"
++                android:backgroundTint="#337A83"
++                android:text="Đăng ký"
++                android:textColor="#E9E6EF"
++                android:textSize="18sp" />
+ 
+-    <Button
+-        android:id="@+id/btnback"
+-        android:layout_width="230dp"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+-        android:layout_marginTop="10dp"
+-        android:backgroundTint="#337A83"
+-        android:text="Trở lại"></Button>
+-</LinearLayout>
+\ No newline at end of file
++            <Button
++                android:id="@+id/btnback"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:backgroundTint="#337A83"
++                android:text="Trở lại"
++                android:textColor="#EDEDED"
++                android:textSize="18sp" />
++        </LinearLayout>
++    </LinearLayout>
++</ScrollView>
+Index: app/src/main/java/com/example/happy_read/database/database.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.happy_read.database;\r\nimport android.content.ContentValues;\r\nimport android.content.Context;\r\nimport android.database.Cursor;\r\nimport android.database.SQLException;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.util.Log;\r\n\r\nimport androidx.annotation.Nullable;\r\n\r\nimport com.example.happy_read.model.Story;\r\nimport com.example.happy_read.model.User;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\npublic class database extends SQLiteOpenHelper {\r\n\r\n    // Tên cơ sở dữ liệu và phiên bản\r\n    private static final String DATABASE_NAME = \"mydatabase\";\r\n    private static final int DATABASE_VERSION = 1;\r\n\r\n    // Tên bảng và các cột của bảng user\r\n    public static final String TABLE_USERS = \"users\";\r\n    public static final String COLUMN_USERS_NAME = \"username\";\r\n    public static final String COLUMN_USERS_PASSWORD = \"password\";\r\n    public static final String COLUMN_USERS_EMAIL = \"email\";\r\n    public static final String COLUMN_USERS_FULLNAME = \"fullname\";\r\n    public static final String COLUMN_USERS_ROLE = \"userrole\";\r\n    public static final String COLUMN_USERS_IMAGE = \"image\";\r\n    public static final String COLUMN_USERS_GENDER = \"gender\";\r\n    public static final String COLUMN_USERS_BIRTHDAY = \"birthday\";\r\n\r\n    //Tên bảng và các cột của bảng stories\r\n    public static final String TABLE_STORIES = \"stories\";\r\n    public static final String COLUMN_STORIES_ID = \"id\";\r\n    public static final String COLUMN_STORIES_TITLE = \"title\";\r\n    public static final String COLUMN_STORIES_DESCRIPTION = \"description\";\r\n    public static final String COLUMN_STORIES_CONTENT = \"content\";\r\n    public static final String COLUMN_STORIES_GENRE = \"genre\"; // Thể loại\r\n    public static final String COLUMN_STORIES_CREATED_AT = \"created_at\"; // tạo ngày\r\n    public static final String COLUMN_STORIES_UPDATED_AT = \"updated_at\"; // Chỉnh sửa ngày\r\n    public static final String COLUMN_STORIES_IMAGE = \"image\"; // ảnh\r\n    public static final String COLUMN_STORIES_VIEWS = \"views\"; //số lượt xem\r\n    public static final String COLUMN_STORIES_USERS_NAME = \"user_name\";\r\n\r\n    //Tên bảng và các cột của bảng ratings(đánh giá)\r\n    public static final String TABLE_RATINGS = \"ratings\";\r\n    public static final String COLUMN_RATINGS_ID = \"id\";\r\n    public static final String COLUMN_RATINGS_USER_NAME = \"user_name\";\r\n    public static final String COLUMN_RATINGS_STORY_ID = \"story_id\";\r\n    public static final String COLUMN_RATINGS_RATING = \"rating\"; // điểm đánh giá của người dùng\r\n    public static final String COLUMN_RATINGS_COMMENT = \"comment\";\r\n    public static final String COLUMN_RATINGS_ISFAVORITE = \"isfavorite\";\r\n\r\n    // Câu lệnh tạo bảng user\r\n    private static final String SQL_CREATE_TABLE_USERS =\r\n            \"CREATE TABLE \" + TABLE_USERS + \" (\" +\r\n                    COLUMN_USERS_NAME + \" TEXT PRIMARY KEY NOT NULL, \" +\r\n                    COLUMN_USERS_PASSWORD + \" TEXT NOT NULL, \" +\r\n                    COLUMN_USERS_EMAIL + \" TEXT NOT NULL, \" +\r\n                    COLUMN_USERS_FULLNAME + \" TEXT NOT NULL, \" +\r\n                    COLUMN_USERS_ROLE + \" TEXT NOT NULL, \" +\r\n                    COLUMN_USERS_IMAGE + \" TEXT, \" +\r\n                    COLUMN_USERS_GENDER + \" TEXT, \" +\r\n                    COLUMN_USERS_BIRTHDAY + \" DATE\" +\r\n                    \")\";\r\n\r\n    // câu lệnh tạo bảng stories\r\n    // câu lệnh tạo bảng stories\r\n    private static final String SQL_CREATE_TABLE_STORIES =\r\n            \"CREATE TABLE \" + TABLE_STORIES + \" (\" +\r\n                    COLUMN_STORIES_ID + \" INTEGER PRIMARY KEY AUTOINCREMENT, \" +\r\n                    COLUMN_STORIES_TITLE + \" TEXT NOT NULL, \" +\r\n                    COLUMN_STORIES_CONTENT + \" TEXT NOT NULL, \" +\r\n                    COLUMN_STORIES_GENRE + \" TEXT NOT NULL, \" +\r\n                    COLUMN_STORIES_CREATED_AT + \" TEXT NOT NULL, \" +\r\n                    COLUMN_STORIES_UPDATED_AT + \" TEXT NOT NULL, \" +\r\n                    COLUMN_STORIES_IMAGE + \" TEXT, \" +\r\n                    COLUMN_STORIES_VIEWS + \" INTEGER NOT NULL, \" +\r\n                    COLUMN_STORIES_USERS_NAME + \" TEXT PRIMARY KEY NOT NULL, \" +\r\n                    \"FOREIGN KEY (\" + COLUMN_STORIES_USERS_NAME + \") REFERENCES \" +\r\n                    TABLE_USERS + \"(\" + COLUMN_USERS_NAME + \")\" +\r\n                    \")\";\r\n\r\n    //Câu lệnh tạo bảng ratings\r\n    //one user have one ratting belong to book = >\r\n    private static final String SQL_CREATE_TABLE_RATINGS =\r\n            \"CREATE TABLE \" + TABLE_RATINGS + \" (\" +\r\n                    COLUMN_RATINGS_ID + \" INTEGER PRIMARY KEY AUTOINCREMENT, \" +\r\n                    COLUMN_RATINGS_USER_NAME + \" TEXT PRIMARY KEY NOT NULL, \" +\r\n                    COLUMN_RATINGS_STORY_ID + \" INTEGER NOT NULL, \" +\r\n                    COLUMN_RATINGS_RATING + \" INTEGER NOT NULL, \" +\r\n                    COLUMN_RATINGS_COMMENT + \" TEXT NOT NULL, \" +\r\n                    COLUMN_RATINGS_ISFAVORITE + \" INTEGER NOT NULL CHECK (\" + COLUMN_RATINGS_ISFAVORITE + \" IN (0,1)), \" +\r\n                    \"CONSTRAINT UC_Unique_Rating  UNIQUE (\" + COLUMN_RATINGS_USER_NAME + \", \" + COLUMN_RATINGS_STORY_ID + \")\" +\r\n                    \")\";\r\n\r\n    // Câu lệnh xóa bảng user\r\n    private String sql1 = \"INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\\n\" +\r\n            \"VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\\n\" +\r\n            \"('anh', 'anh', 'jane@example.com', 'Nguyễn Thị Ngọc Ánh', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\\n\" +\r\n            \"('ninh', 'ninh', 'smith@example.com', 'Lê Khắc Ninh', 'user', 'drawable/avata1.webp', 'male', '2003-01-14')\";\r\n\r\n\r\n    private String sql2 = \"INSERT INTO stories VALUES (null,\" +\r\n            \"'Doraemon', \" +//Tittle\r\n            \"'Mùa đông đã đến rồi trời lạnh buốt, Doraemon không có gì để ăn cả.\" +\r\n            \" Doraemon mặc áo vào rồi ra ngoài kiếm thức ăn. Nó đi mãi đi mãi cuối cùng cũng tìm được hai củ cải trắng. \" +\r\n            \"Doraemon reo lên: Ôi, ở đây có hai củ cải trắng liền, mình thật là may mắn! Doraemon đói bụng, muốn ăn lắm rồi. \" +\r\n            \"Nhưng Doraemon lại nghĩ: Ừm… trời lạnh thế này, chắc Nobita cũng không có cái gì để ăn đâu.\" +\r\n            \" Mình phải mang cho Nobita một củ mới được. Thế là Doraemon đi sang nhà bạn Nobita nhưng Nobita không có nhà nên Doraemon đặt củ cải lên bàn rồi đi về. \" +\r\n            \"Tình cờ, Nobita con đi chơi cũng tìm được một củ cải trắng nhưng nó chỉ ăn trước một nửa.\" +\r\n            \" Về đến nhà, lại thấy có một củ cải trắng ở trên bàn Nobita thèm ăn lắm, nhưng lại nghĩ:\" +\r\n            \" Ôi trời lạnh thế này chắc Shizuka không có cái gì để ăn rồi, mình phải mang cho Shizuka mới được.\" +\r\n            \" Nobita con đến nhà Shizuka nhưng Shizuka lại đi vắng, Nobita bèn đặt củ cải ở trên bàn rồi về. \" +\r\n            \"Khi Shizuka về nhà, thấy củ cải ở trên bàn, Shizuka ngạc nhiên lắm. Ồ, củ cải trắng ở đâu mà ngon vậy nhỉ.\" +\r\n            \" Xuỵt… thích quá. Nhưng chắc trời lạnh thế này, Doraemon cũng không có gì ăn đâu. Mình phải mang sang cho Doraemon mới được. \" +\r\n            \"Khi Shizuka đến thì Doraemon đang ngủ rất say. Khi tỉnh dậy Doraemon lại thấy trên bàn mình xuất hiện một củ cải trắng.\" +\r\n            \" Doraemon vui lắm nó chạy đi gọi các bạn: Bạn Shizuka ơi, bạn Nobita ơi hãy đến nhà tôi, chúng ta cùng ăn củ cải trắng thơm ngon này. \" +\r\n            \"Thế là cuối cùng, củ cải trắng ấy được chia sẻ cho cả ba người bạn tốt bụng của chúng ta. Các bạn thấy đấy tấm lòng thơm thảo,\" +\r\n            \" sẵn sàng sẻ chia của các bạn ấy thật là đáng học tập phải không nào?', \" +//Contet\r\n            \"'Câu chuyện kể về chú mèo máy doremon, '\" + //Description\r\n            \"'Thiếu nhi', \" + //Genre\r\n            \"'2023-10-24', \" + //Create_at\r\n            \"'2023-11-14', \" + //Update_at\r\n            \"'drawable/doraemon.jpg', \" + //ImageInterView\r\n            \"3101, \" +//View\r\n            \"1)\";//UserId\r\n    private String sql3 = \"INSERT INTO stories VALUES (null,\" +\r\n            \"'Conan', \" +\r\n            \"'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, \" +\r\n            \"một học sinh cấp 3 tài năng và nổi tiếng trong việc phá án. \" +\r\n            \"Trong một lần tình cờ, Shinichi bị biến thành một cậu bé nhỏ tuổi hơn sau khi bị độc thuốc của tổ chức Áo Đen.\" +\r\n            \" Với sự trợ giúp của bác sĩ Agasa, Shinichi sống dưới danh tính Conan Edogawa và tiếp tục phá án để tìm ra tung tích của tổ chức Áo Đen.', \" +\r\n            \"'................., '\" + //Description\r\n            \"'Hành động', \" +\r\n            \"'2023-09-10', \" +\r\n            \"'2023-09-25', \" +\r\n            \"'drawable/conan.jpg', \" +\r\n            \"1500, \" +\r\n            \"2)\";\r\n\r\n    private String sql4 = \"INSERT INTO stories VALUES (null,\" +\r\n            \"'One Piece', \" +\r\n            \"'One Piece là một bộ truyện tranh nổi tiếng của tác giả Eiichiro Oda.\" +\r\n            \" Câu chuyện kể về cuộc hành trình của Monkey D. Luffy - một cậu bé trẻ đam mê trở thành Vua Hải Tặc và tìm kiếm kho báu One Piece để trở thành Vua Hải Tặc.\" +\r\n            \" Cùng với băng hải tặc Mũ Rơm của mình, Luffy vượt qua nhiều thử thách và gặp gỡ nhiều nhân vật đầy màu sắc trên đường đi.', \" +\r\n            \"'................., '\" + //Description\r\n            \"'Phiêu lưu', \" +\r\n            \"'2023-08-05', \" +\r\n            \"'2023-08-20', \" +\r\n            \"'drawable/one_piece.jpg', \" +\r\n            \"2500, \" +\r\n            \"1)\";\r\n\r\n    private String sql5 = \"INSERT INTO stories VALUES (null,\" +\r\n            \"'Naruto', \" +\r\n            \"'Naruto là một bộ truyện tranh kinh điển của tác giả Masashi Kishimoto. \" +\r\n            \"Câu chuyện xoay quanh cuộc phiêu lưu của Naruto Uzumaki - một cậu bé có ước mơ trở thành Hokage, người lãnh đạo của làng ninja. \" +\r\n            \"Trong hành trình của mình, Naruto phải đối mặt với nhiều thử thách và học được nhiều bài học quý giá về tình bạn, lòng dũng cảm và sự kiên nhẫn.', \" +\r\n            \"'................., '\" + //Description\r\n            \"'Hành động, phiêu lưu', \" +\r\n            \"'2023-07-15', \" +\r\n            \"'2023-07-30', \" +\r\n            \"'drawable/naruto.jpg', \" +\r\n            \"2000, \" +\r\n            \"1)\";\r\n\r\n    private String sql6 = \"INSERT INTO stories VALUES (null, \" +\r\n            \"'Dragon Ball', \" +\r\n            \"'Dragon Ball là một trong những bộ truyện tranh huyền thoại của Nhật Bản, sáng tạo bởi Akira Toriyama. \" +\r\n            \"Câu chuyện xoay quanh cuộc hành trình của Goku - một chiến binh Siêu Saya và các đồng đội của mình trong việc tìm kiếm các viên ngọc rồng và \" +\r\n            \"chiến đấu chống lại các kẻ thù đáng sợ như Frieza, Cell và Buu để bảo vệ trái đất.', \" +\r\n            \"'................., '\" + //Description\r\n            \"'Hành động, võ thuật', \" +\r\n            \"'2023-06-20', \" +\r\n            \"'2023-07-05', \" +\r\n            \"'drawable/dragon_ball.jpg', \" +\r\n            \"1800, \" +\r\n            \"2)\";\r\n\r\n    private String sql7 = \"INSERT INTO stories VALUES (null, \" +\r\n            \"'Attack on Titan', \" +\r\n            \"'Attack on Titan (tên tiếng Nhật: Shingeki no Kyojin) là một bộ truyện tranh nổi tiếng của tác giả Hajime Isayama. \" +\r\n            \"Câu chuyện diễn ra trong một thế giới nơi con người sống trong những thành trì khổng lồ để tránh khỏi cuộc tấn công \" +\r\n            \"của những sinh vật khổng lồ có tên là Titan. Eren Yeager và những người bạn của cậu gia nhập quân đội để chiến đấu chống lại Titan và \" +\r\n            \"khám phá bí mật về thế giới của họ.', \" +\r\n            \"'................., '\" + //Description\r\n            \"'Hành động, kinh dị', \" +\r\n            \"'2023-05-10', \" +\r\n            \"'2023-05-25', \" +\r\n            \"'drawable/attack_on_titan.jpg', \" +\r\n            \"2200, \" +\r\n            \"1)\";\r\n\r\n    private String sql8 = \"INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)\";\r\n    private String sql9 = \"INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)\";\r\n    private String sql10 = \"INSERT INTO ratings VALUES (null,3   , 3, 3, 'Truyện khá thú vị.', 1)\";\r\n\r\n    public database(Context context) {\r\n        super(context, DATABASE_NAME, null, DATABASE_VERSION);\r\n    }\r\n\r\n    // Phương thức được gọi khi cơ sở dữ liệu được tạo lần đầu tiên\r\n    // Thực thi các câu lệnh tạo bảng để tạo cấu trúc cơ sở dữ liệu\r\n    @Override\r\n    public void onCreate(SQLiteDatabase db) {\r\n        db.execSQL(SQL_CREATE_TABLE_USERS);\r\n        db.execSQL(SQL_CREATE_TABLE_STORIES);\r\n        db.execSQL(SQL_CREATE_TABLE_RATINGS);\r\n        db.execSQL(sql1);\r\n        db.execSQL(sql2);\r\n        db.execSQL(sql3);\r\n        db.execSQL(sql4);\r\n        db.execSQL(sql5);\r\n        db.execSQL(sql6);\r\n        db.execSQL(sql7);\r\n        db.execSQL(sql8);\r\n        db.execSQL(sql9);\r\n        db.execSQL(sql10);\r\n        Log.d(\"err\",\"a\");\r\n    }\r\n\r\n    @Override\r\n    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\r\n        db.execSQL(\"DROP TABLE IF EXISTS \" + TABLE_USERS);\r\n        db.execSQL(\"DROP TABLE IF EXISTS \" + TABLE_STORIES);\r\n        db.execSQL(\"DROP TABLE IF EXISTS \" + TABLE_RATINGS);\r\n        onCreate(db);\r\n    }\r\n//    public void SayHello() {\r\n//        Log.d(\"E\",\"E\");\r\n//        SQLiteDatabase db = this.getWritableDatabase();\r\n//        ContentValues cv = new ContentValues();\r\n//        try {\r\n////        private String sql11 = \"INSERT INTO ratings VALUES (null,3   , 2, 3, 'Truyện khá thú vị.', 1)\";\r\n//            cv.put(COLUMN_RATINGS_USER_ID, 3);\r\n//            cv.put(COLUMN_RATINGS_STORY_ID, 3);\r\n//            cv.put(COLUMN_RATINGS_RATING, 5);\r\n//            cv.put(COLUMN_RATINGS_COMMENT, \"Heallo\");\r\n//            cv.put(COLUMN_RATINGS_ISFAVORITE, 0);\r\n//            db.insert(TABLE_RATINGS, null, cv);\r\n//        }\r\n//        catch (Exception e){\r\n//            Log.d(\"ERoor\",e.getMessage());\r\n//        }\r\n//    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/happy_read/database/database.java b/app/src/main/java/com/example/happy_read/database/database.java
+--- a/app/src/main/java/com/example/happy_read/database/database.java	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/java/com/example/happy_read/database/database.java	(date 1711292759706)
+@@ -128,7 +128,7 @@
+             "'2023-11-14', " + //Update_at
+             "'drawable/doraemon.jpg', " + //ImageInterView
+             "3101, " +//View
+-            "1)";//UserId
++            "'admin')";//UserId
+     private String sql3 = "INSERT INTO stories VALUES (null," +
+             "'Conan', " +
+             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
+@@ -141,7 +141,7 @@
+             "'2023-09-25', " +
+             "'drawable/conan.jpg', " +
+             "1500, " +
+-            "2)";
++            "'admin')";
+ 
+     private String sql4 = "INSERT INTO stories VALUES (null," +
+             "'One Piece', " +
+@@ -154,7 +154,7 @@
+             "'2023-08-20', " +
+             "'drawable/one_piece.jpg', " +
+             "2500, " +
+-            "1)";
++            "'admin')";
+ 
+     private String sql5 = "INSERT INTO stories VALUES (null," +
+             "'Naruto', " +
+@@ -167,7 +167,7 @@
+             "'2023-07-30', " +
+             "'drawable/naruto.jpg', " +
+             "2000, " +
+-            "1)";
++            "'admin')";
+ 
+     private String sql6 = "INSERT INTO stories VALUES (null, " +
+             "'Dragon Ball', " +
+@@ -180,7 +180,7 @@
+             "'2023-07-05', " +
+             "'drawable/dragon_ball.jpg', " +
+             "1800, " +
+-            "2)";
++            "'admin')";
+ 
+     private String sql7 = "INSERT INTO stories VALUES (null, " +
+             "'Attack on Titan', " +
+@@ -194,7 +194,7 @@
+             "'2023-05-25', " +
+             "'drawable/attack_on_titan.jpg', " +
+             "2200, " +
+-            "1)";
++            "'admin')";
+ 
+     private String sql8 = "INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)";
+     private String sql9 = "INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)";
+@@ -221,7 +221,7 @@
+         db.execSQL(sql8);
+         db.execSQL(sql9);
+         db.execSQL(sql10);
+-        Log.d("err","a");
++        Log.d("err", "a");
+     }
+ 
+     @Override
+@@ -231,6 +231,7 @@
+         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
+         onCreate(db);
+     }
++}
+ //    public void SayHello() {
+ //        Log.d("E","E");
+ //        SQLiteDatabase db = this.getWritableDatabase();
+@@ -248,4 +249,4 @@
+ //            Log.d("ERoor",e.getMessage());
+ //        }
+ //    }
+-}
++
+Index: app/src/main/res/layout/activity_main_dang_nhap.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@drawable/background\">\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\"\r\n        android:layout_gravity=\"center\">\r\n    <TextView\r\n        android:layout_marginTop=\"60dp\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"center\"\r\n        android:text=\"Đăng nhập\"\r\n        android:textColor=\"#3F51B5\"\r\n        android:textSize=\"34sp\"\r\n        android:textStyle=\"bold\">\r\n    </TextView>\r\n    <TextView\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"left\"\r\n        android:text=\"Tên đăng nhập\"\r\n        android:textSize=\"18sp\">\r\n    </TextView>\r\n\r\n        <EditText\r\n            android:id=\"@+id/ed_username\"\r\n            android:layout_width=\"250dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:drawableRight=\"@drawable/user\"\r\n            android:hint=\"Nhập tên đăng nhập\"\r\n            android:textSize=\"15dp\"></EditText>\r\n\r\n    <TextView\r\n        android:layout_marginLeft=\"20dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_gravity=\"left\"\r\n        android:text=\"Mật khẩu\"\r\n        android:textSize=\"18sp\">\r\n    </TextView>\r\n\r\n        <EditText\r\n            android:id=\"@+id/ed_password\"\r\n            android:layout_width=\"250dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:drawableRight=\"@drawable/pass\"\r\n            android:hint=\"Nhập mật khẩu\"\r\n            android:textSize=\"15dp\"></EditText>\r\n\r\n        <Button\r\n            android:id=\"@+id/btn_dangnhap\"\r\n            android:layout_width=\"301dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginLeft=\"0dp\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:backgroundTint=\"#337A83\"\r\n            android:gravity=\"center\"\r\n            android:text=\"Đăng nhập\"\r\n            android:textSize=\"15dp\">\r\n        </Button>\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:text=\"Bạn chưa có tài khoản?\"\r\n            android:textSize=\"13dp\"></TextView>\r\n\r\n        <Button\r\n            android:id=\"@+id/btn_dangki\"\r\n            android:layout_width=\"225dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"center\"\r\n            android:layout_marginTop=\"10dp\"\r\n            android:backgroundTint=\"#337A83\"\r\n            android:text=\"Đăng kí\"\r\n            android:textSize=\"15dp\"></Button>\r\n    </LinearLayout>\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main_dang_nhap.xml b/app/src/main/res/layout/activity_main_dang_nhap.xml
+--- a/app/src/main/res/layout/activity_main_dang_nhap.xml	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/app/src/main/res/layout/activity_main_dang_nhap.xml	(date 1711292339732)
+@@ -5,24 +5,24 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="@drawable/background">
++    android:background="@drawable/conan4">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         android:layout_gravity="center">
+-    <TextView
+-        android:layout_marginTop="60dp"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="center"
+-        android:text="Đăng nhập"
+-        android:textColor="#3F51B5"
+-        android:textSize="34sp"
+-        android:textStyle="bold">
+-    </TextView>
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center"
++            android:layout_marginTop="70dp"
++            android:text="Đăng nhập"
++            android:textColor="#009688"
++            android:textSize="34sp"
++            android:textStyle="bold"></TextView>
+     <TextView
+-        android:layout_marginTop="10dp"
++        android:layout_marginTop="15dp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+@@ -35,8 +35,9 @@
+             android:id="@+id/ed_username"
+             android:layout_width="250dp"
+             android:layout_height="wrap_content"
++            android:layout_marginTop="4dp"
+             android:layout_gravity="center"
+-            android:drawableRight="@drawable/user"
++            android:drawableLeft="@drawable/user"
+             android:hint="Nhập tên đăng nhập"
+             android:textSize="15dp"></EditText>
+ 
+@@ -55,7 +56,9 @@
+             android:layout_width="250dp"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+-            android:drawableRight="@drawable/pass"
++            android:drawableLeft="@drawable/pass"
++            android:layout_marginTop="4dp"
++            android:inputType="textPassword"
+             android:hint="Nhập mật khẩu"
+             android:textSize="15dp"></EditText>
+ 
+@@ -65,7 +68,7 @@
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_marginLeft="0dp"
+-            android:layout_marginTop="10dp"
++            android:layout_marginTop="15dp"
+             android:backgroundTint="#337A83"
+             android:gravity="center"
+             android:text="Đăng nhập"
+@@ -77,8 +80,11 @@
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_marginTop="10dp"
++            android:backgroundTint="#F4EEEE"
+             android:text="Bạn chưa có tài khoản?"
+-            android:textSize="13dp"></TextView>
++            android:textColor="#302F2E"
++            android:textSize="13dp"
++            android:textStyle="bold"></TextView>
+ 
+         <Button
+             android:id="@+id/btn_dangki"
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <value>\r\n      <entry key=\"app\">\r\n        <State />\r\n      </entry>\r\n    </value>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	(revision bc95e857d1b3a116591f0386b1f0fa2e848b6a8e)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1711292339680)
+@@ -2,6 +2,15 @@
+ <project version="4">
+   <component name="deploymentTargetDropDown">
+     <value>
++      <entry key="ForgotPassWordActivity">
++        <State />
++      </entry>
++      <entry key="MainDangKy">
++        <State />
++      </entry>
++      <entry key="MainDangNhap">
++        <State />
++      </entry>
+       <entry key="app">
+         <State />
+       </entry>
+Index: app/src/main/res/drawable/back.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/back.xml b/app/src/main/res/drawable/back.xml
+new file mode 100644
+--- /dev/null	(date 1711292339688)
++++ b/app/src/main/res/drawable/back.xml	(date 1711292339688)
+@@ -0,0 +1,5 @@
++<vector android:autoMirrored="true" android:height="24dp"
++    android:tint="#000000" android:viewportHeight="24"
++    android:viewportWidth="24" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2z"/>
++</vector>
+Index: app/src/main/res/drawable/save.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/save.xml b/app/src/main/res/drawable/save.xml
+new file mode 100644
+--- /dev/null	(date 1711292339729)
++++ b/app/src/main/res/drawable/save.xml	(date 1711292339729)
+@@ -0,0 +1,5 @@
++<vector android:height="24dp" android:tint="#000000"
++    android:viewportHeight="24" android:viewportWidth="24"
++    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M21,12.4V7l-4,-4H5C3.89,3 3,3.9 3,5v14c0,1.1 0.89,2 2,2h7.4L21,12.4zM15,15c0,1.66 -1.34,3 -3,3s-3,-1.34 -3,-3s1.34,-3 3,-3S15,13.34 15,15zM6,6h9v4H6V6zM19.99,16.25l1.77,1.77L16.77,23H15v-1.77L19.99,16.25zM23.25,16.51l-0.85,0.85l-1.77,-1.77l0.85,-0.85c0.2,-0.2 0.51,-0.2 0.71,0l1.06,1.06C23.45,16 23.45,16.32 23.25,16.51z"/>
++</vector>
+Index: app/src/main/java/com/example/happy_read/activity/ChangePassWordActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/happy_read/activity/ChangePassWordActivity.java b/app/src/main/java/com/example/happy_read/activity/ChangePassWordActivity.java
+new file mode 100644
+--- /dev/null	(date 1711292339684)
++++ b/app/src/main/java/com/example/happy_read/activity/ChangePassWordActivity.java	(date 1711292339684)
+@@ -0,0 +1,79 @@
++package com.example.happy_read.activity;
++
++import android.database.sqlite.SQLiteDatabase;
++import android.os.Bundle;
++import android.content.Intent;
++import android.view.View;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.TextView;
++import android.widget.Toast;
++import androidx.appcompat.app.AppCompatActivity;
++
++import com.example.happy_read.R;
++import com.example.happy_read.database.database;
++
++public class ChangePassWordActivity extends AppCompatActivity {
++    private Button btnSave, btnBack;
++    private EditText edmkcu, edmk1, edmk2;
++    private TextView txtusername;
++    private database database;
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_thaydoimatkhau);
++
++        //Ánh xạ các thành phần trong giao diện
++        edmkcu = findViewById(R.id.mk_cu);
++        edmk1 = findViewById(R.id.mk_moi1);
++        edmk2 = findViewById(R.id.mk_moi2);
++        txtusername = findViewById(R.id.txtusername);
++        btnSave = findViewById(R.id.button);
++        btnBack = findViewById(R.id.button2);
++        database = new database(this);
++
++        //Lấy tên người dùng từ intent
++        Intent intent = getIntent();
++        if(intent != null && intent.hasExtra("USERNAME")){
++            String username = intent.getStringExtra("USERNAME");
++            txtusername.setText(username);
++        }
++
++        //Xử lý khi người dùng bấm nút lưu
++        btnSave.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String mkcu = edmkcu.getText().toString().trim();
++                String mk1 = edmk1.getText().toString().trim();
++                String mk2 = edmk2.getText().toString().trim();
++                String username = txtusername.getText().toString();
++                if(!mk1.equals(mk2)){
++                    Toast.makeText(ChangePassWordActivity.this, "Mật khẩu mới không khớp", Toast.LENGTH_SHORT).show();
++                    return;
++                }
++                //Thực hiện cập nhật mật khẩu mới vào cơ sở dữ liệu
++                else{
++                    SQLiteDatabase db = database.getWritableDatabase();
++                    String query = "UPDATE " + database.TABLE_USERS +
++                            " SET " + database.COLUMN_USERS_PASSWORD + " = '" + mk1 +
++                            "' WHERE " + database.COLUMN_USERS_NAME + " = '" + username + "' AND " +
++                            database.COLUMN_USERS_PASSWORD + " = '" + mkcu + "'";
++                    db.execSQL(query);
++                    db.close();
++                    Toast.makeText(ChangePassWordActivity.this, "Thay đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
++                }
++            }
++        });
++
++        //Xử lý sự kiện khi người dùng nhấn nút trở lại
++        btnBack.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                //Quay lại activity trước đó
++                Intent loginIntent = new Intent(ChangePassWordActivity.this, MainDangNhap.class);
++                startActivity(loginIntent);
++                finish(); // kết thúc activity hiện tại
++            }
++        });
++    }
++}
+Index: app/src/main/res/layout/activity_thaydoimatkhau.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_thaydoimatkhau.xml b/app/src/main/res/layout/activity_thaydoimatkhau.xml
+new file mode 100644
+--- /dev/null	(date 1711292339734)
++++ b/app/src/main/res/layout/activity_thaydoimatkhau.xml	(date 1711292339734)
+@@ -0,0 +1,123 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_gravity="center"
++        android:layout_marginTop="20dp"
++        android:text="Thay đổi mật khẩu"
++        android:textColor="#009688"
++        android:textSize="34sp"
++        android:textStyle="bold">
++    </TextView>
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/txthello"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="10dp"
++            android:backgroundTint="#009688"
++            android:text="Xin chào_"
++            android:textColor="#009688"
++            android:textSize="20sp"
++            android:textStyle="bold" />
++
++        <TextView
++            android:id="@+id/txtusername"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="10dp"
++            android:layout_weight="1"
++            android:backgroundTint="#3F51B5"
++            android:text=""
++            android:textColor="#009688"
++            android:textSize="20sp"
++            android:textStyle="bold" />
++    </LinearLayout>
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="10dp"
++        android:text="Mật khẩu cũ"
++        android:textSize="18sp" />
++
++    <EditText
++        android:id="@+id/mk_cu"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="15dp"
++        android:ems="10"
++        android:hint="Nhập mật khẩu hiện tại"
++        android:inputType="textPassword"
++        android:textSize="16sp" />
++
++    <TextView
++        android:id="@+id/textView2"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="10dp"
++        android:text="Mật khẩu mới"
++        android:textSize="18sp" />
++
++    <EditText
++        android:id="@+id/mk_moi1"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="15dp"
++        android:ems="10"
++        android:hint="Nhập mật khẩu mới"
++        android:inputType="textPassword"
++        android:textSize="16sp" />
++
++    <TextView
++        android:id="@+id/textView3"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="10dp"
++        android:text="Nhập lại mật khẩu"
++        android:textSize="18sp" />
++
++    <EditText
++        android:id="@+id/mk_moi2"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="15dp"
++        android:ems="10"
++        android:hint="Nhập lại mật khẩu mới"
++        android:inputType="textPassword"
++        android:textSize="16sp" />
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal">
++
++        <Button
++            android:id="@+id/button"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:backgroundTint="#009688"
++            android:drawableLeft="@drawable/save"
++            android:text="Lưu" />
++
++        <Button
++            android:id="@+id/button2"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:backgroundTint="#3F51B5"
++            android:drawableLeft="@drawable/back"
++            android:text="Trở lại" />
++    </LinearLayout>
++
++</LinearLayout>
+\ No newline at end of file

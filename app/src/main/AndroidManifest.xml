@@ -19,6 +19,9 @@
             android:name=".activity.MainDangKy"
             android:exported="false" />
         <activity
+            android:name=".activity.ChangePassWordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainDangNhap"
             android:exported="true">
             <intent-filter>
