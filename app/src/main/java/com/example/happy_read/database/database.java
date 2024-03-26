@@ -100,9 +100,9 @@ public class database extends SQLiteOpenHelper {
 
     // Câu lệnh xóa bảng user
     private String sql1 = "INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\n" +
-            "VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\n" +
-            "('anh', 'anh', 'jane@example.com', 'Nguyễn Thị Ngọc Ánh', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\n" +
-            "('ninh', 'ninh', 'smith@example.com', 'Lê Khắc Ninh', 'user', 'drawable/avata1.webp', 'male', '2003-01-14')";
+            "VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', null, 'female', '2003-01-31'),\n" +
+            "('anh', 'anh', 'jane@example.com', 'Nguyễn Thị Ngọc Ánh', 'admin', null, 'female', '2003-01-31'),\n" +
+            "('ninh', 'ninh', 'smith@example.com', 'Lê Khắc Ninh', 'user', null, 'male', '2003-01-14')";
 
 
     private String sql2 = "INSERT INTO stories VALUES (null," +
@@ -230,38 +230,5 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
         onCreate(db);
     }
-//    public void SayHello() {
-//        Log.d("E","E");
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        try {
-////        private String sql11 = "INSERT INTO ratings VALUES (null,3   , 2, 3, 'Truyện khá thú vị.', 1)";
-//            cv.put(COLUMN_RATINGS_USER_ID, 3);
-//            cv.put(COLUMN_RATINGS_STORY_ID, 3);
-//            cv.put(COLUMN_RATINGS_RATING, 5);
-//            cv.put(COLUMN_RATINGS_COMMENT, "Heallo");
-//            cv.put(COLUMN_RATINGS_ISFAVORITE, 0);
-//            db.insert(TABLE_RATINGS, null, cv);
-//        }
-//        catch (Exception e){
-//            Log.d("ERoor",e.getMessage());
-//        }
-//    }
 }
-//    public void SayHello() {
-//        Log.d("E","E");
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        try {
-////        private String sql11 = "INSERT INTO ratings VALUES (null,3   , 2, 3, 'Truyện khá thú vị.', 1)";
-//            cv.put(COLUMN_RATINGS_USER_ID, 3);
-//            cv.put(COLUMN_RATINGS_STORY_ID, 3);
-//            cv.put(COLUMN_RATINGS_RATING, 5);
-//            cv.put(COLUMN_RATINGS_COMMENT, "Heallo");
-//            cv.put(COLUMN_RATINGS_ISFAVORITE, 0);
-//            db.insert(TABLE_RATINGS, null, cv);
-//        }
-//        catch (Exception e){
-//            Log.d("ERoor",e.getMessage());
-//        }
-//    }
+

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="21dp"
+    android:padding="25dp">
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:columnCount="1"
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="85dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:id="@+id/ImageAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/ninh_image_avatar_test" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/changeAvatar"
+            android:layout_width="218dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/ninh_button"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Thay đổi ảnh đại diện"
+            android:textAllCaps="false"
+            android:onClick="ChangeAvatar"
+            android:textSize="15dp" />
+    </GridLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:shrinkColumns="0"
+        android:stretchColumns="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2"
+        app:layout_constraintVertical_bias="0.079">
+
+        <TableRow
+
+            >
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Email"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:layout_marginLeft="20dp"
+                android:text="khacninh2020@gmail.com"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="start"
+                android:text="Tài khoản"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/editFullName"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:inputType="text"
+                android:text="Lê Khắc Ninh"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="27dp">
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Giới tính"
+                android:textSize="18dp" />
+
+            <RadioGroup
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/genderMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nam"
+                    android:textSize="18dp" />
+
+                <RadioButton
+                    android:id="@+id/genderFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Nữ"
+                    android:textSize="18dp" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="12dp">
+
+            <TextView
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Ngày sinh"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/textDate"
+                android:layout_marginLeft="20dp"
+                android:inputType="date"
+                android:textSize="18dp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/saveProfile"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ninh_button2"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Lưu thay đổi"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:onClick="SaveProFile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.141" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02615193" />
+</androidx.constraintlayout.widget.ConstraintLayout>
