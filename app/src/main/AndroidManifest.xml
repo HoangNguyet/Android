@@ -25,10 +25,10 @@
         <activity
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:name=".activity.UserProfileEditActivity"
-            android:exported="false"
-            >
-        </activity>
-<!--        Test-->
+            android:exported="false"/>
+        <activity
+            android:name=".activity.ChangePassWordActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.MainDangNhap"
             android:exported="true">

@@ -230,21 +230,5 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
         onCreate(db);
     }
-//    public void SayHello() {
-//        Log.d("E","E");
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        try {
-////        private String sql11 = "INSERT INTO ratings VALUES (null,3   , 2, 3, 'Truyện khá thú vị.', 1)";
-//            cv.put(COLUMN_RATINGS_USER_NAME, "user");
-//            cv.put(COLUMN_RATINGS_STORY_ID, 3);
-//            cv.put(COLUMN_RATINGS_RATING, 5);
-//            cv.put(COLUMN_RATINGS_COMMENT, "Heallo");
-//            cv.put(COLUMN_RATINGS_ISFAVORITE, 0);
-//            db.insert(TABLE_RATINGS, null, cv);
-//        }
-//        catch (Exception e){
-//            Log.d("ERoor",e.getMessage());
-//        }
-//    }
 }
+
