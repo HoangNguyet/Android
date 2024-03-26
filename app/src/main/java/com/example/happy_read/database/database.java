@@ -80,7 +80,7 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_STORIES_UPDATED_AT + " TEXT NOT NULL, " +
                     COLUMN_STORIES_IMAGE + " TEXT, " +
                     COLUMN_STORIES_VIEWS + " INTEGER NOT NULL, " +
-                    COLUMN_STORIES_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+                    COLUMN_STORIES_USERS_NAME + " TEXT NOT NULL, " +
                     "FOREIGN KEY (" + COLUMN_STORIES_USERS_NAME + ") REFERENCES " +
                     TABLE_USERS + "(" + COLUMN_USERS_NAME + ")" +
                     ")";
@@ -90,7 +90,7 @@ public class database extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_RATINGS =
             "CREATE TABLE " + TABLE_RATINGS + " (" +
                     COLUMN_RATINGS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_RATINGS_USER_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+                    COLUMN_RATINGS_USER_NAME + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_STORY_ID + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_RATING + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_COMMENT + " TEXT NOT NULL, " +
@@ -100,9 +100,9 @@ public class database extends SQLiteOpenHelper {
 
     // Câu lệnh xóa bảng user
     private String sql1 = "INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\n" +
-            "VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\n" +
-            "('anh', 'anh', 'jane@example.com', 'Nguyễn Thị Ngọc Ánh', 'admin', 'drawable/avata1.webp', 'female', '2003-01-31'),\n" +
-            "('ninh', 'ninh', 'smith@example.com', 'Lê Khắc Ninh', 'user', 'drawable/avata1.webp', 'male', '2003-01-14')";
+            "VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', null, 'female', '2003-01-31'),\n" +
+            "('anh', 'anh', 'jane@example.com', 'Nguyễn Thị Ngọc Ánh', 'admin', null, 'female', '2003-01-31'),\n" +
+            "('ninh', 'ninh', 'smith@example.com', 'Lê Khắc Ninh', 'user', null, 'male', '2003-01-14')";
 
 
     private String sql2 = "INSERT INTO stories VALUES (null," +
@@ -127,8 +127,8 @@ public class database extends SQLiteOpenHelper {
             "'2023-10-24', " + //Create_at
             "'2023-11-14', " + //Update_at
             "'drawable/doraemon.jpg', " + //ImageInterView
-            "3101, " +//View
-            "1)";//UserId
+            "3101, " +//View//UserId
+            "'admin')";//UserId
     private String sql3 = "INSERT INTO stories VALUES (null," +
             "'Conan', " +
             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
@@ -141,7 +141,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-09-25', " +
             "'drawable/conan.jpg', " +
             "1500, " +
-            "2)";
+            "'admin')";
 
     private String sql4 = "INSERT INTO stories VALUES (null," +
             "'One Piece', " +
@@ -154,7 +154,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-08-20', " +
             "'drawable/one_piece.jpg', " +
             "2500, " +
-            "1)";
+            "'admin')";
 
     private String sql5 = "INSERT INTO stories VALUES (null," +
             "'Naruto', " +
@@ -167,7 +167,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-30', " +
             "'drawable/naruto.jpg', " +
             "2000, " +
-            "1)";
+            "'admin')";
 
     private String sql6 = "INSERT INTO stories VALUES (null, " +
             "'Dragon Ball', " +
@@ -180,7 +180,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-05', " +
             "'drawable/dragon_ball.jpg', " +
             "1800, " +
-            "2)";
+            "'admin')";
 
     private String sql7 = "INSERT INTO stories VALUES (null, " +
             "'Attack on Titan', " +
@@ -194,7 +194,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-05-25', " +
             "'drawable/attack_on_titan.jpg', " +
             "2200, " +
-            "1)";
+            "'admin')";
 
     private String sql8 = "INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)";
     private String sql9 = "INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)";
@@ -221,7 +221,6 @@ public class database extends SQLiteOpenHelper {
         db.execSQL(sql8);
         db.execSQL(sql9);
         db.execSQL(sql10);
-        Log.d("err","a");
     }
 
     @Override
@@ -237,7 +236,7 @@ public class database extends SQLiteOpenHelper {
 //        ContentValues cv = new ContentValues();
 //        try {
 ////        private String sql11 = "INSERT INTO ratings VALUES (null,3   , 2, 3, 'Truyện khá thú vị.', 1)";
-//            cv.put(COLUMN_RATINGS_USER_ID, 3);
+//            cv.put(COLUMN_RATINGS_USER_NAME, "user");
 //            cv.put(COLUMN_RATINGS_STORY_ID, 3);
 //            cv.put(COLUMN_RATINGS_RATING, 5);
 //            cv.put(COLUMN_RATINGS_COMMENT, "Heallo");

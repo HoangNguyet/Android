@@ -99,6 +99,7 @@ public class Story {
     }
 
     public Story(String _title, String _description, String _content, String _genre, Date _createdAt, Date _updateAt, String _imagePathDes, User _user) throws Exception {
+        this._id =  _id;
         SetTtitle(_title);
         SetDescription(_description);
         SetContent(_content);
@@ -107,6 +108,19 @@ public class Story {
         SetUpdateAt(_updateAt);
         SetImagePathDes(_imagePathDes);
         _view = 0;
+        this._user = _user;
+    }
+
+    public Story(String _id, String _title, String _description, String _content, String _genre, Date _createdAt, Date _updateAt, String _imagePathDes, int _view, User _user) {
+        this._id = _id;
+        this._title = _title;
+        this._description = _description;
+        this._content = _content;
+        this._genre = _genre;
+        this._createdAt = _createdAt;
+        this._updateAt = _updateAt;
+        this._imagePathDes = _imagePathDes;
+        this._view = _view;
         this._user = _user;
     }
 }

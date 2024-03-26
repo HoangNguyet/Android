@@ -52,10 +52,6 @@ public class MainDangNhap extends AppCompatActivity {
                     Toast.makeText(MainDangNhap.this, "Vui lòng nhập tên đăng nhập và mật khẩu", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else{
-                    Intent intent = new Intent(MainDangNhap.this,UserProfileActivity.class);
-                    startActivity(intent);
-                }
             }
         });
 

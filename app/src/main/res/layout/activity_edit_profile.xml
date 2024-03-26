@@ -75,6 +75,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_column="1"
                 android:layout_marginLeft="20dp"
@@ -92,6 +93,7 @@
                 android:textSize="18dp" />
 
             <EditText
+                android:id="@+id/editFullName"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:inputType="text"
@@ -115,7 +117,6 @@
                     android:id="@+id/genderMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:text="Nam"
                     android:textSize="18dp" />
 
@@ -141,7 +142,6 @@
                 android:id="@+id/textDate"
                 android:layout_marginLeft="20dp"
                 android:inputType="date"
-                android:text="18/05/2003"
                 android:textSize="18dp" />
         </TableRow>
     </TableLayout>

@@ -26,6 +26,7 @@
             app:cardUseCompatPadding="false">
 
             <ImageView
+                android:id="@+id/imgAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -33,6 +34,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -55,6 +57,7 @@
         app:layout_constraintVertical_bias="0.912">
 
         <Button
+            android:id="@+id/FavoriteBooks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -63,6 +66,7 @@
             android:fontFamily="@font/roboto_medium"
             android:paddingLeft="65dp"
             android:paddingTop="13dp"
+            android:onClick="FavoriteBooks"
             android:paddingRight="65dp"
             android:paddingBottom="13dp"
             android:text="Tủ sách của bạn"
@@ -87,6 +91,8 @@
             android:textSize="18dp"></Button>
 
         <Button
+            android:id="@+id/changeYourPassword"
+            android:onClick="ChangeYourPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -102,6 +108,8 @@
             android:textSize="18dp"></Button>
 
         <Button
+            android:id="@+id/WriteSomething"
+            android:onClick="WriteSomething"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -117,6 +125,8 @@
             android:textSize="18dp"></Button>
 
         <Button
+            android:id="@+id/Logout"
+            android:onClick="Logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
