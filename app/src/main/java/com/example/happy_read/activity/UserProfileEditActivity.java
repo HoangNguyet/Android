@@ -6,19 +6,15 @@ import static com.example.happy_read.until.until.getRealPathFromUri;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.provider.MediaStore;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -32,11 +28,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.happy_read.R;
 import com.example.happy_read.model.User;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //Hello my name is Ninh and nice too meet you
@@ -141,7 +135,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
         }
         if (!_textDate.getText().toString().isEmpty()) {
             String[] birth = _textDate.getText().toString().trim().split("/");
-            birthDay = new Date(String.format("%s/%s/%s", birth[2], birth[1], birth[0]));
+            birthDay = new SimpleDateFormat("yyyy/MM/dd").parse(String.format("%s/%s/%s", birth[2], birth[1], birth[0]));
         }
         if (_female.isChecked()) {
             gender = "female";
@@ -179,20 +173,19 @@ public class UserProfileEditActivity extends AppCompatActivity {
             if (_user.GetBirthDay("dd/MM/yyyy") != null) {
                 _textDate.setText(_user.GetBirthDay("dd/MM/yyyy"));
             }
-
-        }
-        if(_user.GetImagePath()==null) {
-            try {
-                Bitmap bitmap = getBitmap("avatar/img.png");
-                _imageAvatar.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if(_user.GetImagePath()==null) {
+                try {
+                    Bitmap bitmap = getBitmap("avatar/img.png");
+                    _imageAvatar.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }
-        else{
-            //Gan anh tu local vao imagview
-            Bitmap imageBitMap = BitmapFactory.decodeFile(_user.GetImagePath());
-            _imageAvatar.setImageBitmap(imageBitMap);
+            else{
+                //Gan anh tu local vao imagview
+                Bitmap imageBitMap = BitmapFactory.decodeFile(_user.GetImagePath());
+                _imageAvatar.setImageBitmap(imageBitMap);
+            }
         }
     }
 

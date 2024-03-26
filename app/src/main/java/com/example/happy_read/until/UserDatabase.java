@@ -1,7 +1,6 @@
 package com.example.happy_read.until;
 
 import static com.example.happy_read.database.database.COLUMN_USERS_BIRTHDAY;
-import static com.example.happy_read.database.database.COLUMN_USERS_EMAIL;
 import static com.example.happy_read.database.database.COLUMN_USERS_FULLNAME;
 import static com.example.happy_read.database.database.COLUMN_USERS_GENDER;
 import static com.example.happy_read.database.database.COLUMN_USERS_IMAGE;
@@ -9,18 +8,17 @@ import static com.example.happy_read.database.database.COLUMN_USERS_NAME;
 import static com.example.happy_read.database.database.TABLE_USERS;
 import static com.example.happy_read.until.until.UpdateStatment;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.User;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class UserDatabase {
     public static String UpdateUser(database db, User user){
@@ -29,14 +27,14 @@ public class UserDatabase {
         UpdateStatment(user.GetFullName(),1,statement);
         UpdateStatment(user.GetImagePath(),2,statement);
         UpdateStatment(user.GetGender(),3,statement);
-        UpdateStatment(user.GetBirthDay("yyyy/MM/dd"),4,statement);
+        UpdateStatment(user.GetBirthDay("yyyy-MM-dd"),4,statement);
         UpdateStatment(user.GetName(),5,statement);
         try {
             statement.execute();
             return "Cập nhật thông tin thành công";
         }
         catch (SQLException e){
-            Log.d("sqleroor",e.getMessage());
+            Log.d("sqleroor", Objects.requireNonNull(e.getMessage()));
             return "Cập nhật thông tin thất bại";
         }
         finally {
@@ -58,7 +56,7 @@ public class UserDatabase {
                     String role = cursor.getString(4);
                     String imagePath = cursor.getString(5);
                     String gender = cursor.getString(6);
-                    Date birthDay = cursor.getString(7) != null?new Date(cursor.getString(7)):null;
+                    Date birthDay = cursor.getString(7) != null? new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(7)):null;
                     //public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay)
                     return new User(userName,passWord,email,fullName,role,imagePath,gender,birthDay);
                 }
@@ -69,7 +67,7 @@ public class UserDatabase {
             }
         }
         catch (Exception ex){
-            Log.d("ERRR",ex.getMessage());
+            Log.d("ERRR", Objects.requireNonNull(ex.getMessage()));
         }
         finally {
             db.close();

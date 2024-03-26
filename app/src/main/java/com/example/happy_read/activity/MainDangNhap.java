@@ -2,10 +2,8 @@ package com.example.happy_read.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteReadOnlyDatabaseException;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +12,6 @@ import android.widget.Toast;
 
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
-
-import java.sql.SQLData;
-import java.sql.SQLException;
-import java.sql.SQLInput;
-import java.sql.SQLOutput;
 
 public class MainDangNhap extends AppCompatActivity {
 

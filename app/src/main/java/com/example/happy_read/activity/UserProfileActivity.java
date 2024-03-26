@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import com.example.happy_read.database.database;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +19,6 @@ import com.example.happy_read.until.UserDatabase;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 public class UserProfileActivity extends AppCompatActivity {
 //    Hiển thị thông tin người dùng và truyện mà họ đã đọc và yêu thích
@@ -38,8 +36,6 @@ public class UserProfileActivity extends AppCompatActivity {
         database myDatabase = new database(UserProfileActivity.this);
         _use = UserDatabase.GetUserById(myDatabase,_userName);
         Log.d("e",(_use == null)?"True":"false");
-
-
         imageAvatar = (ImageView) findViewById(R.id.imgAvatar);
         fullName = (TextView) findViewById(R.id.fullName);
         if(_use != null){

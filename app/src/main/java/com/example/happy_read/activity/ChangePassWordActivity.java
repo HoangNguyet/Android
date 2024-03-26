@@ -49,7 +49,6 @@ public class ChangePassWordActivity extends AppCompatActivity {
                 String username = txtusername.getText().toString();
                 if(!mk1.equals(mk2)){
                     Toast.makeText(ChangePassWordActivity.this, "Mật khẩu mới không khớp", Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 //Thực hiện cập nhật mật khẩu mới vào cơ sở dữ liệu
                 else{

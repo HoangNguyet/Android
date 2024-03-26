@@ -7,23 +7,20 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class until {
     public static String getRealPathFromUri(Context context, Uri contentUri) {
         String path = null;
         String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = null;
-        try {
-            cursor = context.getContentResolver().query(contentUri, projection, null, null, null);
-            if (cursor !=  null && cursor.moveToFirst()) {
+        try (Cursor cursor = context.getContentResolver().query(contentUri, projection, null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
                 int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 path = cursor.getString(columnIndex);
             }
         } catch (Exception e) {
             Log.e("Error", "Error retrieving real path from URI", e);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return path;
     }
