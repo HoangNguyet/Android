@@ -267,13 +267,12 @@ public class database extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(sqlQuery, selectionArgs);
         return res;
     }
-//    public Cursor getData3(){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String sqlQuery = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " ?";
-//        String[] selectionArgs = { "2000" };
-//        Cursor res = db.rawQuery(sqlQuery, selectionArgs);
-//        return res;
-//    }
+    public Cursor getData3(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COLUMN_STORIES_GENRE + " FROM " + TABLE_STORIES;
+        Cursor res = db.rawQuery(query, null);
+        return res;
+    }
 
 }
 
