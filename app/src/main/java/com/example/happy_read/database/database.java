@@ -24,7 +24,6 @@ public class database extends SQLiteOpenHelper {
 
     // Tên bảng và các cột của bảng user
     public static final String TABLE_USERS = "users";
-    public static final String COLUMN_USERS_ID = "id";
     public static final String COLUMN_USERS_NAME = "username";
     public static final String COLUMN_USERS_PASSWORD = "password";
     public static final String COLUMN_USERS_EMAIL = "email";
@@ -45,12 +44,12 @@ public class database extends SQLiteOpenHelper {
     public static final String COLUMN_STORIES_UPDATED_AT = "updated_at"; // Chỉnh sửa ngày
     public static final String COLUMN_STORIES_IMAGE = "image"; // ảnh
     public static final String COLUMN_STORIES_VIEWS = "views"; //số lượt xem
-    public static final String COLUMN_STORIES_USERS_ID = "user_id";
+    public static final String COLUMN_STORIES_USERS_NAME = "user_name";
 
     //Tên bảng và các cột của bảng ratings(đánh giá)
     public static final String TABLE_RATINGS = "ratings";
     public static final String COLUMN_RATINGS_ID = "id";
-    public static final String COLUMN_RATINGS_USER_ID = "user_id";
+    public static final String COLUMN_RATINGS_USER_NAME = "user_name";
     public static final String COLUMN_RATINGS_STORY_ID = "story_id";
     public static final String COLUMN_RATINGS_RATING = "rating"; // điểm đánh giá của người dùng
     public static final String COLUMN_RATINGS_COMMENT = "comment";
@@ -59,8 +58,7 @@ public class database extends SQLiteOpenHelper {
     // Câu lệnh tạo bảng user
     private static final String SQL_CREATE_TABLE_USERS =
             "CREATE TABLE " + TABLE_USERS + " (" +
-                    COLUMN_USERS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_USERS_NAME + " TEXT NOT NULL, " +
+                    COLUMN_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
                     COLUMN_USERS_PASSWORD + " TEXT NOT NULL, " +
                     COLUMN_USERS_EMAIL + " TEXT NOT NULL, " +
                     COLUMN_USERS_FULLNAME + " TEXT NOT NULL, " +
@@ -82,9 +80,9 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_STORIES_UPDATED_AT + " TEXT NOT NULL, " +
                     COLUMN_STORIES_IMAGE + " TEXT, " +
                     COLUMN_STORIES_VIEWS + " INTEGER NOT NULL, " +
-                    COLUMN_STORIES_USERS_ID + " INTEGER NOT NULL, " +
-                    "FOREIGN KEY (" + COLUMN_STORIES_USERS_ID + ") REFERENCES " +
-                    TABLE_USERS + "(" + COLUMN_USERS_ID + ")" +
+                    COLUMN_STORIES_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
+                    "FOREIGN KEY (" + COLUMN_STORIES_USERS_NAME + ") REFERENCES " +
+                    TABLE_USERS + "(" + COLUMN_USERS_NAME + ")" +
                     ")";
 
     //Câu lệnh tạo bảng ratings
@@ -92,13 +90,14 @@ public class database extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_RATINGS =
             "CREATE TABLE " + TABLE_RATINGS + " (" +
                     COLUMN_RATINGS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_RATINGS_USER_ID + " INTEGER NOT NULL, " +
+                    COLUMN_RATINGS_USER_NAME + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_STORY_ID + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_RATING + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_COMMENT + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_ISFAVORITE + " INTEGER NOT NULL CHECK (" + COLUMN_RATINGS_ISFAVORITE + " IN (0,1)), " +
-                    "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_ID + ", " + COLUMN_RATINGS_STORY_ID + ")" +
+                    "CONSTRAINT UC_Unique_Rating UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +
                     ")";
+
 
     // Câu lệnh xóa bảng user
     private String sql1 = "INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\n" +
@@ -131,6 +130,7 @@ public class database extends SQLiteOpenHelper {
             "'drawable/doreamon2.jpg', " + //ImageInterView
             "3101, " +//View
             "1)";//UserId
+
     private String sql3 = "INSERT INTO stories VALUES (null," +
             "'Conan', " +
             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
@@ -143,7 +143,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-09-25', " +
             "'drawable/conan.jpg', " +
             "1500, " +
-            "2)";
+            "'admin')";
 
     private String sql4 = "INSERT INTO stories VALUES (null," +
             "'One Piece', " +
@@ -156,7 +156,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-08-20', " +
             "'drawable/one_piece.jpg', " +
             "2500, " +
-            "1)";
+            "'admin')";
 
     private String sql5 = "INSERT INTO stories VALUES (null," +
             "'Naruto', " +
@@ -169,7 +169,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-30', " +
             "'drawable/naruto.webp', " +
             "2000, " +
-            "1)";
+            "'admin')";
 
     private String sql6 = "INSERT INTO stories VALUES (null, " +
             "'Dragon Ball', " +
@@ -182,7 +182,7 @@ public class database extends SQLiteOpenHelper {
             "'2023-07-05', " +
             "'drawable/dragon_ball.jpg', " +
             "1800, " +
-            "2)";
+            "'admin')";
 
     private String sql7 = "INSERT INTO stories VALUES (null, " +
             "'Attack on Titan', " +
@@ -192,16 +192,17 @@ public class database extends SQLiteOpenHelper {
             "khám phá bí mật về thế giới của họ.', " +
             "'................., '" + //Description
             "'Tam hiệp', " +
+
             "'2023-05-10', " +
             "'2023-05-25', " +
             "'drawable/conan.jpg', " +
             "2200, " +
-            "1)";
+            "'admin')";
 
 
     private String sql8 = "INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)";
     private String sql9 = "INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)";
-    private String sql10 = "INSERT INTO ratings VALUES (null,3   , 3, 3, 'Truyện khá thú vị.', 1)";
+    private String sql10 = "INSERT INTO ratings VALUES (null,3, 3, 3, 'Truyện khá thú vị.', 1)";
 
     public database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -225,6 +226,7 @@ public class database extends SQLiteOpenHelper {
         db.execSQL(sql9);
         db.execSQL(sql10);
         Log.d("err","a");
+        Log.d("err", "a");
     }
 
     @Override
@@ -269,10 +271,20 @@ public class database extends SQLiteOpenHelper {
     }
     public Cursor getData3(){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + COLUMN_STORIES_GENRE + " FROM " + TABLE_STORIES;
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = 'Tiểu thuyết'";
         Cursor res = db.rawQuery(query, null);
         return res;
     }
 
-}
+    public Cursor getFavoriteStoriesWithImage() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + TABLE_STORIES + "." + COLUMN_STORIES_TITLE + ", " + TABLE_STORIES + "." + COLUMN_STORIES_IMAGE +
+                " FROM " + TABLE_RATINGS +
+                " INNER JOIN " + TABLE_STORIES +
+                " ON " + TABLE_RATINGS + "." + COLUMN_RATINGS_STORY_ID + " = " + TABLE_STORIES + "." + COLUMN_STORIES_ID +
+                " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1";
+        return db.rawQuery(query, null);
+    }
 
+
+}

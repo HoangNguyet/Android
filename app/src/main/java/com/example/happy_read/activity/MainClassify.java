@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -20,9 +21,10 @@ public class MainClassify extends AppCompatActivity {
     ArrayList<Story> TruyenArrayList;
     ArrayList<Story> arrayList;
     StoryAdapter adapterTruyen;
-    com.example.happy_read.database.database database;
+    database database;
     EditText edt;
     ListView lv;
+    Button tieuthuyet, tamhiep, vohiep, huyenhuyen, maphap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class MainClassify extends AppCompatActivity {
 
         database = new database(this);
         lv = findViewById(R.id.listviewNew);
+        tieuthuyet = findViewById(R.id.tieu_thuyet);
+
 
 
         AnhXa();
@@ -38,29 +42,29 @@ public class MainClassify extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(MainHome.this, MainContent.class);
-//                String tent = arrayList.get(position).getTitle();
-//                String noidungt = arrayList.get(position).getContent();
-//                intent.putExtra("tentruyen", tent);
-//                intent.putExtra("noidung", noidungt);
-//                startActivity(intent);
+//
             }
         });
-    }
-    private void filter(String text){
-        //xoa dl mang
-        arrayList.clear();
-        ArrayList<Story> filteredList = new ArrayList<>();
-        for(Story item: TruyenArrayList){
-            if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
-                //them item vao filteredList
-                filteredList.add(item);
 
-                //them vao mang
-                arrayList.add(item);
+        tieuthuyet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TruyenArrayList = new ArrayList<>();
+                lv = findViewById(R.id.listviewNew);
+                Cursor cursor = database.getData3();
+                while (cursor.moveToNext()) {
+                    int id = cursor.getInt(0);
+                    String tentruyen = cursor.getString(1);
+                    String noidung = cursor.getString(2);
+                    String anh = cursor.getString(6);
+                    TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
+                }
+                adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList);
+                lv.setAdapter(adapterTruyen);
+                cursor.close();
             }
-        }
-        adapterTruyen.filterList(filteredList);
+        });
+
     }
 
     //Phuong thuc lay du lieu gan vao ListView

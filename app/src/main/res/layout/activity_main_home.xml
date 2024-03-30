@@ -1,69 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainHome">
-
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FBFAFA"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <ImageButton
-                android:id="@+id/menu_icon"
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:adjustViewBounds="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="Mô tả cho hình ảnh"
-                android:scaleType="fitCenter"
-                android:src="@drawable/images"
-                android:textColor="#1E1D1D" />
-
-            <Button
-                android:id="@+id/menu_de_xuat"
-                android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="Đề xuất"
-                android:textColor="#1E1D1D" />
+                android:background="#FBFAFA"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-            <Button
-                android:id="@+id/menu_noi_bat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="Nổi bật"
-                android:textColor="#1E1D1D" />
+                <ImageButton
+                    android:id="@+id/menu_icon"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:adjustViewBounds="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="Mô tả cho hình ảnh"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/images"
+                    android:textColor="#1E1D1D" />
 
-            <Button
-                android:id="@+id/menu_moi_nhat"
-                android:layout_width="2dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="Mới nhất"
-                android:textColor="#1E1D1D" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/menu_de_xuat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="Đề xuất"
+                    android:textColor="#1E1D1D" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:orientation="vertical">
+                <Button
+                    android:id="@+id/menu_noi_bat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="Nổi bật"
+                    android:textColor="#1E1D1D" />
+
+                <Button
+                    android:id="@+id/menu_moi_nhat"
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="Mới nhất"
+                    android:textColor="#1E1D1D" />
+            </LinearLayout>
             <EditText
                 android:id="@+id/search"
                 android:layout_width="match_parent"
@@ -73,69 +67,80 @@
                 android:drawableRight="@drawable/ic_tim_kiem"
                 android:hint="Search"
                 android:paddingRight="10dp" />
-
-            <ListView
-                android:id="@+id/listviewNew"
+            <ViewFlipper
+                android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="#BAE8F3"
-                ></ListView>
+                android:layout_height="200dp">
+
+            </ViewFlipper>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ListView
+                    android:id="@+id/listviewNew"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    ></ListView>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    </androidx.drawerlayout.widget.DrawerLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F0EE"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/menu_trang_chu"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#F6F0EE"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:layout_weight="1.1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_home"
+            android:text="Trang chủ"
+            android:textColor="#131212"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/menu_trang_chu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_home"
-                android:text="Trang chủ"
-                android:textColor="#131212"
-                android:textSize="12sp" />
+        <Button
+            android:id="@+id/menu_phan_loai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_phanloai"
+            android:text="Phân loại"
+            android:textColor="#131212"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/menu_phan_loai"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_phanloai"
-                android:text="Phân loại"
-                android:textColor="#131212"
-                android:textSize="12sp" />
+        <Button
+            android:id="@+id/menu_tu_sach"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_tusach"
+            android:text="Tủ sách"
+            android:textColor="#131212"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/menu_tu_sach"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_tusach"
-                android:text="Tủ sách"
-                android:textColor="#131212"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/menu_toi"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_toi"
-                android:text="Tôi"
-                android:textColor="#131212"
-                android:textSize="12sp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/menu_toi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_toi"
+            android:text="Tôi"
+            android:textColor="#131212"
+            android:textSize="12sp" />
     </LinearLayout>
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

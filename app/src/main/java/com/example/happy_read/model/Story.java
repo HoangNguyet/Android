@@ -40,6 +40,14 @@ public class Story {
         this.imagePathDes = imagePathDes;
     }
 
+    public Story(int id, String title, String genre, String imagePathDes, int view) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.imagePathDes = imagePathDes;
+        this.view = view;
+    }
+
     public int getId() {
         return id;
     }

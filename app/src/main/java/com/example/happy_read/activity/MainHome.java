@@ -24,7 +24,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
 import com.example.happy_read.database.database;
@@ -35,9 +38,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 public class MainHome extends AppCompatActivity {
-    Toolbar toolbar;
     ViewFlipper viewFlipper;
-    DrawerLayout drawerLayout;
+    RecyclerView recyclerView;
 
 
     ArrayList<Story> TruyenArrayList;
@@ -47,17 +49,32 @@ public class MainHome extends AppCompatActivity {
     EditText edt;
     ListView lv;
 
+
     Button btnClassify, btnYourbook, btnHome, btnProfile, btnDeXuat, btnNoiBat, btnMoiNhat;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
+        AnhXa();
+        ActionViewFlipper();
 
-        database = new database(this);
-        lv = findViewById(R.id.listviewNew);
-        edt = findViewById(R.id.search);
+        //EditText search
+        edt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         //Anh xa va gan su kien cho nut "phan loai"
         btnClassify = findViewById(R.id.menu_phan_loai);
@@ -85,53 +102,35 @@ public class MainHome extends AppCompatActivity {
             }
         });
 
-        btnProfile = findViewById(R.id.menu_toi);
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToProfile(v);
-            }
-        });
+    }
+
+    private void AnhXa() {
+        database = new database(this);
+        viewFlipper = findViewById(R.id.viewflipper);
+        lv = findViewById(R.id.listviewNew);
+        edt = findViewById(R.id.search);
+        TruyenArrayList = new ArrayList<>();
+        arrayList = new ArrayList<>();
+        Cursor cursor1 = database.getData1();
+        while (cursor1.moveToNext()) {
+            int id = cursor1.getInt(0);
+            String tentruyen = cursor1.getString(1);
+            String noidung = cursor1.getString(2);
+            String anh = cursor1.getString(6);
+            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
+            arrayList.add(new Story(id, tentruyen, noidung, anh));
+            adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
+            lv.setAdapter(adapterTruyen);
+        }
+        cursor1.moveToFirst();
+        cursor1.close();
 
 
 
-        AnhXa();
-
-        //Bat su kien click item
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(MainHome.this, MainContent.class);
-//                String tent = arrayList.get(position).getTitle();
-//                String noidungt = arrayList.get(position).getContent();
-//                intent.putExtra("tentruyen", tent);
-//                intent.putExtra("noidung", noidungt);
-//                startActivity(intent);
-            }
-        });
-
-        //EditText search
-        edt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-            }
-        });
     }
 
 
-
-    //Search
+//    Search
     private void filter(String text){
         //xoa dl mang
         arrayList.clear();
@@ -148,27 +147,27 @@ public class MainHome extends AppCompatActivity {
         adapterTruyen.filterList(filteredList);
     }
 
-    //Phuong thuc lay du lieu gan vao ListView
-
-    private void AnhXa(){
-
-        TruyenArrayList = new ArrayList<>();
-        arrayList = new ArrayList<>();
-        lv = findViewById(R.id.listviewNew);
-        Cursor cursor1 = database.getData1();
-        while (cursor1.moveToNext()) {
-            int id = cursor1.getInt(0);
-            String tentruyen = cursor1.getString(1);
-            String noidung = cursor1.getString(2);
-            String anh = cursor1.getString(6);
-            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
-            arrayList.add(new Story(id, tentruyen, noidung, anh));
-            adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
-            lv.setAdapter(adapterTruyen);
+    //Quang cao
+    private void ActionViewFlipper(){
+        List<String> mangquangcao = new ArrayList<>();
+        mangquangcao.add("https://i.pinimg.com/736x/69/34/85/6934858d4b97a0b31daf13e541c7487c.jpg");
+        mangquangcao.add("https://khasasco.com.vn/wp-content/uploads/2022/05/hinh-chibi-cute-de-ve-21.jpg");
+        mangquangcao.add("https://img5.thuthuatphanmem.vn/uploads/2021/12/28/hinh-chibi-nu-don-gian-de-ve_091935661.jpg");
+        mangquangcao.add("https://haycafe.vn/wp-content/uploads/2022/03/Hinh-ve-chibi-anime.jpg");
+        for(int i = 0; i < mangquangcao.size(); i++){
+            ImageView imageView = new ImageView(getApplicationContext());
+            Glide.with(getApplicationContext()).load(mangquangcao.get(i)).into(imageView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            viewFlipper.addView(imageView);
         }
-        cursor1.moveToFirst();
-        cursor1.close();
+        viewFlipper.setFlipInterval(3000);
+        viewFlipper.setAutoStart(true);
+        Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
+        Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
+        viewFlipper.setInAnimation(slide_in);
+        viewFlipper.setOutAnimation(slide_out);
     }
+
 
 
     //Chuyển trang
@@ -187,11 +186,5 @@ public class MainHome extends AppCompatActivity {
         Intent intent = new Intent(MainHome.this, MainHome.class);
         startActivity(intent);
     }
-
-    public void goToProfile(View view){
-        Intent intent = new Intent(MainHome.this, MainProfile.class);
-        startActivity(intent);
-    }
-
 
 }

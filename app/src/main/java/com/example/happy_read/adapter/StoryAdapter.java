@@ -1,3 +1,4 @@
+
 package com.example.happy_read.adapter;
 
 import android.app.Activity;
@@ -58,6 +59,7 @@ public class StoryAdapter  extends BaseAdapter {
 
     public class ViewHolder{
         TextView txtTenTruyen;
+
         ImageView imgtruyen;
     }
 
@@ -76,7 +78,6 @@ public class StoryAdapter  extends BaseAdapter {
         Story truyen = (Story)getItem(position);
         viewHolder.txtTenTruyen.setText(truyen.getTitle());
 
-        
         String imagePathDes = truyen.getImagePathDes();
         String imageName = imagePathDes.substring(imagePathDes.lastIndexOf("/") + 1, imagePathDes.lastIndexOf("."));
         int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());

@@ -20,6 +20,9 @@
             android:name=".activity.MainDangKy"
             android:exported="false" />
         <activity
+            android:name=".activity.ChangePassWordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainDangNhap"
             android:exported="false"/>
         <activity
