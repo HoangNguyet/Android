@@ -1,8 +1,10 @@
 package com.example.happy_read.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -33,6 +35,17 @@ public class MainYourBook extends AppCompatActivity {
         AnhXa();
 
     }
+
+
+    // Thêm sự kiện click cho icon
+    public void onIcOutClicked(View view) {
+        // Tạo Intent để chuyển đến trang Home (MainActivity)
+        Intent intent = new Intent(this, MainHome.class);
+        startActivity(intent);
+        // Kết thúc hoạt động hiện tại
+        finish();
+    }
+
 
     private void AnhXa(){
         TruyenArrayList = new ArrayList<>();

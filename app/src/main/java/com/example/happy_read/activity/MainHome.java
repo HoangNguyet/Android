@@ -39,8 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class MainHome extends AppCompatActivity {
     ViewFlipper viewFlipper;
-    RecyclerView recyclerView;
-
 
     ArrayList<Story> TruyenArrayList;
     ArrayList<Story> arrayList;

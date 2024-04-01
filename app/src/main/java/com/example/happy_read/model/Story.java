@@ -22,7 +22,7 @@ public class Story {
         this.imagePathDes = imagePathDes;
     }
 
-    public Story(int id, String title, String description, String content, String genre, String imagePathDes, int view, User user) {
+    public Story(int id, String title, String description, String content, String genre, String imagePathDes, int view) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,7 +30,7 @@ public class Story {
         this.genre = genre;
         this.imagePathDes = imagePathDes;
         this.view = view;
-        this.user = user;
+
     }
 
     public Story(int id, String title, String content, String imagePathDes) {

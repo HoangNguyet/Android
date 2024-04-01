@@ -256,12 +256,14 @@ public class database extends SQLiteOpenHelper {
 
 
 
-    //lay 3 truyen moi nhat
+    //Lay tat ca truyen
     public Cursor getData1(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_STORIES, null);
         return res;
     }
+
+    //Lay ra trueyn co view > 2000
     public Cursor getData2(){
         SQLiteDatabase db = this.getReadableDatabase();
         String sqlQuery = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_VIEWS + " > ?";
@@ -269,12 +271,10 @@ public class database extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(sqlQuery, selectionArgs);
         return res;
     }
-    public Cursor getData3(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = 'Tiểu thuyết'";
-        Cursor res = db.rawQuery(query, null);
-        return res;
-    }
+
+
+
+    //Lay ra truyen duoc yeu thich
 
     public Cursor getFavoriteStoriesWithImage() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -284,6 +284,15 @@ public class database extends SQLiteOpenHelper {
                 " ON " + TABLE_RATINGS + "." + COLUMN_RATINGS_STORY_ID + " = " + TABLE_STORIES + "." + COLUMN_STORIES_ID +
                 " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1";
         return db.rawQuery(query, null);
+    }
+
+
+    //Lay ra truyen co the loai la Tieu Thuyet
+    public Cursor getDataByGenre(String genre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = ?";
+        String[] selectionArgs = { genre };
+        return db.rawQuery(query, selectionArgs);
     }
 
 

@@ -22,12 +22,15 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_out"
                     android:gravity="center"
+                    android:paddingLeft="5sp"
                     android:paddingBottom="10dp"
                     android:text="Tủ sách"
                     android:textColor="#273791"
                     android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="onIcOutClicked"/>
             </LinearLayout>
 
             <LinearLayout

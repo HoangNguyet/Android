@@ -1,5 +1,6 @@
 package com.example.happy_read.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -49,19 +50,7 @@ public class MainClassify extends AppCompatActivity {
         tieuthuyet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TruyenArrayList = new ArrayList<>();
-                lv = findViewById(R.id.listviewNew);
-                Cursor cursor = database.getData3();
-                while (cursor.moveToNext()) {
-                    int id = cursor.getInt(0);
-                    String tentruyen = cursor.getString(1);
-                    String noidung = cursor.getString(2);
-                    String anh = cursor.getString(6);
-                    TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
-                }
-                adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList);
-                lv.setAdapter(adapterTruyen);
-                cursor.close();
+               goToTieuThuyet(v);
             }
         });
 
@@ -86,5 +75,10 @@ public class MainClassify extends AppCompatActivity {
         }
         cursor2.moveToFirst();
         cursor2.close();
+    }
+
+    public void goToTieuThuyet(View view){
+        Intent intent = new Intent(MainClassify.this, MainTieuThuyet.class);
+        startActivity(intent);
     }
 }

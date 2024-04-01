@@ -65,7 +65,7 @@
                 android:layout_margin="2dp"
                 android:background="@drawable/border"
                 android:drawableRight="@drawable/ic_tim_kiem"
-                android:hint="Search"
+                android:hint="Nhập từ khóa..."
                 android:paddingRight="10dp" />
             <ViewFlipper
                 android:id="@+id/viewflipper"

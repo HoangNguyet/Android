@@ -35,8 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    <activity android:name=".activity.MainClassify"/>
-    <activity android:name=".activity.MainYourBook"/>
+        <activity android:name=".activity.MainClassify"/>
+        <activity android:name=".activity.MainYourBook"/>
+        <activity android:name=".activity.MainTieuThuyet"/>
 
     </application>
 </manifest>
