@@ -148,10 +148,10 @@ public class MainHome extends AppCompatActivity {
     //Quang cao
     private void ActionViewFlipper(){
         List<String> mangquangcao = new ArrayList<>();
-        mangquangcao.add("https://i.pinimg.com/736x/69/34/85/6934858d4b97a0b31daf13e541c7487c.jpg");
-        mangquangcao.add("https://khasasco.com.vn/wp-content/uploads/2022/05/hinh-chibi-cute-de-ve-21.jpg");
-        mangquangcao.add("https://img5.thuthuatphanmem.vn/uploads/2021/12/28/hinh-chibi-nu-don-gian-de-ve_091935661.jpg");
-        mangquangcao.add("https://haycafe.vn/wp-content/uploads/2022/03/Hinh-ve-chibi-anime.jpg");
+        mangquangcao.add("https://i.pinimg.com/originals/36/29/73/36297393c68d558e6138b823256691c3.gif");
+        mangquangcao.add("https://cdn.popsww.com/blog/sites/2/2021/11/top-truyen-dam-my.jpg");
+        mangquangcao.add("https://www.vietnamfineart.com.vn/wp-content/uploads/2023/03/30-truyen-tranh-ngon-tinh-tong-tai-hay-nhat-moi-thoi-dai-7.jpg");
+        mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdCb_u6pA7nCcvnsFTELAHLE_Hy8EeRmb67sXR5-pMWA&s");
         for(int i = 0; i < mangquangcao.size(); i++){
             ImageView imageView = new ImageView(getApplicationContext());
             Glide.with(getApplicationContext()).load(mangquangcao.get(i)).into(imageView);

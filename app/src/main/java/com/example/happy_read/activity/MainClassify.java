@@ -34,6 +34,10 @@ public class MainClassify extends AppCompatActivity {
         database = new database(this);
         lv = findViewById(R.id.listviewNew);
         tieuthuyet = findViewById(R.id.tieu_thuyet);
+        tamhiep = findViewById(R.id.tam_hiep);
+        vohiep = findViewById(R.id.vo_hiep);
+        huyenhuyen = findViewById(R.id.huyen_huyen);
+        maphap = findViewById(R.id.ma_phap);
 
 
 
@@ -51,6 +55,30 @@ public class MainClassify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                goToTieuThuyet(v);
+            }
+        });
+        tamhiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToTamHiep(v);
+            }
+        });
+        vohiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToVoHiep(v);
+            }
+        });
+        huyenhuyen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToHuyenHuyen(v);
+            }
+        });
+        maphap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMaPhap(v);
             }
         });
 
@@ -81,4 +109,21 @@ public class MainClassify extends AppCompatActivity {
         Intent intent = new Intent(MainClassify.this, MainTieuThuyet.class);
         startActivity(intent);
     }
+    public void goToTamHiep(View view){
+        Intent intent = new Intent(MainClassify.this, MainTamHiep.class);
+        startActivity(intent);
+    }
+    public void goToVoHiep(View view){
+        Intent intent = new Intent(MainClassify.this, MainVoHiep.class);
+        startActivity(intent);
+    }
+    public void goToHuyenHuyen(View view){
+        Intent intent = new Intent(MainClassify.this, MainHuyenHuyen.class);
+        startActivity(intent);
+    }
+    public void goToMaPhap(View view){
+        Intent intent = new Intent(MainClassify.this, MainMaPhap.class);
+        startActivity(intent);
+    }
+
 }

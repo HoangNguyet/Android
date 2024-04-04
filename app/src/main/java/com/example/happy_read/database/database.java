@@ -288,10 +288,10 @@ public class database extends SQLiteOpenHelper {
 
 
     //Lay ra truyen co the loai la Tieu Thuyet
-    public Cursor getDataByGenre(String genre) {
+    public Cursor getDataByGenre() {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = ?";
-        String[] selectionArgs = { genre };
+        String[] selectionArgs = { "Ma pháp" };
         return db.rawQuery(query, selectionArgs);
     }
 
