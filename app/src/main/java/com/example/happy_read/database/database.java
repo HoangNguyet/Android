@@ -195,7 +195,7 @@ public class database extends SQLiteOpenHelper {
 
             "'2023-05-10', " +
             "'2023-05-25', " +
-            "'drawable/conan.jpg', " +
+            "'drawable/attack_on_titan.jpg', " +
             "2200, " +
             "'admin')";
 

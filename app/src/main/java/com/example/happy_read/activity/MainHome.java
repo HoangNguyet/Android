@@ -122,9 +122,6 @@ public class MainHome extends AppCompatActivity {
         }
         cursor1.moveToFirst();
         cursor1.close();
-
-
-
     }
 
 
