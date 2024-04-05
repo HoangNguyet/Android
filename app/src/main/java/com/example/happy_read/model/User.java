@@ -137,4 +137,8 @@ public class User {
     public boolean isMale(){
         return GetGender().equals("male");
     }
+    @Override
+    public String toString(){
+        return String.format("Hello my name is %si have birthday is %s", _userName, _birthDay);
+    }
 }

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,5 +32,23 @@ public class until {
         else{
             statement.bindString(index,value);
         }
+    }
+    //Chuyen sang dang la 4.3m 4.3k
+    public static String FormatCount(long count){
+        DecimalFormat df = new DecimalFormat("#.1");
+        String c;
+        if(count<=999){
+            c  = String.valueOf(count);
+        }
+        else{
+            if(count<=999999){
+                //999,9K
+                c = String.format("%sK",  df.format((count / 1000)));
+            }
+            else{
+                c = String.format("%sK",  df.format((count / 1000000)));
+            }
+        }
+        return c;
     }
 }

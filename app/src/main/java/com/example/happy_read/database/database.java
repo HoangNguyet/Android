@@ -183,9 +183,9 @@ public class database extends SQLiteOpenHelper {
             "2200, " +
             "'admin')";
 
-    private static final String sql8 = "INSERT INTO ratings VALUES (null,1, 1, 5, 'Truyện rất hay!', 1)";
-    private static final String sql9 = "INSERT INTO ratings VALUES (null,2, 2, 4, 'Cốt truyện hấp dẫn!', 0)";
-    private static final String sql10 = "INSERT INTO ratings VALUES (null,3   , 3, 3, 'Truyện khá thú vị.', 1)";
+    private static final String sql8 = "INSERT INTO ratings VALUES (null,'admin', 1, 5, 'Truyện rất hay!', 1)";
+    private static final String sql9 = "INSERT INTO ratings VALUES (null,'admin', 2, 4, 'Cốt truyện hấp dẫn!', 0)";
+    private static final String sql10 = "INSERT INTO ratings VALUES (null,'admin'   , 3, 3, 'Truyện khá thú vị.', 1)";
 
     public database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

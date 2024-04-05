@@ -98,7 +98,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/textViewHeart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.3K"
@@ -116,7 +116,7 @@
 
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/imageButtonStar"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/star"
@@ -127,12 +127,12 @@
                     />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textViewStar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.3K"
                     android:textSize="20dp"
-                    android:layout_below="@id/imageButton2"
+                    android:layout_below="@id/imageButtonStar"
                     android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
@@ -164,34 +164,34 @@
                     android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
-            <RelativeLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                >
+<!--            <RelativeLayout-->
+<!--                xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                >-->
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/save"
-                    android:scaleType="fitCenter"
-                    android:layout_centerHorizontal="true"
-                    android:backgroundTint="@color/cardview_light_background"
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imageButton4"-->
+<!--                    android:layout_width="70dp"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:src="@drawable/save"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:backgroundTint="@color/cardview_light_background"-->
 
-                    />
+<!--                    />-->
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.3K"
-                    android:textSize="20dp"
-                    android:layout_below="@id/imageButton4"
-                    android:layout_centerHorizontal="true"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/textView4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="4.3K"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:layout_below="@id/imageButton4"-->
+<!--                    android:layout_centerHorizontal="true"/>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
         </LinearLayout>
 
