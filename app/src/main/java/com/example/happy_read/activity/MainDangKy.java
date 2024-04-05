@@ -4,14 +4,12 @@ package com.example.happy_read.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 import android.widget.RadioGroup;
 
@@ -20,8 +18,7 @@ import com.example.happy_read.database.database;
 
 public class MainDangKy extends AppCompatActivity {
 
-    private EditText edusername, edpassword, edemail,edpassword2, edfullname, edbirthday;
-    private  RadioGroup radiogender;
+    private EditText edusername, edpassword, edemail,edpassword2;
     private Button btndangky, btnback;
     private database database;
 
@@ -36,9 +33,6 @@ public class MainDangKy extends AppCompatActivity {
         edpassword = findViewById(R.id.ed_password);
         edpassword2 = findViewById(R.id.ed_mk2);
         edemail = findViewById(R.id.ed_email);
-//        edfullname = findViewById(R.id.ed_fullname);
-//        edbirthday = findViewById(R.id.ed_birthday);
-//        radiogender = findViewById(R.id.radioGroupGender);
         btndangky = findViewById(R.id.btndangki);
         btnback = findViewById(R.id.btnback);
         database = new database(this);
@@ -52,14 +46,6 @@ public class MainDangKy extends AppCompatActivity {
                 String password = edpassword.getText().toString().trim();
                 String password2 = edpassword2.getText().toString().trim();
                 String email = edemail.getText().toString().trim();
-//                String fullname = edfullname.getText().toString().trim();
-//                String birthday = edbirthday.getText().toString().trim();
-//                String gender = "";//lấy giá trị radio nếu có
-//                int selectedId = radiogender.getCheckedRadioButtonId();
-//                if (selectedId != -1) {
-//                    RadioButton selectedRadioButton = findViewById(selectedId);
-//                    gender = selectedRadioButton.getText().toString();
-//                }
 
                 //Kiểm tra xem người dùng nhập đầy đủ thông tin chưa
                 if (username.isEmpty() || email.isEmpty() || password.isEmpty() || password2.isEmpty()) {

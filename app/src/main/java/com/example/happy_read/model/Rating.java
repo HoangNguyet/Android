@@ -45,4 +45,13 @@ public class Rating {
         this._comment = _comment;
         this._isFavorite = _isFavorite;
     }
+
+    public Rating(String _id, User _user, Story _story, int _ratting, String _comment, Boolean _isFavorite) {
+        this._id = _id;
+        this._user = _user;
+        this._story = _story;
+        this._ratting = _ratting;
+        this._comment = _comment;
+        this._isFavorite = _isFavorite;
+    }
 }

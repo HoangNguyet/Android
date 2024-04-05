@@ -1,28 +1,26 @@
 package com.example.happy_read.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
-    private int _id;
-    private String _name;
+    //_name is id
+    private String _userName;
     private String _password;
     private String _email;
-    private String _fullName;
+    private String _fullName = null;
     private String _role;//Defalut is user and i think we dont have table is admin in here :)))
-    private String _imagePath;
-    private  String _gender;
-    private Date _birthDay;
+    private String _imagePath = null;
+    private  String _gender = null;
+    private Date _birthDay = null;
 
 
     //Getter
-    public int GetId() {
-        return _id;
-    }
 
     public String GetName() {
-        return _name;
+        return _userName;
     }
 
     public String GetPassword() {
@@ -34,6 +32,9 @@ public class User {
     }
 
     public String GetFullName() {
+        if(_fullName == null){
+            return _userName;
+        }
         return _fullName;
     }
 
@@ -50,16 +51,34 @@ public class User {
 
     public Date GetBirthDay() {
         return _birthDay;
+        if(_imagePath==null){
+            return  null;
+        }
+        return _imagePath;
+    }
+    public String GetGender() {
+        if(_gender == null){
+            return null;
+        }
+        return _gender.trim().toLowerCase();
+    }
+
+    public String GetBirthDay(String format) {
+        if(_birthDay == null){
+            return  null;
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        return formatter.format(_birthDay);
     }
 
 
     //Setter
     //I dont want to user change role email and id
-    public void SetName(String name) throws Exception {
+    private void SetName(String name) throws Exception {
         if(name.isEmpty()){
             throw new Exception("Tên không được để trống");
         }
-        _name = name;
+        _userName = name;
     }
 
     public void SetPassword(String password) throws Exception {
@@ -71,7 +90,7 @@ public class User {
 
     public void SetFullName(String fullName) throws Exception {
         if(fullName.isEmpty()){
-            throw new Exception("Missing FullName");
+            throw new Exception("Tên không được để trống");
         }
         _fullName = fullName;
     }
@@ -79,15 +98,14 @@ public class User {
     public void SetImagePath(String imagePath) {
         _imagePath = imagePath;
     }
-
-    public void SetGender(String gender) throws Exception {
-        if(gender.isEmpty()||gender.toLowerCase() != "nam" || gender.toLowerCase()!= "nữ"){
-            throw new Exception("Giới tính không hợp lệ");
-        }
+    public void SetGender(String gender) {
         _gender = gender;
     }
 
     public void SetBirhDay(Date birthDay) {
+        if(birthDay == null){
+            return;
+        }
         _birthDay = birthDay;
     }
     public void SetEmail(String email) throws Exception{
@@ -99,10 +117,31 @@ public class User {
         }
         _email = email;
     }
-    public User(String _name, String _password,String _email, String _role) throws  Exception{
+    public User(String _userName, String _password,String _email, String _role) throws  Exception{
         this._role = _role;
-        SetName(_name);
+        SetName(_userName);
         SetPassword(_password);
-        SetName(_email);
+        SetEmail(_email);
+    }
+
+    public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay) throws Exception {
+        SetName(_userName);
+        SetPassword(_password);
+        SetEmail(_email);
+        SetFullName(_fullName);
+        this._role = _role;
+        SetImagePath(_imagePath);
+        SetGender(_gender);
+        SetBirhDay(_birthDay);
+    }
+    public void UpdateInformation(String _fullName, String _imagePath, String _gender, Date _birthDay) throws Exception{
+        SetFullName(_fullName);
+        SetImagePath(_imagePath);
+        SetGender(_gender);
+        SetBirhDay(_birthDay);
+    }
+    //Check user have male
+    public boolean isMale(){
+        return GetGender().equals("male");
     }
 }

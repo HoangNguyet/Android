@@ -20,6 +20,14 @@
             android:name=".activity.MainDangKy"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".activity.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:name=".activity.UserProfileEditActivity"
+            android:exported="false"/>
+        <activity
             android:name=".activity.ChangePassWordActivity"
             android:exported="false" />
         <activity
