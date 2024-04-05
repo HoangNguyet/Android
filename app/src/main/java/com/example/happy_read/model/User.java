@@ -1,11 +1,14 @@
 package com.example.happy_read.model;
 
+import com.example.happy_read.action.ActionUser;
+import com.example.happy_read.database.database;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User {
+public class User extends ActionUser {
     //_name is id
     private String _userName;
     private String _password;
@@ -43,11 +46,12 @@ public class User {
     }
 
     public String GetImagePath() {
-        if(_imagePath==null){
-            return  null;
-        }
         return _imagePath;
     }
+    public String GetRender() {
+        return _gender;
+    }
+
     public String GetGender() {
         if(_gender == null){
             return null;
@@ -90,7 +94,6 @@ public class User {
     public void SetImagePath(String imagePath) {
         _imagePath = imagePath;
     }
-
     public void SetGender(String gender) {
         _gender = gender;
     }
@@ -110,6 +113,7 @@ public class User {
         }
         _email = email;
     }
+    private User(){}
     public User(String _userName, String _password,String _email, String _role) throws  Exception{
         this._role = _role;
         SetName(_userName);
@@ -140,5 +144,10 @@ public class User {
     @Override
     public String toString(){
         return String.format("Hello my name is %si have birthday is %s", _userName, _birthDay);
+    public String UpdateUserInDb(database db){
+        return super.UpdateInDb(db,this);
+    }
+    public static User GetUserByIdA(database db, String user_name){
+        return new User().GetUserById(db,user_name);
     }
 }

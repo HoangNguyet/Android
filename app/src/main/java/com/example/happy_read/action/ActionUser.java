@@ -1,4 +1,4 @@
-package com.example.happy_read.until;
+package com.example.happy_read.action;
 
 import static com.example.happy_read.database.database.COLUMN_USERS_BIRTHDAY;
 import static com.example.happy_read.database.database.COLUMN_USERS_FULLNAME;
@@ -20,8 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class UserDatabase {
-    public static String UpdateUser(database db, User user){
+public class ActionUser {
+    protected String UpdateInDb(database db, User user){
         String sql = String.format("UPDATE %s SET %s = ?, %s = ?,%s = ?, %s = ?  WHERE %s = ?", TABLE_USERS, COLUMN_USERS_FULLNAME, COLUMN_USERS_IMAGE, COLUMN_USERS_GENDER, COLUMN_USERS_BIRTHDAY, COLUMN_USERS_NAME);
         SQLiteStatement statement = db.getWritableDatabase().compileStatement(sql);
         UpdateStatment(user.GetFullName(),1,statement);
@@ -41,7 +41,7 @@ public class UserDatabase {
             db.close();
         }
     }
-    public static User GetUserById(database db, String id){
+    protected User GetUserById(database db, String id){
         //userName is key
         String query = String.format("SELECT * FROM %s WHERE %s = ?",TABLE_USERS,COLUMN_USERS_NAME);
         try(Cursor cursor = db.getReadableDatabase().rawQuery(query,new String[]{id})){

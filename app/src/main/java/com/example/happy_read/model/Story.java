@@ -3,124 +3,128 @@ package com.example.happy_read.model;
 import java.util.Date;
 
 public class Story {
-    private String _id;
-    private String _title;
-    private String _description;
-    private String _content;
-    private String _genre;
-    private Date _createdAt;
-    private Date _updateAt;
-    private String _imagePathDes;
-    private int _view;
-    private User _user;
+    private int id;
+    private String title;
+    private String description;
+    private String content;
+    private String genre;
+    private Date createdAt;
+    private Date updateAt;
+    private String imagePathDes;
+    private int view;
+    private User user;
 
-    //Getter
-    public String GetId() {
-        return _id;
+    public Story() {
     }
 
-    public String GetTitle() {
-        return _title;
+    public Story(String title, String imagePathDes) {
+        this.title = title;
+        this.imagePathDes = imagePathDes;
     }
 
-    public String GetDescription() {
-        return _description;
+    public Story(int id, String title, String description, String content, String genre, String imagePathDes, int view) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.content = content;
+        this.genre = genre;
+        this.imagePathDes = imagePathDes;
+        this.view = view;
+
     }
 
-    public String GetContent() {
-        return _content;
+    public Story(int id, String title, String content, String imagePathDes) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.imagePathDes = imagePathDes;
     }
 
-    public String GetGenre() {
-        return _genre;
+    public Story(int id, String title, String genre, String imagePathDes, int view) {
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.imagePathDes = imagePathDes;
+        this.view = view;
     }
 
-    public Date GetCreatedAt() {
-        return _createdAt;
+    public int getId() {
+        return id;
     }
 
-    public Date GetUpdateAt() {
-        return _updateAt;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String GetImagePathDes() {
-        return _imagePathDes;
+    public String  getTitle() {
+        return title;
     }
 
-    public int GetView() {
-        return _view;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public User GetUser() {
-        return _user;
+    public String getDescription() {
+        return description;
     }
 
-
-    //Setter
-
-    public void SetTtitle(String title) throws Exception {
-        if(title.isEmpty()){
-            throw new Exception("Tiêu đề không hợp lệ");
-        }
-        _title = title;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void SetDescription(String description) throws Exception {
-        if(description.isEmpty()){
-            throw new Exception("Đặc tả không thể để trống");
-        }
-        _description = description;
+    public String getContent() {
+        return content;
     }
 
-    public void SetContent(String content) throws Exception {
-        if(content.isEmpty()){
-            throw new Exception("Nội dung không để trống");
-        }
-        _content = content;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void SetGenre(String genre) throws Exception {
-        if(genre.isEmpty()){
-            throw new Exception("Thể loại không để trống");
-        }
-        _genre = genre;
+    public String getGenre() {
+        return genre;
     }
 
-    public void SetUpdateAt(Date updateAt) {
-        _updateAt = updateAt;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
-    public void SetImagePathDes(String imagePathDes) {
-        _imagePathDes = imagePathDes;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void UpdateView() {
-        _view +=1;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Story(String _title, String _description, String _content, String _genre, Date _createdAt, Date _updateAt, String _imagePathDes, User _user) throws Exception {
-        this._id =  _id;
-        SetTtitle(_title);
-        SetDescription(_description);
-        SetContent(_content);
-        SetGenre(_genre);
-        this._createdAt = _createdAt;
-        SetUpdateAt(_updateAt);
-        SetImagePathDes(_imagePathDes);
-        _view = 0;
-        this._user = _user;
+    public Date getUpdateAt() {
+        return updateAt;
     }
 
-    public Story(String _id, String _title, String _description, String _content, String _genre, Date _createdAt, Date _updateAt, String _imagePathDes, int _view, User _user) {
-        this._id = _id;
-        this._title = _title;
-        this._description = _description;
-        this._content = _content;
-        this._genre = _genre;
-        this._createdAt = _createdAt;
-        this._updateAt = _updateAt;
-        this._imagePathDes = _imagePathDes;
-        this._view = _view;
-        this._user = _user;
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public String getImagePathDes() {
+        return imagePathDes;
+    }
+
+    public void setImagePathDes(String imagePathDes) {
+        this.imagePathDes = imagePathDes;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

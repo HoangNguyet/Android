@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainClassify">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FBFAFA"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/hanh_dong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.05"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_book"
+                android:text="Hành động"
+                android:textColor="#1E1D1D"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/kinh_di"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.05"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_book"
+                android:text="Kinh dị"
+                android:textColor="#1E1D1D"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/phieu_lieu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.93"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_book"
+                android:text="Phiêu lưu"
+                android:textColor="#1E1D1D"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FBFAFA"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/thieu_nhi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_book"
+                android:text="Thiếu nhi"
+                android:textColor="#1E1D1D"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/tieu_thuyet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableLeft="@drawable/ic_book"
+                android:text="Tiểu thuyết"
+                android:textColor="#1E1D1D"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Truyện xem nhiều nhất"
+                android:textColor="#BF2424"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/listviewNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></ListView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
