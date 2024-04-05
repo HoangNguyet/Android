@@ -52,13 +52,6 @@ public class User extends ActionUser {
         return _gender;
     }
 
-    public Date GetBirthDay() {
-        return _birthDay;
-        if(_imagePath==null){
-            return  null;
-        }
-        return _imagePath;
-    }
     public String GetGender() {
         if(_gender == null){
             return null;

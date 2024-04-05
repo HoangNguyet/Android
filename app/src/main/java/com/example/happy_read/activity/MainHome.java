@@ -48,7 +48,7 @@ public class MainHome extends AppCompatActivity {
     ListView lv;
 
 
-    Button btnClassify, btnYourbook, btnHome, btnProfile, btnDeXuat, btnNoiBat, btnMoiNhat;
+    Button btnClassify, btnYourbook, btnHome, btnProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -82,7 +82,13 @@ public class MainHome extends AppCompatActivity {
                 goToClassify(v);
             }
         });
+        btnProfile = findViewById(R.id.menu_toi);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         //Anh xa va gan su kien cho nut "phan loai"
         btnYourbook = findViewById(R.id.menu_tu_sach);
         btnYourbook.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +112,7 @@ public class MainHome extends AppCompatActivity {
         database = new database(this);
         viewFlipper = findViewById(R.id.viewflipper);
         lv = findViewById(R.id.listviewNew);
+        lv.setPadding(0,0,0,100);
         edt = findViewById(R.id.search);
         TruyenArrayList = new ArrayList<>();
         arrayList = new ArrayList<>();
@@ -114,12 +121,12 @@ public class MainHome extends AppCompatActivity {
             int id = cursor1.getInt(0);
             String tentruyen = cursor1.getString(1);
             String noidung = cursor1.getString(2);
-            String anh = cursor1.getString(6);
+            String anh = cursor1.getString(7);
             TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
             arrayList.add(new Story(id, tentruyen, noidung, anh));
-            adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
-            lv.setAdapter(adapterTruyen);
         }
+        adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
+        lv.setAdapter(adapterTruyen);
         cursor1.moveToFirst();
         cursor1.close();
     }

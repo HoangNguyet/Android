@@ -1,5 +1,6 @@
 package com.example.happy_read.database;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -1426,6 +1427,282 @@ public class database extends SQLiteOpenHelper {
             "'drawable/attack_on_titan.jpg', " +
             "2200, " +
             "'admin')";
+    private static final String sql11 = "INSERT INTO stories VALUES (null, " +
+            "'Đứa trẻ trên bầu trời xanh', " +
+            "'Chúng tôi đi xuống phố, tay trong tay, chẳng có gì phải vội. Totoca đang dạy tôi về cuộc sống. Và điều đó khiến tôi thực sự hạnh phúc, được anh trai nắm tay và dạy nhiều điều. Nhưng là dạy về những điều thuộc thế giới bên ngoài. Bởi vì nhà, tôi học hỏi bằng cách tự mày mò khám phá và tự làm, tôi mắc lỗi nhiều và vì mắc lỗi, tôi thường bị ăn đòn. Cho tới tận trước đây không lâu, tôi vẫn chưa bị ai đánh bao giờ. Nhưng rồi mọi người nghe được chuyện này, chuyện nọ và bắt đầu nói tôi là quỷ, là quái vật, là tiểu yêu tóc hung. Tôi không muốn biết về điều đó. Nếu không phải đang ở bên ngoài thì tôi đã bắt đầu hát. Hát thú vị lắm. Ngoài ca hát, Totoca còn biết làm điều khác nữa: anh có thể huýt sáo. Nhưng dù cố gắng đến mức nào tôi cũng chẳng thể bắt chước anh huýt sáo được, chẳng âm thanh nào bật ra cả. Để an ủi tôi, anh bảo chuyện đó cũng bình thường thôi, rằng tôi chưa có cái miệng của người huýt sáo. Nhưng vì không thể hát thành lời, tôi hát thầm ở trong lòng. Thoạt đầu điều đó thật kỳ cục, nhưng về sau tôi cảm thấy hát như thế thực sự thú vị. Và lúc này, tôi đang nhớ lại một bài hát mẹ thường hát khi tôi còn bé xíu. Mẹ đứng bên chậu giặt, mảnh khăn buộc quanh đầu để che nắng. Với chiếc tạp dề ôm quanh thắt lưng, mẹ đứng đó hết giờ này đến giờ khác, dầm tay trong nước, khiến xà phòng nổi cơ man nào là bọt. Sau đó mẹ vắt kiệt nước khỏi quần áo và đem ra dây, phơi lên, kẹp lại và kéo chiếc dây phơi lên cao. Mẹ làm thế với tất cả quần áo. Mẹ giặt thuê cho nhà bác sĩ Faulhaber để kiếm thêm chút ít giúp trang trải chi phí sinh hoạt. Mẹ cao, gầy, nhưng rất đẹp. Da mẹ rám nắng, tóc thẳng và đen. Khi mẹ không cột tóc lên, tóc mẹ xõa đến tận thắt lưng. Nhưng tuyệt nhất là khi mẹ hát, và tôi hay quanh quẩn bên mẹ học lỏm.\n" +
+            "\n" +
+            "Chàng thủy thủ ơi, chàng thủy thủ ơi Chàng thủy thủ của nỗi buồn ơi Vì chàng Ngày mai em sẽ chết…\n" +
+            "\n" +
+            "Những con sóng xô bờ Quăng mình lên bờ cát Chàng ra khơi rồi Chàng thủy thủ ơi…\n" +
+            "\n" +
+            "Tình yêu của chàng Chẳng được nổi một ngày Tàu nhổ neo rồi Tàu ra khơi…\n" +
+            "\n" +
+            "Những con sóng xô bờ…\n" +
+            "\n" +
+            "Bài hát đó luôn khiến lòng tôi dâng trào một nỗi buồn khó hiểu.\n" +
+            "\n" +
+            "Totoca giật tay tôi. Tôi bừng tỉnh. “Sao thế Zezé?” “Không sao ạ. Em đang hát thôi mà.” “Hát ư?” “Vâng.” “Vậy chắc anh điếc rồi.”\n" +
+            "\n" +
+            "Anh ấy không biết con người ta có thể hát thầm ư? Tôi im lặng. Nếu anh không biết thì tôi cũng chẳng định dạy anh đâu.\n" +
+            "\n" +
+            "Chúng tôi đã tới lề đường quốc lộ Rio-São Paulo. Trên đường quốc lộ, có đủ mọi loại xe. Xe tải, xe con, xe ngựa, xe đạp.\n" +
+            "\n" +
+            "“Này,Zezé, chuyện quan trọng đây này. Trước hết chúng ta phải quan sát thật kỹ một chiều, sau đó nhìn chiều kia. Bây giờ sang đường nào.”\n" +
+            "\n" +
+            "Chúng tôi chạy sang đường.\n" +
+            "\n" +
+            "“Em có sợ không?”\n" +
+            "\n" +
+            "Tôi sợ, nhưng tôi lắc đầu.\n" +
+            "\n" +
+            "“Chúng mình cùng làm lại nào. Sau đó anh muốn xem em đã biết cách hay chưa.”\n" +
+            "\n" +
+            "Chúng tôi chạy trở lại phía bên kia đường. “Bây giờ em sang đường đi. Đừng ngập ngừng, bởi vì em lớn rồi mà.”\n" +
+            "\n" +
+            "Tim tôi đập nhanh hơn.\n" +
+            "\n" +
+            "“Nào. Sang đi.”\n" +
+            "\n" +
+            "Tôi chạy sang đường, gần như nín thở. Tôi đợi một chút và anh ra hiệu cho tôi quay trở về chỗ anh.\n" +
+            "\n" +
+            "“Lần đầu mà làm được thế là tốt đấy. Nhưng em đã quên một điều. Em phải nhìn cả hai phía xem có xe đang chạy tới không. Không phải lúc nào anh cũng có mặt ở đây để ra hiệu cho em đâu. Chúng ta sẽ thực hành thêm trên đường về nhà nhé. Nhưng giờ thì đi thôi, vì anh muốn chỉ cho em một thứ.”\n" +
+            "\n" +
+            "\n" +
+            "Anh cầm tay tôi và chúng tôi lại bắt đầu bước đi, thong thả. Tôi không cách nào thôi nghĩ về một cuộc trò chuyện cách đây ít lâu.\n" +
+            "\n" +
+            "“Totoca.” “Gì cơ?”\n" +
+            "\n" +
+            "“Anh đã cảm nhận được tuổi chín chắn chưa?” “Thứ vớ vẩn gì vậy?”\n" +
+            "\n" +
+            "“Bác Edmundo nói đấy. Bác nói em khôn trước tuổi và rằng chẳng bao lâu nữa em sẽ đến tuổi chín chắn. Nhưng em chẳng cảm thấy có gì khác cả.”\n" +
+            "\n" +
+            "“Bác Edmundo bị ngớ ngẩn đấy. Bác ấy luôn nhồi những thứ vớ vẩn vào đầu em.”\n" +
+            "\n" +
+            "“Bác ấy không ngớ ngẩn đâu. Bác ấy khôn ngoan đấy chứ. Và khi lớn lên em muốn trở nên khôn ngoan, thành nhà thơ và thắt nơ bướm. Một ngày nào đó em sẽ được chụp ảnh chân dung thắt nơ hẳn hoi.”\n" +
+            "\n" +
+            "“Tại sao lại thắt nơ?”\n" +
+            "\n" +
+            "“Bởi vì anh không thể trở thành nhà thơ nếu không thắt nơ. Khi bác Edmundo cho em xem ảnh các nhà thơ trong cuốn tạp chí đó, em thấy ai cũng thắt nơ cả.”\n" +
+            "\n" +
+            "“Zezé, em phải thôi đi, đừng tin mọi điều bác ấy nói với em nữa. Bác Edmundo hơi biêng biêng đấy. Bác ấy còn hơi xạo nữa.”\n" +
+            "\n" +
+            "“Bác ấy là đồ chó đẻ ư?”\n" +
+            "\n" +
+            "“Em đã bị tát lệch mặt vì nói bậy quá nhiều mà chưa chừa à! Bác Edmundo không như vậy. Anh nói biêng biệng cơ mà. Nghĩa là hơi hâm hâm.”\n" +
+            "\n" +
+            "“Anh bảo bác ấy là kẻ nói xạo mà.”\n" +
+            "\n" +
+            "“Đó là hai chuyện hoàn toàn khác.”\n" +
+            "\n" +
+            "“Không, có khác gì đâu. Hôm nọ cha kể về ông Labonne với bác Severino, bạn chơi bài của cha, và cha nói, “Lão chó đẻ ấy là một kẻ nói xạo trời đánh thánh vật.” Và chẳng ai tát chả lệch mặt cả.”\n" +
+            "\n" +
+            "“Người lớn nói thế thì không sao.”\n" +
+            "\n" +
+            "Chúng tôi không nói gì trong vài phút.\n" +
+            "\n" +
+            "“Bác Edmundo không… Mà biêng biêng có nghĩa là gì, anh Totoca?”\n" +
+            "\n" +
+            "Anh giơ ngón tay chỉ lên đầu, quay quay ngón tay vẽ thành những vòng tròn trong không khí.\n" +
+            "\n" +
+            "\n" +
+            "“Không, bác ấy không phải vậy. Bác ấy tốt lắm. Bác ấy dạy em nhiều điều, và chỉ đánh em có mỗi một lần, lại còn chẳng đánh mạnh nữa.”\n" +
+            "\n" +
+            "Totoca giật mình.\n" +
+            "\n" +
+            "“Bác ấy đánh em à? Khi nào?”\n" +
+            "\n" +
+            "“Khi em hư thật và bị Gloria tống đến nhà bà. Bác ấy muốn đọc báo nhưng không tìm thấy kính. Bác tìm hết chỗ cao đến chỗ thấp và nổi điên thực sự. Bác hỏi bà kính của bác ở đâu nhưng bà không biết. Hai người lục tung cả nhà lên để tìm. Thế rồi em nói em biết kính của bác ở đâu và nếu bác cho em ít tiền để mua bi thì em sẽ nói cho bác biết. Bác đi đến chỗ để áo khoác và lấy ra một ít tiền.\n" +
+            "\n" +
+            "“Mang kính ra đây thì bác đưa tiền cho mày.” “Em đến chỗ rương đựng quần áo lấy cái kính ra. Bác nói, Ra là mày, đồ ranh con!” Bác phát vào lưng em và cất béng tiền đi.”\n" +
+            "\n" +
+            "Totoca cười phá lên.\n" +
+            "\n" +
+            "“Em đến đó để khỏi bị ăn đòn ở nhà thế mà lại bị đánh ở đó. Đi nhanh chân lên một chút, nếu không chúng ta sẽ chẳng bao giờ đến nơi được đâu.”\n" +
+            "\n" +
+            "Tôi vẫn đang nghĩ về bác Edmundo. “Totoca, trẻ con nghỉ hưu phải không?” “Gì cơ?”\n" +
+            "\n" +
+            "\n" +
+            "“Bác Edmundo chẳng làm gì cả mà vẫn có tiền. Bác không làm việc, nhưng Tòa Thị chính vẫn trả tiền cho bác hằng tháng.”\n" +
+            "\n" +
+            "“Thì sao?”\n" +
+            "\n" +
+            "“À thì, trẻ con chẳng làm gì. Trẻ con ăn, ngủ và được cha mẹ cho tiền.” “Nghỉ hưu khác chứ, Zezé. Người nghỉ hưu đã làm việc trong một thời gian\n" +
+            "\n" +
+            "dài rồi, tóc đã ngả bạc, chân chậm mắt mờ như bác Edmundo rồi. Nhưng đừng nghĩ về những thứ khó nhằn ấy nữa. Nếu em muốn học nhiều điều từ bác ấy thì tốt thôi. Nhưng khi đi với anh thì không nhé. Hãy cư xử như những đứa con trai khác. Em thậm chí có thể chửi thề, nhưng đừng nhét đầy đầu những thứ khó nhằn. Nếu không anh sẽ không đi chơi với em nữa đâu.”\n" +
+            "\n" +
+            "Tôi xị mặt xuống và không muốn nói chuyện nữa. Tôi cũng chẳng muốn hát. Chú chim nhỏ ca hát bên trong tôi đã bay mất rồi.\n" +
+            "\n" +
+            "Chúng tôi dừng lại và Totoca chỉ tay về phía ngôi nhà. “Nó đấy. Thích không?”\n" +
+            "\n" +
+            "Đó là một ngôi nhà bình thường. Màu trắng với những ô cửa sổ màu xanh dương. Toàn bộ cửa nẻo đều đóng im ỉm và im ắng như tờ.\n" +
+            "\n" +
+            "“Có ạ. Nhưng tại sao chúng ta phải chuyển đến đây chứ?” “Thay đổi cũng tốt mà.”\n" +
+            "\n" +
+            "Chúng tôi đứng trông qua hàng rào, nhìn cây xoài phía bên này và cây me ở phía bên kia.\n" +
+            "\n" +
+            "“Em là đứa hay chạy lăng xăng, nhưng em không biết nhà mình đang có chuyện gì đâu. Cha thất nghiệp rồi, đúng không? Đã sáu tháng kể từ khi cha choảng nhau với ông Scottfield và bị đuổi việc. Em có biết bây giờ Lala đang làm việc ở nhà máy không? Còn mẹ thì sắp đi làm ở thành phố, trong xưởng English Mill đấy, biết không? Giờ thì em biết rồi đấy, đồ ngốc ạ. Ở cái nhà mới này, ta sẽ tiết kiệm được tiền thuê nhà… Cái nhà kia thì cha nợ tám tháng tiền thuê nhà rồi. Em còn quá nhỏ nên không phải lo lắng về những chuyện buồn như thế. Nhưng anh sẽ phải giúp thật lực, xắn tay vào hỗ trợ việc nhà.”\n" +
+            "\n" +
+            "Anh đứng im lặng một lát.\n" +
+            "\n" +
+            "“Totoca, họ sẽ mang con báo đen và hai con sư tử cái tới đây chứ?” “Dĩ nhiên. Và lão gia nhân này sẽ phải tháo dỡ cái chuồng gà.” Anh nhìn tôi bằng ánh mắt thương xót, trìu mến.\n" +
+            "\n" +
+            "“Anh chính là người sẽ dỡ vườn thú và lắp ghép nó lại ở đây.”\n" +
+            "\n" +
+            "\n" +
+            "Tôi thở phào. Bởi vì nếu không tôi sẽ phải kiếm thứ gì đó mới mẻ để chơi với em trai út Luis của tôi.\n" +
+            "\n" +
+            "\n" +
+            "“Em đã thấy anh là người bạn như thế nào của em rồi, đúng không Zezé? Này, em sẽ chẳng mất mát gì nếu nói cho anh biết em đã làm chuyện đó như thế nào…”\n" +
+            "\n" +
+            "“Totoca, em thề là em không biết. Em thực sự không biết.” “Em nói dối. Ai đó đã dạy em học.”\n" +
+            "\n" +
+            "“Em chẳng học gì cả. Chẳng ai dạy em hết. Trừ phi quỷ sứ dạy em trong giấc ngủ. Jandira nói quỷ sứ là cha đỡ đầu của em.”\n" +
+            "\n" +
+            "Totoca bối rối. Anh thậm chí còn cốc đầu tôi mấy cái, cố bắt tôi phải nói cho anh biết. Nhưng tôi không biết mình đã làm được chuyện đó như thế nào.\n" +
+            "\n" +
+            "“Chẳng ai tự học cái đó được.”\n" +
+            "\n" +
+            "Nhưng anh không biết phải nói gì bởi vì chẳng ai thực sự nhìn thấy người nào dạy tôi học gì hết. Đó là một bí ẩn.\n" +
+            "\n" +
+            "Tôi nhớ lại chuyện xảy ra một tuần trước. Nó đã khiến cả nhà tôi xôn xao.\n" +
+            "\n" +
+            "Chuyện bắt đầu tại nhà bà tôi, khi tôi ngồi cạnh bác Edmundo đang đọc báo.\n" +
+            "\n" +
+            "“Bác ơi.”\n" +
+            "\n" +
+            "“Gì vậy, con trai?”\n" +
+            "\n" +
+            "Bác kéo cặp kính xuống chóp mũi, như cái cách mọi người lớn thường làm khi họ đã già.\n" +
+            "\n" +
+            "“Mấy tuổi bác học đọc?”\n" +
+            "\n" +
+            "Khoảng tầm sáu, bảy tuổi.”\n" +
+            "\n" +
+            "““Trẻ năm tuổi có thể học đọc không bác?”\n" +
+            "\n" +
+            "“Bác nghĩ là có. Nhưng chẳng ai thích dạy chúng đâu bởi vì chúng còn quá nhỏ.”\n" +
+            "\n" +
+            "“Bác học đọc như thế nào ạ?”\n" +
+            "\n" +
+            "“Như mọi người khác thôi, với những người đọc mẫu. Đọc bờ a baº.” “Ai cũng phải học đọc theo cách đó ạ?”\n" +
+            "\n" +
+            "“Theo bác biết thì ai cũng học như thế cả.” “Tất cả mọi người ư?” Bác nhìn tôi, ngạc nhiên.\n" +
+            "\n" +
+            "“Này,Zezé, đó là cách mọi người học đọc. Bây giờ hãy để yên cho bác đọc nốt. Ra sân sau mà tìm ổi đi.”\n" +
+            "\n" +
+            "Bác đẩy kính lên và cố tập trung đọc. Nhưng tôi không chịu đi.\n" +
+            "\n" +
+            "“Tiếc quá!”\n" +
+            "\n" +
+            "Nghe thấy tiếng cảm thán chân thật ấy, bác lại kéo kính xuống thấp. “Trời đất quỷ thần ơi. Cháu định ngồi dai như đỉa đây đấy à?”\n" +
+            "\n" +
+            "“Chỉ là cháu đã đi cả một quãng đường xa như thế tới đây để nói với bác một điều.”\n" +
+            "\n" +
+            "“Thôi được rồi, vậy thì nói đi.”\n" +
+            "\n" +
+            "“Không. Không phải vậy. Trước hết cháu cần biết ngày lĩnh lương hưu tới đây của bác là ngày nào.”\n" +
+            "\n" +
+            "“Ngày kia, bác nói, vừa nhìn tôi vẻ dò xét vừa cười tủm tỉm.\n" +
+            "\n" +
+            "“Ngày kia là thứ mấy hả bác?”\n" +
+            "\n" +
+            "“Thứ Sáu.”\n" +
+            "\n" +
+            "“Ừm, thứ Sáu bác có thể mang từ thành phố về cho cháu một con Vua Bạc không ạ?”\n" +
+            "\n" +
+            "“Nói từ từ xem nào,Zezé. Vua Bạc là gì?”\n" +
+            "\n" +
+            "“Là con ngựa trắng nhỏ cháu nhìn thấy trong rạp chiếu bóng. Chủ của nó là Fred Thompson. Nó là ngựa đã được thuần dưỡng rồi.”\n" +
+            "\n" +
+            "“Cháu muốn bác mang về cho cháu một con ngựa nhỏ kéo xe ư?”\n" +
+            "\n" +
+            "\n" +
+            "“Không ạ. Cháu muốn con ngựa kiểu có đầu gỗ và bộ dây cương cơ. Ngựa kiểu bác gắn cái đuôi vào rồi chạy vòng quanh ấy ạ. Cháu cần phải luyện tập vì sau này cháu sẽ đóng phim.”\n" +
+            "\n" +
+            "Bác cười phá lên.\n" +
+            "\n" +
+            "“Bác hiểu rồi. Và nếu bác kiếm nó cho cháu, thì bác đượC gì nào?” “Cháu sẽ làm một việc gì đó cho bác ạ.” Cháu thơm bác một cái nhé?”\n" +
+            "\n" +
+            "“ “Cháu không thích thơm thiếc lắm đâu ạ.” “Vậy thì ôm nhé?”\n" +
+            "\n" +
+            "Tôi nhìn bác Edmundo và thật lòng cảm thấy tội nghiệp cho bác. Con chim nhỏ bên trong tôi nói một điều gì đó. Và tôi nhớ lại một chuyện tôi đã nghe người ta nói rất nhiều lần, rằng bác Edmundo sống ly thân với vợ và họ có năm đứa con. Nhưng bác sống một mình, đi lại chậm chạp lắm… Có lẽ bác đi chậm vì nhớ các con chăng? Con bác chẳng bao giờ đến thăm bác.\n" +
+            "\n" +
+            "Tôi đi vòng qua bàn và ôm bác thật chặt. Tôi cảm thấy đám tóc bạc của bác cọ vào trán mình. Tóc bác mềm thật đấy.\n" +
+            "\n" +
+            "“Đây không phải vì con ngựa đâu ạ. Cháu sẽ làm cho bác một việc khác Cơ. Cháu sẽ đọc.”\n" +
+            "\n" +
+            "“Gì cơ,Zezé? Cháu biết đọc ư? Ai dạy cháu?” “Chẳng ai cả.” “Cháu nói dối.”\n" +
+            "\n" +
+            "Tôi đi ra, và nói vọng vào từ ngoài cửa,“Thứ Sáu bác hãy mang ngựa về cho cháu và bác sẽ thấy cháu có biết đọc hay không?”\n" +
+            "\n" +
+            "Sau đó, khi đêm xuống và chị Jandira đã thắp đèn dầu lên bởi vì công ty điện đã cắt điện nhà chúng tôi do chưa thanh toán hóa đơn, tôi đứng nhón chân\n" +
+            "\n" +
+            "ngắm “ngôi sao” ấy. Đó là bức tranh vẽ trên một mảnh giấy, hình một ngôi sao với lời nguyện cầu ở bên dưới mong ngôi sao phù hộ cho nhà chúng tôi.\n" +
+            "\n" +
+            "“Jandira, chị nhấc em lên được không? Em sẽ đọc những chữ kia.” “Nói phét đủ rồi đấy,Zezé. Chị đang bận.”\n" +
+            "\n" +
+            "“Cứ nhấc em lên một tí thôi rồi em sẽ cho chị xem. “Này,Zezé, nếu định giở trò gì thì mày liệu hồn.” Chị nhấc tôi lên phía sau cánh cửa.\n" +
+            "\n" +
+            "“Nào, đọc đi. Chị đang muốn xem đây.”\n" +
+            "\n" +
+            "Vậy là tôi đọc, đọc thật. Tôi đọc câu cầu nguyện, cầu Chúa phù hộ cho gia đình chúng tôi và bảo vệ chúng tôi khỏi những linh hồn hiểm ác.\n" +
+            "\n" +
+            "Jandira đặt tôi xuống. Miệng chị há hốc.\n" +
+            "\n" +
+            "“Zezé, mày đã thuộc lòng câu đó phải không? Mày lừa chị phải không?” “Jandira, em thề. Em có thể đọc mọi thứ.”\n" +
+            "\n" +
+            "“Chẳng ai không học mà lại biết đọc cả. Là bác Edmundo dạy mày phải không? Hay bà?”\n" +
+            "\n" +
+            "“Chẳng ai cả.”\n" +
+            "\n" +
+            "Chị chạy đi lấy một tờ báo và tôi đọc không sai chữ nào. Chị kêu ré lên và gọi Glória. Gloria trở nên lo lắng và đi gọi Alaíde. Trong vòng mười phút, hàng xóm của chúng tôi đã xúm lại để xem chuyện lạ.\n" +
+            "\n" +
+            "Đó chính là chuyện Totoca muốn tôi nói cho anh biết. “Bác ấy đã dạy em và hứa cho em con ngựa nếu em học được.”\n" +
+            "\n" +
+            "“Không phải vậy.”\n" +
+            "\n" +
+            "“Anh sẽ hỏi bác ấy.”\n" +
+            "\n" +
+            "“Anh đi mà hỏi. Em không biết giải thích chuyện đó như thế nào, Totoca ạ. Nếu biết, em đã nói với anh.”\n" +
+            "\n" +
+            "“Vậy thì đi thôi. Rồi mày sẽ thấy. Khi mày cần gì đó…”\n" +
+            "\n" +
+            "\n" +
+            "Anh giận dữ chộp tay tôi và bắt đầu lôi tôi về nhà. Rồi anh nghĩ ra một cách để trả thù.\n" +
+            "\n" +
+            "“Đáng đời mày chưa! Mày học quá sớm, đồ ngốc ạ. Giờ thì mày sẽ phải bắt đầu đến trường vào tháng Hai.” Đó là ý tưởng của Jandira. Nhờ thế nhà tôi sẽ yên bình suốt cả buổi sáng, còn tôi thì sẽ biết thế nào là lễ độ.\n" +
+            "\n" +
+            "“Lại học cách sang đường đi. Đừng tưởng khi mày đi học thì anh sẽ là vú em của mày, lần nào cũng đưa mày sang đường nhé. Nếu mày thông minh như vậy, thì mày cũng có thể học đượC việc này.”\n" +
+            "\n" +
+            "“Đây, ngựa đây. Giờ thì đọc cái này xem nào.”\n" +
+            "\n" +
+            "Bác mở tờ báo ra và chỉ cho tôi một câu trong một mẩu quảng cáo thuốc chữa bệnh.\n" +
+            "\n" +
+            "“Thuốc có trong tất cả các hiệu thuốc và các cửa hàng dượC uy tín,” tôi đọc.\n" +
+            "\n" +
+            "Bác Edmundo chạy ra gọi bà từ sân sau vào.\n" +
+            "\n" +
+            "“Mẹ ơi. Nó thậm chí đọc đúng cả từ hiệu thuốc này.” Cả hai người bắt đầu đố tôi đọc những câu khác và tôi đọc được hết.\n" +
+            "\n" +
+            "Bà bắt đầu lẩm bẩm gì đó tôi nghe không hiểu.\n" +
+            "\n" +
+            "Bác Edmundo đưa cho tôi con ngựa và tôi lại ôm bác. Sau đó bác nâng cằm tôi và nói bằng giọng ngập ngừng, “Cháu rồi sẽ tiến xa, khỉ con ạ. Không phải ngẫu nhiên tên cháu lại là José. Cháu sẽ là mặt trời và các vì sao sẽ sáng lấp lánh quanh cháu.”\n" +
+            "\n" +
+            "Tôi không hiểu bác nói gì và tự hỏi liệu có đúng là bác hơi biêng biệng hay không.\n" +
+            "\n" +
+            "“Cháu không hiểu được chuyện đó đâu. Đó là câu chuyện về Joseph1. Khi nào cháu lớn hơn một chút, bác sẽ kể cho cháu nghe.”\n" +
+            "\n" +
+            "Tôi mê mẩn các câu chuyện. Chuyện càng khó hiểu thì tôi càng thích.\n" +
+            "\n" +
+            "Tôi vỗ vỗ con ngựa nhỏ của mình một lúc lâu rồi ngước lên nhìn bác Edmundo, nói, “Bác có nghĩ tuần tới cháu sẽ lớn hơn một chút không, bác?”\n" +
+            "\n', " +
+            "'Tiểu thuyết', " +
+            "'Review: Tác phẩm kể về những câu chuyện tuổi ấu thơ của tác giả, qua lăng kính ngây thơ của một đứa trẻ, nơi đó có một cậu bé đang trên hành trình khám phá nổi đau và tình yêu thương '," + //Description
+            "'2019-08-21', " +
+            "'2023-05-18', " +
+            "'drawable/mstories.jpg', " +
+            "2200, " +
+            "'ninh')";
 
     private static final String sql8 = "INSERT INTO ratings VALUES (null,'admin', 1, 5, 'Truyện rất hay!', 1)";
     private static final String sql9 = "INSERT INTO ratings VALUES (null,'admin', 2, 4, 'Cốt truyện hấp dẫn!', 0)";
@@ -1452,6 +1729,7 @@ public class database extends SQLiteOpenHelper {
         db.execSQL(sql8);
         db.execSQL(sql9);
         db.execSQL(sql10);
+        db.execSQL(sql11);
     }
 
     @Override

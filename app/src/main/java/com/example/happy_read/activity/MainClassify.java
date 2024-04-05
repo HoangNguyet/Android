@@ -25,7 +25,7 @@ public class MainClassify extends AppCompatActivity {
     database database;
     EditText edt;
     ListView lv;
-    Button tieuthuyet, tamhiep, vohiep, huyenhuyen, maphap;
+    Button tieuthuyet, thieuNhi, hanhDong, phieuLuu, kinhDi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +34,10 @@ public class MainClassify extends AppCompatActivity {
         database = new database(this);
         lv = findViewById(R.id.listviewNew);
         tieuthuyet = findViewById(R.id.tieu_thuyet);
-        tamhiep = findViewById(R.id.tam_hiep);
-        vohiep = findViewById(R.id.vo_hiep);
-        huyenhuyen = findViewById(R.id.huyen_huyen);
-        maphap = findViewById(R.id.ma_phap);
+        thieuNhi = findViewById(R.id.thieu_nhi);
+        hanhDong = findViewById(R.id.hanh_dong);
+        phieuLuu = findViewById(R.id.phieu_lieu);
+        kinhDi = findViewById(R.id.kinh_di);
 
 
 
@@ -57,28 +57,28 @@ public class MainClassify extends AppCompatActivity {
                goToTieuThuyet(v);
             }
         });
-        tamhiep.setOnClickListener(new View.OnClickListener() {
+        thieuNhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToTamHiep(v);
+                goToThieuNhi(v);
             }
         });
-        vohiep.setOnClickListener(new View.OnClickListener() {
+        hanhDong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToVoHiep(v);
+                goToHanhDong(v);
             }
         });
-        huyenhuyen.setOnClickListener(new View.OnClickListener() {
+        phieuLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToHuyenHuyen(v);
+                goToPhieuLuu(v);
             }
         });
-        maphap.setOnClickListener(new View.OnClickListener() {
+        kinhDi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMaPhap(v);
+                goToKinhDi(v);
             }
         });
 
@@ -95,7 +95,7 @@ public class MainClassify extends AppCompatActivity {
             int id = cursor2.getInt(0);
             String tentruyen = cursor2.getString(1);
             String noidung = cursor2.getString(2);
-            String anh = cursor2.getString(6);
+            String anh = cursor2.getString(7);
             TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
             arrayList.add(new Story(id, tentruyen, noidung, anh));
             adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
@@ -109,20 +109,20 @@ public class MainClassify extends AppCompatActivity {
         Intent intent = new Intent(MainClassify.this, MainTieuThuyet.class);
         startActivity(intent);
     }
-    public void goToTamHiep(View view){
-        Intent intent = new Intent(MainClassify.this, MainTamHiep.class);
+    public void goToThieuNhi(View view){
+        Intent intent = new Intent(MainClassify.this, MainThieuNhi.class);
         startActivity(intent);
     }
-    public void goToVoHiep(View view){
-        Intent intent = new Intent(MainClassify.this, MainVoHiep.class);
+    public void goToHanhDong(View view){
+        Intent intent = new Intent(MainClassify.this, MainHanhDong.class);
         startActivity(intent);
     }
-    public void goToHuyenHuyen(View view){
-        Intent intent = new Intent(MainClassify.this, MainHuyenHuyen.class);
+    public void goToPhieuLuu(View view){
+        Intent intent = new Intent(MainClassify.this, MainPhieuLuu.class);
         startActivity(intent);
     }
-    public void goToMaPhap(View view){
-        Intent intent = new Intent(MainClassify.this, MainMaPhap.class);
+    public void goToKinhDi(View view){
+        Intent intent = new Intent(MainClassify.this, MainKinhDi.class);
         startActivity(intent);
     }
 

@@ -1,5 +1,8 @@
 package com.example.happy_read.activity;
 
+import static com.example.happy_read.until.until.SwitchPage;
+import static com.example.happy_read.until.until.getBitmap;
+
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -36,14 +39,13 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         database myDatabase = new database(UserProfileActivity.this);
         _use = User.GetUserByIdA(myDatabase,_userName);
-        Log.d("e",(_use == null)?"True":"false");
         imageAvatar = (ImageView) findViewById(R.id.imgAvatar);
         fullName = (TextView) findViewById(R.id.fullName);
         if(_use != null){
             Log.d("Mess","a");
             if(_use.GetImagePath()==null) {
                 try {
-                    Bitmap bitmap = getBitmap("avatar/img.png");
+                    Bitmap bitmap = getBitmap(this,"avatar/img.png");
                     imageAvatar.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -58,19 +60,10 @@ public class UserProfileActivity extends AppCompatActivity {
             fullName.setText(_use.GetFullName());
         }
         else{
-            Log.d("Mess1","a");
         }
     }
     public void EditProFile(View v){
-        Intent intent = new Intent(UserProfileActivity.this, UserProfileEditActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    public Bitmap getBitmap(String path) throws IOException {
-        AssetManager manager = getAssets();
-        InputStream stream = manager.open(path);
-        Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        return bitmap;
+        SwitchPage(this, UserProfileEditActivity.class);
     }
     public void FavoriteBooks(View v){
         //Open Your FavoriteBook

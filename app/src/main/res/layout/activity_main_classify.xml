@@ -19,35 +19,35 @@
             android:weightSum="3">
 
             <Button
-                android:id="@+id/tieu_thuyet"
+                android:id="@+id/hanh_dong"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.05"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_book"
-                android:text="Tiểu thuyết"
+                android:text="Hành động"
                 android:textColor="#1E1D1D"
                 android:textSize="11sp" />
 
             <Button
-                android:id="@+id/tam_hiep"
+                android:id="@+id/kinh_di"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.05"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_book"
-                android:text="Tam hiệp"
+                android:text="Kinh dị"
                 android:textColor="#1E1D1D"
                 android:textSize="13sp" />
 
             <Button
-                android:id="@+id/vo_hiep"
+                android:id="@+id/phieu_lieu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
+                android:layout_weight="0.93"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_book"
-                android:text="Võ hiệp"
+                android:text="Phiêu lưu"
                 android:textColor="#1E1D1D"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -61,24 +61,24 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/huyen_huyen"
+                android:id="@+id/thieu_nhi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_book"
-                android:text="Huyền huyễn"
+                android:text="Thiếu nhi"
                 android:textColor="#1E1D1D"
                 android:textSize="13sp" />
 
             <Button
-                android:id="@+id/ma_phap"
+                android:id="@+id/tieu_thuyet"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableLeft="@drawable/ic_book"
-                android:text="Ma pháp"
+                android:text="Tiểu thuyết"
                 android:textColor="#1E1D1D"
                 android:textSize="13sp" />
 

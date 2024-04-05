@@ -8,10 +8,12 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +60,7 @@
                     android:text="Mới nhất"
                     android:textColor="#1E1D1D" />
             </LinearLayout>
+
             <EditText
                 android:id="@+id/search"
                 android:layout_width="match_parent"
@@ -67,23 +70,24 @@
                 android:drawableRight="@drawable/ic_tim_kiem"
                 android:hint="Search"
                 android:paddingRight="10dp" />
+
             <ViewFlipper
                 android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp"></ViewFlipper>
 
-            </ViewFlipper>
             <LinearLayout
-                android:background="#BAE8F3"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#BAE8F3"
+                android:orientation="vertical">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleview"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
         </LinearLayout>

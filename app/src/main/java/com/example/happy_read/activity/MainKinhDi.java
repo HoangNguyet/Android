@@ -1,6 +1,5 @@
 package com.example.happy_read.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -25,20 +24,19 @@ import com.example.happy_read.model.Story;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainTamHiep extends AppCompatActivity {
+public class MainKinhDi extends AppCompatActivity {
 
     ListView lv;
     StoryAdapter adapter;
-    ArrayList<Story> tamhiepList;
+    ArrayList<Story> kinhDiList;
     ArrayList<Story> arrayList;
     database db;
     EditText edt;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_tam_hiep);
+        setContentView(R.layout.activity_main_kinh_di);
 
         lv = findViewById(R.id.list_view);
         edt = findViewById(R.id.search);
@@ -77,10 +75,10 @@ public class MainTamHiep extends AppCompatActivity {
     }
 
     private void AnhXa() {
-        tamhiepList = new ArrayList<>();
+        kinhDiList = new ArrayList<>();
         arrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = db.getDataByGenre("Tam hiệp");
+        Cursor cursor = db.getDataByGenre("Kinh dị");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
@@ -92,7 +90,7 @@ public class MainTamHiep extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                tamhiepList.add(new Story(0, title, "", image));
+                kinhDiList.add(new Story(0, title, "", image));
                 arrayList.add(new Story(0, title, "", image));
 
             } else {
@@ -102,7 +100,7 @@ public class MainTamHiep extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), tamhiepList);
+        adapter = new StoryAdapter(getApplicationContext(), kinhDiList);
         lv.setAdapter(adapter);
     }
     //    Search
@@ -110,7 +108,7 @@ public class MainTamHiep extends AppCompatActivity {
         //xoa dl mang
         arrayList.clear();
         ArrayList<Story> filteredList = new ArrayList<>();
-        for(Story item: tamhiepList){
+        for(Story item: kinhDiList){
             if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
                 //them item vao filteredList
                 filteredList.add(item);

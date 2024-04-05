@@ -8,13 +8,9 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
@@ -22,13 +18,12 @@ import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainMaPhap extends AppCompatActivity {
+public class MainHanhDong extends AppCompatActivity {
 
     ListView lv;
     StoryAdapter adapter;
-    ArrayList<Story> maphapList;
+    ArrayList<Story> hanhDongList;
     ArrayList<Story> arrayList;
     database db;
     EditText edt;
@@ -36,7 +31,7 @@ public class MainMaPhap extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_ma_phap);
+        setContentView(R.layout.activity_main_hanh_dong);
 
         lv = findViewById(R.id.list_view);
         edt = findViewById(R.id.search);
@@ -75,10 +70,10 @@ public class MainMaPhap extends AppCompatActivity {
     }
 
     private void AnhXa() {
-        maphapList = new ArrayList<>();
+        hanhDongList = new ArrayList<>();
         arrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = db.getDataByGenre("Ma pháp");
+        Cursor cursor = db.getDataByGenre("Hành động");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
@@ -90,7 +85,7 @@ public class MainMaPhap extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                maphapList.add(new Story(0, title, "", image));
+                hanhDongList.add(new Story(0, title, "", image));
                 arrayList.add(new Story(0, title, "", image));
 
             } else {
@@ -100,7 +95,7 @@ public class MainMaPhap extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), maphapList);
+        adapter = new StoryAdapter(getApplicationContext(), hanhDongList);
         lv.setAdapter(adapter);
     }
     //    Search
@@ -108,7 +103,7 @@ public class MainMaPhap extends AppCompatActivity {
         //xoa dl mang
         arrayList.clear();
         ArrayList<Story> filteredList = new ArrayList<>();
-        for(Story item: maphapList){
+        for(Story item: hanhDongList){
             if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
                 //them item vao filteredList
                 filteredList.add(item);
@@ -122,4 +117,3 @@ public class MainMaPhap extends AppCompatActivity {
 
 
 }
-

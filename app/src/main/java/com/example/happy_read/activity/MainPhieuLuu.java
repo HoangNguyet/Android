@@ -1,5 +1,6 @@
 package com.example.happy_read.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -24,19 +25,20 @@ import com.example.happy_read.model.Story;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainVoHiep extends AppCompatActivity {
+public class MainPhieuLuu extends AppCompatActivity {
 
     ListView lv;
     StoryAdapter adapter;
-    ArrayList<Story> vohiepList;
+    ArrayList<Story> phieuLuuList;
     ArrayList<Story> arrayList;
     database db;
     EditText edt;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_vo_hiep);
+        setContentView(R.layout.activity_main_phieu_luu);
 
         lv = findViewById(R.id.list_view);
         edt = findViewById(R.id.search);
@@ -75,10 +77,10 @@ public class MainVoHiep extends AppCompatActivity {
     }
 
     private void AnhXa() {
-        vohiepList = new ArrayList<>();
+        phieuLuuList = new ArrayList<>();
         arrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = db.getDataByGenre("Võ hiệp");
+        Cursor cursor = db.getDataByGenre("Phiêu lưu");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
@@ -90,7 +92,7 @@ public class MainVoHiep extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                vohiepList.add(new Story(0, title, "", image));
+                phieuLuuList.add(new Story(0, title, "", image));
                 arrayList.add(new Story(0, title, "", image));
 
             } else {
@@ -100,7 +102,7 @@ public class MainVoHiep extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), vohiepList);
+        adapter = new StoryAdapter(getApplicationContext(), phieuLuuList);
         lv.setAdapter(adapter);
     }
     //    Search
@@ -108,7 +110,7 @@ public class MainVoHiep extends AppCompatActivity {
         //xoa dl mang
         arrayList.clear();
         ArrayList<Story> filteredList = new ArrayList<>();
-        for(Story item: vohiepList){
+        for(Story item: phieuLuuList){
             if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
                 //them item vao filteredList
                 filteredList.add(item);

@@ -27,7 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoryAdapter  extends BaseAdapter {
+public class StoryAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Story> listTruyen;
 

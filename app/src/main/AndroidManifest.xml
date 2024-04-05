@@ -46,10 +46,10 @@
         <activity android:name=".activity.MainClassify"/>
         <activity android:name=".activity.MainYourBook"/>
         <activity android:name=".activity.MainTieuThuyet"/>
-        <activity android:name=".activity.MainTamHiep"/>
-        <activity android:name=".activity.MainVoHiep"/>
-        <activity android:name=".activity.MainHuyenHuyen"/>
-        <activity android:name=".activity.MainMaPhap"/>
+        <activity android:name=".activity.MainHanhDong"/>
+        <activity android:name=".activity.MainThieuNhi"/>
+        <activity android:name=".activity.MainPhieuLuu"/>
+        <activity android:name=".activity.MainKinhDi"/>
 
     </application>
 </manifest>

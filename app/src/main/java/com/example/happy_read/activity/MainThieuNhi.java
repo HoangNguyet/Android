@@ -24,11 +24,11 @@ import com.example.happy_read.model.Story;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainHuyenHuyen extends AppCompatActivity {
+public class MainThieuNhi extends AppCompatActivity {
 
     ListView lv;
     StoryAdapter adapter;
-    ArrayList<Story> huyenhuyenList;
+    ArrayList<Story> thieuNhiList;
     ArrayList<Story> arrayList;
     database db;
     EditText edt;
@@ -36,7 +36,7 @@ public class MainHuyenHuyen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_huyen_huyen);
+        setContentView(R.layout.activity_main_thieu_nhi);
 
         lv = findViewById(R.id.list_view);
         edt = findViewById(R.id.search);
@@ -75,10 +75,10 @@ public class MainHuyenHuyen extends AppCompatActivity {
     }
 
     private void AnhXa() {
-        huyenhuyenList = new ArrayList<>();
+        thieuNhiList = new ArrayList<>();
         arrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = db.getDataByGenre("Huyền huyễn");
+        Cursor cursor = db.getDataByGenre("Thiếu nhi");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
@@ -90,7 +90,7 @@ public class MainHuyenHuyen extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                huyenhuyenList.add(new Story(0, title, "", image));
+                thieuNhiList.add(new Story(0, title, "", image));
                 arrayList.add(new Story(0, title, "", image));
 
             } else {
@@ -100,7 +100,7 @@ public class MainHuyenHuyen extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), huyenhuyenList);
+        adapter = new StoryAdapter(getApplicationContext(), thieuNhiList);
         lv.setAdapter(adapter);
     }
     //    Search
@@ -108,7 +108,7 @@ public class MainHuyenHuyen extends AppCompatActivity {
         //xoa dl mang
         arrayList.clear();
         ArrayList<Story> filteredList = new ArrayList<>();
-        for(Story item: huyenhuyenList){
+        for(Story item: thieuNhiList){
             if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
                 //them item vao filteredList
                 filteredList.add(item);
