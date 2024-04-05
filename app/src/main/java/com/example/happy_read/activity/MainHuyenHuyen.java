@@ -78,7 +78,7 @@ public class MainHuyenHuyen extends AppCompatActivity {
         huyenhuyenList = new ArrayList<>();
         arrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = db.getFavoriteStoriesWithImage();
+        Cursor cursor = db.getDataByGenre("Huyền huyễn");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);

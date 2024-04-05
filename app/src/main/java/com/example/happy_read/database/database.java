@@ -123,7 +123,6 @@ public class database extends SQLiteOpenHelper {
             " Doraemon vui lắm nó chạy đi gọi các bạn: Bạn Shizuka ơi, bạn Nobita ơi hãy đến nhà tôi, chúng ta cùng ăn củ cải trắng thơm ngon này. " +
             "Thế là cuối cùng, củ cải trắng ấy được chia sẻ cho cả ba người bạn tốt bụng của chúng ta. Các bạn thấy đấy tấm lòng thơm thảo," +
             " sẵn sàng sẻ chia của các bạn ấy thật là đáng học tập phải không nào?', " +//Contet
-            "'Câu chuyện kể về chú mèo máy doremon, '" + //Description
             "'Tam hiệp', " + //Genre
             "'2023-10-24', " + //Create_at
             "'2023-11-14', " + //Update_at
@@ -137,7 +136,6 @@ public class database extends SQLiteOpenHelper {
             "một học sinh cấp 3 tài năng và nổi tiếng trong việc phá án. " +
             "Trong một lần tình cờ, Shinichi bị biến thành một cậu bé nhỏ tuổi hơn sau khi bị độc thuốc của tổ chức Áo Đen." +
             " Với sự trợ giúp của bác sĩ Agasa, Shinichi sống dưới danh tính Conan Edogawa và tiếp tục phá án để tìm ra tung tích của tổ chức Áo Đen.', " +
-            "'................., '" + //Description
             "'Tiểu thuyết', " +
             "'2023-09-10', " +
             "'2023-09-25', " +
@@ -150,7 +148,6 @@ public class database extends SQLiteOpenHelper {
             "'One Piece là một bộ truyện tranh nổi tiếng của tác giả Eiichiro Oda." +
             " Câu chuyện kể về cuộc hành trình của Monkey D. Luffy - một cậu bé trẻ đam mê trở thành Vua Hải Tặc và tìm kiếm kho báu One Piece để trở thành Vua Hải Tặc." +
             " Cùng với băng hải tặc Mũ Rơm của mình, Luffy vượt qua nhiều thử thách và gặp gỡ nhiều nhân vật đầy màu sắc trên đường đi.', " +
-            "'................., '" + //Description
             "'Võ hiệp', " +
             "'2023-08-05', " +
             "'2023-08-20', " +
@@ -163,7 +160,6 @@ public class database extends SQLiteOpenHelper {
             "'Naruto là một bộ truyện tranh kinh điển của tác giả Masashi Kishimoto. " +
             "Câu chuyện xoay quanh cuộc phiêu lưu của Naruto Uzumaki - một cậu bé có ước mơ trở thành Hokage, người lãnh đạo của làng ninja. " +
             "Trong hành trình của mình, Naruto phải đối mặt với nhiều thử thách và học được nhiều bài học quý giá về tình bạn, lòng dũng cảm và sự kiên nhẫn.', " +
-            "'................., '" + //Description
             "'Huyền huyễn', " +
             "'2023-07-15', " +
             "'2023-07-30', " +
@@ -176,7 +172,6 @@ public class database extends SQLiteOpenHelper {
             "'Dragon Ball là một trong những bộ truyện tranh huyền thoại của Nhật Bản, sáng tạo bởi Akira Toriyama. " +
             "Câu chuyện xoay quanh cuộc hành trình của Goku - một chiến binh Siêu Saya và các đồng đội của mình trong việc tìm kiếm các viên ngọc rồng và " +
             "chiến đấu chống lại các kẻ thù đáng sợ như Frieza, Cell và Buu để bảo vệ trái đất.', " +
-            "'................., '" + //Description
             "'Ma pháp', " +
             "'2023-06-20', " +
             "'2023-07-05', " +
@@ -190,7 +185,6 @@ public class database extends SQLiteOpenHelper {
             "Câu chuyện diễn ra trong một thế giới nơi con người sống trong những thành trì khổng lồ để tránh khỏi cuộc tấn công " +
             "của những sinh vật khổng lồ có tên là Titan. Eren Yeager và những người bạn của cậu gia nhập quân đội để chiến đấu chống lại Titan và " +
             "khám phá bí mật về thế giới của họ.', " +
-            "'................., '" + //Description
             "'Tam hiệp', " +
 
             "'2023-05-10', " +
@@ -288,10 +282,10 @@ public class database extends SQLiteOpenHelper {
 
 
     //Lay ra truyen co the loai la Tieu Thuyet
-    public Cursor getDataByGenre() {
+    public Cursor getDataByGenre(String genre) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = ?";
-        String[] selectionArgs = { "Ma pháp" };
+        String[] selectionArgs = { genre};
         return db.rawQuery(query, selectionArgs);
     }
 
