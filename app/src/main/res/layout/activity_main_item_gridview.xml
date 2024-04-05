@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imgNewTruyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/conan"
+        />
+
+    <TextView
+        android:id="@+id/textviewTentruyen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Title"
+        android:textColor="#F62727"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/genre_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="Genre"
+        android:textColor="#AAA5A5"
+        android:textSize="14sp" />
+
+</LinearLayout>

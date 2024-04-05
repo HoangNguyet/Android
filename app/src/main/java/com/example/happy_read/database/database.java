@@ -87,6 +87,7 @@ public class database extends SQLiteOpenHelper {
                     "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +
                     ")";
 
+
     // Câu lệnh xóa bảng user
     private static final String sql1 = "INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\n" +
             "VALUES ('admin', 'admin', 'admin@example.com', 'Hoàng Ánh Nguyệt', 'admin', null, 'female', '2003-01-31'),\n" +
@@ -1025,11 +1026,11 @@ public class database extends SQLiteOpenHelper {
             "\n" +
             "\n" +
             "Naruto trầm giọng nói: \"Sau đó đối thoại, không thích hợp khiến người nghe thấy, Konan sư tỷ, vì cái này Ninja thế giới tương lai, ta muốn kế thừa Nagato Rinegan!\"'," +
-            "'phiêu lưu', " +
+            "'Phiêu lưu', " +
             "'Naruto là một bộ manga và anime nổi tiếng được sáng tác bởi Masashi Kishimoto. Câu chuyện xoay quanh Uzumaki Naruto, một ninja trẻ tuổi luôn bị xa lánh và hắt hủi bởi dân làng vì mang trong mình Cửu Vĩ Hồ, một con cáo chín đuôi hung dữ đã tấn công làng Lá trong quá khứ.'," + //Description
             "'2023-07-15', " +
             "'2023-07-30', " +
-            "'drawable/naruto.jpg', " +
+            "'drawable/naruto.webp', " +
             "2000, " +
             "'admin')";
 
@@ -1219,7 +1220,7 @@ public class database extends SQLiteOpenHelper {
             "\n" +
             "\n" +
             "\"Tốt, ngươi muốn xem thực lực ta, ta sẽ nhường ngươi xem. Như vậy, đến đây đi...\"', " +
-            "'Hành động, phiêu lưu, hài hước, giả tưởng',"+
+            "'Hành động',"+
             "'Câu chuyện kể về hành trình của Son Goku (hay Goku), một cậu bé Saiyan sở hữu sức mạnh siêu phàm, cùng những người bạn chiến đấu chống lại kẻ thù hung ác, bảo vệ Trái Đất và tìm kiếm những viên ngọc rồng huyền bí.'," + //Description
             "'2023-06-20', " +
             "'2023-07-05', " +
@@ -1418,7 +1419,7 @@ public class database extends SQLiteOpenHelper {
             "\n" +
             "\n" +
             "Một số tham vọng... cứ thế liền biến mất.', " +
-            "'kinh dị', " +
+            "'Kinh dị', " +
             "'Attack on Titan, còn được biết đến với tựa tiếng Việt là Đại Chiến Titan, là một bộ manga và anime Nhật Bản hậu tận thế, đen tối lấy bối cảnh thế giới nơi loài người sống trong những bức tường thành khổng lồ để chống lại Titan, những sinh vật khổng lồ hung dữ chuyên ăn thịt người.'," + //Description
             "'2023-05-10', " +
             "'2023-05-25', " +
@@ -1460,5 +1461,45 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
         onCreate(db);
     }
-}
 
+    //Lay tat ca truyen
+    public Cursor getData1(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_STORIES, null);
+        return res;
+    }
+
+    //Lay ra trueyn co view > 2000
+    public Cursor getData2(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_VIEWS + " > ?";
+        String[] selectionArgs = { "2000" };
+        Cursor res = db.rawQuery(sqlQuery, selectionArgs);
+        return res;
+    }
+
+
+
+    //Lay ra truyen duoc yeu thich
+
+    public Cursor getFavoriteStoriesWithImage() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + TABLE_STORIES + "." + COLUMN_STORIES_TITLE + ", " + TABLE_STORIES + "." + COLUMN_STORIES_IMAGE +
+                " FROM " + TABLE_RATINGS +
+                " INNER JOIN " + TABLE_STORIES +
+                " ON " + TABLE_RATINGS + "." + COLUMN_RATINGS_STORY_ID + " = " + TABLE_STORIES + "." + COLUMN_STORIES_ID +
+                " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1";
+        return db.rawQuery(query, null);
+    }
+
+
+    //Lay ra truyen co the loai la Tieu Thuyet
+    public Cursor getDataByGenre(String genre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = ?";
+        String[] selectionArgs = { genre};
+        return db.rawQuery(query, selectionArgs);
+    }
+
+
+}
