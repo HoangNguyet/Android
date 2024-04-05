@@ -1,7 +1,5 @@
 package com.example.happy_read.activity;
 
-import static com.example.happy_read.until.UserDatabase.GetUserById;
-import static com.example.happy_read.until.UserDatabase.UpdateUser;
 import static com.example.happy_read.until.until.getRealPathFromUri;
 
 import android.app.AlertDialog;
@@ -54,7 +52,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         database db = new database(UserProfileEditActivity.this);
-        _user = GetUserById(db,_userName);
+        _user = User.GetUserByIdA(db,_userName);
 
         _textDate = (TextView) findViewById(R.id.textDate);
         _textDate.setKeyListener(null);
@@ -147,7 +145,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
         try {
             _user.UpdateInformation(_fullName.getText().toString(), ImagePath, gender, birthDay);
             database db = new database(UserProfileEditActivity.this);
-            String mess = UpdateUser(db,_user);
+            String mess = _user.UpdateUserInDb(db);
             Toast.makeText(this, mess, Toast.LENGTH_SHORT).show();
         }catch (Exception ex){
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();

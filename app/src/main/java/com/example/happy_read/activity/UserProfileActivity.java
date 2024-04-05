@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.example.happy_read.action.ActionUser;
 import com.example.happy_read.database.database;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.happy_read.R;
 import com.example.happy_read.model.User;
-import com.example.happy_read.until.UserDatabase;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +35,7 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         database myDatabase = new database(UserProfileActivity.this);
-        _use = UserDatabase.GetUserById(myDatabase,_userName);
+        _use = User.GetUserByIdA(myDatabase,_userName);
         Log.d("e",(_use == null)?"True":"false");
         imageAvatar = (ImageView) findViewById(R.id.imgAvatar);
         fullName = (TextView) findViewById(R.id.fullName);
