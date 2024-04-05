@@ -43,6 +43,14 @@ public class User {
     }
 
     public String GetImagePath() {
+        return _imagePath;
+    }
+    public String GetRender() {
+        return _gender;
+    }
+
+    public Date GetBirthDay() {
+        return _birthDay;
         if(_imagePath==null){
             return  null;
         }
@@ -90,7 +98,6 @@ public class User {
     public void SetImagePath(String imagePath) {
         _imagePath = imagePath;
     }
-
     public void SetGender(String gender) {
         _gender = gender;
     }

@@ -82,8 +82,9 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_RATINGS_RATING + " INTEGER NOT NULL, " +
                     COLUMN_RATINGS_COMMENT + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_ISFAVORITE + " INTEGER NOT NULL CHECK (" + COLUMN_RATINGS_ISFAVORITE + " IN (0,1)), " +
-                    "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +
+                    "CONSTRAINT UC_Unique_Rating UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +
                     ")";
+
 
     // Câu lệnh xóa bảng user
     private static final String sql1 = "INSERT INTO users (username, password, email, fullname, userrole, image, gender, birthday)\n" +
@@ -109,21 +110,20 @@ public class database extends SQLiteOpenHelper {
             " Doraemon vui lắm nó chạy đi gọi các bạn: Bạn Shizuka ơi, bạn Nobita ơi hãy đến nhà tôi, chúng ta cùng ăn củ cải trắng thơm ngon này. " +
             "Thế là cuối cùng, củ cải trắng ấy được chia sẻ cho cả ba người bạn tốt bụng của chúng ta. Các bạn thấy đấy tấm lòng thơm thảo," +
             " sẵn sàng sẻ chia của các bạn ấy thật là đáng học tập phải không nào?', " +//Contet
-            "'Câu chuyện kể về chú mèo máy doremon '," + //Description
-            "'Thiếu nhi', " + //Genre
+            "'Tam hiệp', " + //Genre
             "'2023-10-24', " + //Create_at
             "'2023-11-14', " + //Update_at
-            "'drawable/doraemon.jpg', " + //ImageInterView
-            "3101, " +//View//UserId
-            "'admin')";//UserId
-    private static final String sql3 = "INSERT INTO stories VALUES (null," +
+            "'drawable/doreamon2.jpg', " + //ImageInterView
+            "3101, " +//View
+            "1)";//UserId
+
+    private String sql3 = "INSERT INTO stories VALUES (null," +
             "'Conan', " +
             "'Conan là một nhân vật trong truyện tranh nổi tiếng của Nhật Bản. Cậu bé này được biết đến với tên thật là Shinichi Kudo, " +
             "một học sinh cấp 3 tài năng và nổi tiếng trong việc phá án. " +
             "Trong một lần tình cờ, Shinichi bị biến thành một cậu bé nhỏ tuổi hơn sau khi bị độc thuốc của tổ chức Áo Đen." +
             " Với sự trợ giúp của bác sĩ Agasa, Shinichi sống dưới danh tính Conan Edogawa và tiếp tục phá án để tìm ra tung tích của tổ chức Áo Đen.', " +
-            "'................. '," + //Description
-            "'Hành động', " +
+            "'Tiểu thuyết', " +
             "'2023-09-10', " +
             "'2023-09-25', " +
             "'drawable/conan.jpg', " +
@@ -135,8 +135,7 @@ public class database extends SQLiteOpenHelper {
             "'One Piece là một bộ truyện tranh nổi tiếng của tác giả Eiichiro Oda." +
             " Câu chuyện kể về cuộc hành trình của Monkey D. Luffy - một cậu bé trẻ đam mê trở thành Vua Hải Tặc và tìm kiếm kho báu One Piece để trở thành Vua Hải Tặc." +
             " Cùng với băng hải tặc Mũ Rơm của mình, Luffy vượt qua nhiều thử thách và gặp gỡ nhiều nhân vật đầy màu sắc trên đường đi.', " +
-            "'................. '," + //Description
-            "'Phiêu lưu', " +
+            "'Võ hiệp', " +
             "'2023-08-05', " +
             "'2023-08-20', " +
             "'drawable/one_piece.jpg', " +
@@ -148,11 +147,10 @@ public class database extends SQLiteOpenHelper {
             "'Naruto là một bộ truyện tranh kinh điển của tác giả Masashi Kishimoto. " +
             "Câu chuyện xoay quanh cuộc phiêu lưu của Naruto Uzumaki - một cậu bé có ước mơ trở thành Hokage, người lãnh đạo của làng ninja. " +
             "Trong hành trình của mình, Naruto phải đối mặt với nhiều thử thách và học được nhiều bài học quý giá về tình bạn, lòng dũng cảm và sự kiên nhẫn.', " +
-            "'................. '," + //Description
-            "'Hành động, phiêu lưu', " +
+            "'Huyền huyễn', " +
             "'2023-07-15', " +
             "'2023-07-30', " +
-            "'drawable/naruto.jpg', " +
+            "'drawable/naruto.webp', " +
             "2000, " +
             "'admin')";
 
@@ -161,8 +159,7 @@ public class database extends SQLiteOpenHelper {
             "'Dragon Ball là một trong những bộ truyện tranh huyền thoại của Nhật Bản, sáng tạo bởi Akira Toriyama. " +
             "Câu chuyện xoay quanh cuộc hành trình của Goku - một chiến binh Siêu Saya và các đồng đội của mình trong việc tìm kiếm các viên ngọc rồng và " +
             "chiến đấu chống lại các kẻ thù đáng sợ như Frieza, Cell và Buu để bảo vệ trái đất.', " +
-            "'................. '," + //Description
-            "'Hành động, võ thuật', " +
+            "'Ma pháp', " +
             "'2023-06-20', " +
             "'2023-07-05', " +
             "'drawable/dragon_ball.jpg', " +
@@ -175,8 +172,7 @@ public class database extends SQLiteOpenHelper {
             "Câu chuyện diễn ra trong một thế giới nơi con người sống trong những thành trì khổng lồ để tránh khỏi cuộc tấn công " +
             "của những sinh vật khổng lồ có tên là Titan. Eren Yeager và những người bạn của cậu gia nhập quân đội để chiến đấu chống lại Titan và " +
             "khám phá bí mật về thế giới của họ.', " +
-            "'................. '," + //Description
-            "'Hành động, kinh dị', " +
+            "'Tam hiệp', " +
             "'2023-05-10', " +
             "'2023-05-25', " +
             "'drawable/attack_on_titan.jpg', " +
@@ -217,5 +213,45 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RATINGS);
         onCreate(db);
     }
-}
 
+    //Lay tat ca truyen
+    public Cursor getData1(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_STORIES, null);
+        return res;
+    }
+
+    //Lay ra trueyn co view > 2000
+    public Cursor getData2(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_VIEWS + " > ?";
+        String[] selectionArgs = { "2000" };
+        Cursor res = db.rawQuery(sqlQuery, selectionArgs);
+        return res;
+    }
+
+
+
+    //Lay ra truyen duoc yeu thich
+
+    public Cursor getFavoriteStoriesWithImage() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + TABLE_STORIES + "." + COLUMN_STORIES_TITLE + ", " + TABLE_STORIES + "." + COLUMN_STORIES_IMAGE +
+                " FROM " + TABLE_RATINGS +
+                " INNER JOIN " + TABLE_STORIES +
+                " ON " + TABLE_RATINGS + "." + COLUMN_RATINGS_STORY_ID + " = " + TABLE_STORIES + "." + COLUMN_STORIES_ID +
+                " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1";
+        return db.rawQuery(query, null);
+    }
+
+
+    //Lay ra truyen co the loai la Tieu Thuyet
+    public Cursor getDataByGenre(String genre) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_GENRE + " = ?";
+        String[] selectionArgs = { genre};
+        return db.rawQuery(query, selectionArgs);
+    }
+
+
+}

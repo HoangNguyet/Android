@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainHome">
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,7 +65,7 @@
                 android:layout_margin="2dp"
                 android:background="@drawable/border"
                 android:drawableRight="@drawable/ic_tim_kiem"
-                android:hint="Search"
+                android:hint="Nhập từ khóa..."
                 android:paddingRight="10dp" />
             <ViewFlipper
                 android:id="@+id/viewflipper"
@@ -74,16 +74,15 @@
 
             </ViewFlipper>
             <LinearLayout
-                android:background="#BAE8F3"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleview"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
+                <ListView
+                    android:id="@+id/listviewNew"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    ></ListView>
             </LinearLayout>
 
         </LinearLayout>
