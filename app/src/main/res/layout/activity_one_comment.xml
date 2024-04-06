@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.cardview.widget.CardView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            app:cardCornerRadius="40dp"
             android:layout_marginRight="20dp"
+            app:cardCornerRadius="30dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="false">
 
             <ImageView
-                android:id="@+id/imgAvatar"
+                android:id="@+id/imageAvatarRating"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -28,22 +35,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/namePersonRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phạm Văn Quang"
-                android:textSize="20dp"
-                android:textFontWeight="700"
                 android:fontFamily="@font/roboto_medium"
-                />
+                android:text="Phạm Văn Quang"
+                android:textFontWeight="700"
+                android:textSize="20dp" />
+
             <TextView
+                android:id="@+id/contenComent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Truyện hay"
                 android:layout_marginTop="5dp"
+                android:text="Truyện hay"
 
                 />
         </LinearLayout>

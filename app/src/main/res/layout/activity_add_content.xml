@@ -32,6 +32,7 @@
                     android:textSize="20dp"
                     />
                 <EditText
+                    android:id="@+id/writeStoryTitle"
                     android:layout_weight="6"
 
                     />
@@ -44,6 +45,7 @@
                     android:textSize="20dp"
                     />
                 <EditText
+                    android:id="@+id/writeStoryGenre"
                     android:layout_weight="6"
 
                     />
@@ -52,6 +54,7 @@
 
         </TableLayout>
         <EditText
+            android:id="@+id/writeStoryContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nội dung tác phẩm"
@@ -59,9 +62,11 @@
 
             />
         <Button
+            android:id="@+id/sendStories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gửi tác phẩm"
+            android:text="Đăng truyện"
+            android:onClick="SendStory"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
             />

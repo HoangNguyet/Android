@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
     android:layout_height="match_parent">
 
@@ -15,6 +16,7 @@
 
 
         <ImageView
+            android:id="@+id/imageDescription"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:src="@drawable/smile"
@@ -22,6 +24,7 @@
             android:scaleType="fitXY"
             />
         <TextView
+            android:id="@+id/textTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't Forget Your Smile"
@@ -32,6 +35,7 @@
             android:layout_marginTop="10dp"
             />
         <TextView
+            android:id="@+id/textAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -39,6 +43,7 @@
             android:layout_marginTop="10dp"
             />
         <TextView
+            android:id="@+id/textGenre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -46,6 +51,7 @@
             android:layout_marginTop="10dp"
             />
         <TextView
+            android:id="@+id/textCreateAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -53,6 +59,7 @@
             android:layout_marginTop="10dp"
             />
         <TextView
+            android:id="@+id/textReview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
@@ -60,13 +67,14 @@
             android:layout_marginTop="20dp"
             />
         <Button
+            android:id="@+id/readBooks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Đọc Truyện"
             android:paddingLeft="60dp"
             android:layout_marginBottom="15dp"
-
+            android:onClick="ReadBooks"
             android:paddingRight="60dp"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
@@ -155,7 +163,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textViewView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.3K"
@@ -210,10 +218,10 @@
             android:orientation="horizontal"
             >
             <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                app:cardCornerRadius="40dp"
+                app:cardCornerRadius="30dp"
                 android:layout_marginRight="20dp"
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="false">
@@ -230,14 +238,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="comment"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:layout_gravity="bottom"
                 />
         </LinearLayout>
+
         <ListView
+            android:id="@+id/listViewComment"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            tools:listitem="@layout/activity_one_comment">
             <!--            đổ hết các bình luận ở đây-->
 
 

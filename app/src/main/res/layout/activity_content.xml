@@ -11,6 +11,7 @@
         android:orientation="vertical"
         >
         <TextView
+            android:id="@+id/titleStory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Don't Forget Your Smile"
@@ -20,6 +21,7 @@
             android:fontFamily="@font/roboto_medium"
             />
         <TextView
+            android:id="@+id/storyGenre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thể loại: Tiểu thuyết"
@@ -28,6 +30,7 @@
 
             />
         <TextView
+            android:id="@+id/storyContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Giữa bầu trời mây đen nằm dày đặc, thỉnh thoảng sẽ bốc lên một tia chớp, kèm theo từng tiếng sấm rền, một trận mưa lớn sắp xảy ra.

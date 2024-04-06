@@ -21,11 +21,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.happy_read.activity.UserProfileActivity;
-import com.example.happy_read.activity.UserProfileEditActivity;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 public class until {
     static int REQUEST_CODE_IMAGE = 1;
@@ -87,14 +85,6 @@ public class until {
             }
         }
     }
-    //Chuyen anh sang bitmap
-    public static Bitmap getBitmap(AppCompatActivity activity,String path) throws IOException {
-        AssetManager manager = activity.getAssets();
-        InputStream stream = manager.open(path);
-        Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        return bitmap;
-    }
-
     //Open dateTimePicker and update textView
     public static void initDatePicker(AppCompatActivity activity, TextView _textDate) {
         int day = 31;
@@ -116,10 +106,15 @@ public class until {
     }
 
     // Chuyen doi activity
-    public static void SwitchPage(AppCompatActivity Befor, Class<?> Next){
+    public static void SwitchPage(AppCompatActivity Befor, Class<?> Next,String data,String key){
         Intent intent = new Intent(Befor,Next);
+        intent.putExtra(key,data);
         startActivity(Befor,intent,null);
-        Befor.finish();
+    }
+    public static int GetImageResId(String imagePathDes,Context context){
+        String imageName = imagePathDes.substring(imagePathDes.lastIndexOf("/") + 1, imagePathDes.lastIndexOf("."));
+        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        return imageResId;
     }
 
 }

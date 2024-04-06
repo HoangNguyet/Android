@@ -1,13 +1,9 @@
 package com.example.happy_read.activity;
 
-import static com.example.happy_read.until.until.getBitmap;
 import static com.example.happy_read.until.until.getRealPathFromUri;
 import static com.example.happy_read.until.until.initDatePicker;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,9 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.happy_read.R;
 import com.example.happy_read.model.User;
 import com.example.happy_read.until.until;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -86,17 +82,19 @@ public class UserProfileEditActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         until.SetImageViewInLibrary(this,requestCode,resultCode,data,_imageAvatar);
+        selectedImageUri = data.getData();
     }
 
     //Save user change all profile
     public void SaveProFile(View view) throws Exception {
-        String imagePath = _user.GetImagePath();
         Date birthDay = null;
         String gender = null;
         String ImagePath = null;
-
         if (selectedImageUri != null) {
             ImagePath = getRealPathFromUri(this, selectedImageUri);
+        }
+        else{
+            ImagePath = _user.GetImagePath();
         }
         if (!_textDate.getText().toString().isEmpty()) {
             String[] birth = _textDate.getText().toString().trim().split("/");
@@ -136,13 +134,8 @@ public class UserProfileEditActivity extends AppCompatActivity {
             if (_user.GetBirthDay("dd/MM/yyyy") != null) {
                 _textDate.setText(_user.GetBirthDay("dd/MM/yyyy"));
             }
-            if(_user.GetImagePath()==null) {
-                try {
-                    Bitmap bitmap = getBitmap(this,"avatar/img.png");
-                    _imageAvatar.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            if(_user.IsImagePathNull()) {
+                 Picasso.get().load(until.GetImageResId(_user.GetImagePath(),this)).into(_imageAvatar);
             }
             else{
                 //Gan anh tu local vao imagview

@@ -90,8 +90,8 @@ public class MainKinhDi extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                kinhDiList.add(new Story(0, title, "", image));
-                arrayList.add(new Story(0, title, "", image));
+                kinhDiList.add(new Story("0", title, "", image,null));
+                arrayList.add(new Story("0", title, "", image,null));
 
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");

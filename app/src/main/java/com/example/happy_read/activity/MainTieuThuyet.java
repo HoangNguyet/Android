@@ -90,8 +90,8 @@ public class MainTieuThuyet extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                tieuThuyetList.add(new Story(0, title, "", image));
-                arrayList.add(new Story(0, title, "", image));
+                tieuThuyetList.add(new Story("0", title, "", image,null));
+                arrayList.add(new Story("0", title, "", image,null));
 
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");

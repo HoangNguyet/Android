@@ -9,13 +9,14 @@
     >
 
     <ImageView
+        android:id="@+id/imageDescriptionStory"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:src="@drawable/smile"
         android:layout_gravity="center"
         android:scaleType="fitXY"
         />
     <Button
+        android:onClick="ChangeImageDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tải ảnh bìa tác phẩm lên"
@@ -23,6 +24,7 @@
         android:layout_marginTop="10dp"
         />
     <EditText
+        android:id="@+id/writeDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Viết mô tả tác phẩm(Không quá 100 chữ)"
@@ -31,7 +33,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gửi tác phẩm"
+        android:onClick="UpStory"
+        android:text="Đăng truyện"
         android:layout_gravity="end"
         android:layout_marginTop="10dp"
 
