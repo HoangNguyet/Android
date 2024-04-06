@@ -1,15 +1,11 @@
 package com.example.happy_read.activity;
 
 import static com.example.happy_read.until.until.SwitchPage;
-import static com.example.happy_read.until.until.getBitmap;
 
-import android.content.Intent;
-import android.content.res.AssetManager;
+import com.example.happy_read.database.database;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
-import com.example.happy_read.action.ActionUser;
-import com.example.happy_read.database.database;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.happy_read.R;
 import com.example.happy_read.model.User;
+import com.example.happy_read.until.until;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class UserProfileActivity extends AppCompatActivity {
 //    Hiển thị thông tin người dùng và truyện mà họ đã đọc và yêu thích
@@ -42,28 +39,19 @@ public class UserProfileActivity extends AppCompatActivity {
         imageAvatar = (ImageView) findViewById(R.id.imgAvatar);
         fullName = (TextView) findViewById(R.id.fullName);
         if(_use != null){
-            Log.d("Mess","a");
-            if(_use.GetImagePath()==null) {
-                try {
-                    Bitmap bitmap = getBitmap(this,"avatar/img.png");
-                    imageAvatar.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            int resImageId = until.GetImageResId(_use.GetImagePath(),this);
+            if(_use.IsImagePathNull()){
+                Picasso.get().load(until.GetImageResId(_use.GetImagePath(),this)).into(imageAvatar);
             }
             else{
-                //Gan anh tu local vao imagview
                 Bitmap imageBitMap = BitmapFactory.decodeFile(_use.GetImagePath());
                 imageAvatar.setImageBitmap(imageBitMap);
-
             }
             fullName.setText(_use.GetFullName());
         }
-        else{
-        }
     }
     public void EditProFile(View v){
-        SwitchPage(this, UserProfileEditActivity.class);
+        SwitchPage(this,UserProfileEditActivity.class,null,null);
     }
     public void FavoriteBooks(View v){
         //Open Your FavoriteBook
@@ -72,7 +60,7 @@ public class UserProfileActivity extends AppCompatActivity {
         //Open activity Change Your password
     }
     public void WriteSomething(View v){
-        //Open activity Write Books
+        SwitchPage(this,AddContent.class,null,null);
     }
     public void Logout(View v){
         //Logout

@@ -21,11 +21,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.happy_read.activity.UserProfileActivity;
-import com.example.happy_read.activity.UserProfileEditActivity;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 public class until {
     static int REQUEST_CODE_IMAGE = 1;
@@ -50,6 +48,24 @@ public class until {
             statement.bindString(index,value);
         }
     }
+    //Chuyen sang dang la 4.3m 4.3k
+    public static String FormatCount(long count){
+        DecimalFormat df = new DecimalFormat("#.1");
+        String c;
+        if(count<=999){
+            c  = String.valueOf(count);
+        }
+        else{
+            if(count<=999999){
+                //999,9K
+                c = String.format("%sK",  df.format((count / 1000)));
+            }
+            else{
+                c = String.format("%sK",  df.format((count / 1000000)));
+            }
+        }
+        return c;
+    }
     //Mo thu vien
     public static void OpenLibrary(AppCompatActivity activity){
         Intent imageIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -69,14 +85,6 @@ public class until {
             }
         }
     }
-    //Chuyen anh sang bitmap
-    public static Bitmap getBitmap(AppCompatActivity activity,String path) throws IOException {
-        AssetManager manager = activity.getAssets();
-        InputStream stream = manager.open(path);
-        Bitmap bitmap = BitmapFactory.decodeStream(stream);
-        return bitmap;
-    }
-
     //Open dateTimePicker and update textView
     public static void initDatePicker(AppCompatActivity activity, TextView _textDate) {
         int day = 31;
@@ -98,10 +106,15 @@ public class until {
     }
 
     // Chuyen doi activity
-    public static void SwitchPage(AppCompatActivity Befor, Class<?> Next){
+    public static void SwitchPage(AppCompatActivity Befor, Class<?> Next,String data,String key){
         Intent intent = new Intent(Befor,Next);
+        intent.putExtra(key,data);
         startActivity(Befor,intent,null);
-        Befor.finish();
+    }
+    public static int GetImageResId(String imagePathDes,Context context){
+        String imageName = imagePathDes.substring(imagePathDes.lastIndexOf("/") + 1, imagePathDes.lastIndexOf("."));
+        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        return imageResId;
     }
 
 }

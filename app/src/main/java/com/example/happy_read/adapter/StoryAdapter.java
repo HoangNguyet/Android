@@ -21,6 +21,7 @@ import androidx.appcompat.view.ActionBarPolicy;
 
 import com.example.happy_read.R;
 import com.example.happy_read.model.Story;
+import com.example.happy_read.until.until;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -35,6 +36,7 @@ public class StoryAdapter extends BaseAdapter {
         this.context = context;
         this.listTruyen = listTruyen;
     }
+
 
     @Override
     public int getCount() {
@@ -78,14 +80,14 @@ public class StoryAdapter extends BaseAdapter {
         Story truyen = (Story)getItem(position);
         viewHolder.txtTenTruyen.setText(truyen.getTitle());
 
-        String imagePathDes = truyen.getImagePathDes();
-        String imageName = imagePathDes.substring(imagePathDes.lastIndexOf("/") + 1, imagePathDes.lastIndexOf("."));
-        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+        int imageResId = until.GetImageResId(truyen.getImagePathDes(),context);
+        Log.d("adadas",String.valueOf(imageResId));
 
         if (imageResId != 0) {
             Picasso.get().load(imageResId).error(R.drawable.background).into(viewHolder.imgtruyen);
         } else {
-            Log.e("Error Image", "Không tìm thấy ảnh trong tài nguyên");
+//            Log.e("Error Image", "Không tìm thấy ảnh trong tài nguyên");
+            viewHolder.imgtruyen.setImageBitmap(BitmapFactory.decodeFile(truyen.getImagePathDes()));
         }
         return convertView;
     }

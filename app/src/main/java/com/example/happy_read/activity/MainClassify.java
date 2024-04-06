@@ -92,12 +92,12 @@ public class MainClassify extends AppCompatActivity {
         lv = findViewById(R.id.listviewNew);
         Cursor cursor2 = database.getData2();
         while (cursor2.moveToNext()) {
-            int id = cursor2.getInt(0);
+            String id = cursor2.getColumnName(0);
             String tentruyen = cursor2.getString(1);
             String noidung = cursor2.getString(2);
             String anh = cursor2.getString(7);
-            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
-            arrayList.add(new Story(id, tentruyen, noidung, anh));
+            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh,null));
+            arrayList.add(new Story(id, tentruyen, noidung, anh,null));
             adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
             lv.setAdapter(adapterTruyen);
         }

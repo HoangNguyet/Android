@@ -41,13 +41,11 @@ public class ActionUser {
             db.close();
         }
     }
-    protected User GetUserById(database db, String id){
+    protected  static User GetUserById(database db, String id){
         //userName is key
         String query = String.format("SELECT * FROM %s WHERE %s = ?",TABLE_USERS,COLUMN_USERS_NAME);
         try(Cursor cursor = db.getReadableDatabase().rawQuery(query,new String[]{id})){
-//            Log.d("A","B");
             if(cursor.getCount()>0){
-//                Log.d("A","B");
                 while (cursor.moveToNext()){
                     String userName = cursor.getString(0);
                     String passWord = cursor.getString(1);

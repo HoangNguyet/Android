@@ -85,8 +85,8 @@ public class MainHanhDong extends AppCompatActivity {
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                hanhDongList.add(new Story(0, title, "", image));
-                arrayList.add(new Story(0, title, "", image));
+                hanhDongList.add(new Story("0", title, "", image,null));
+                arrayList.add(new Story("0", title, "", image,null));
 
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");

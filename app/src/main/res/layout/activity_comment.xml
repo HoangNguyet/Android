@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/imageDescription"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/smile"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't Forget Your Smile"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textFontWeight="700"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/textAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Tác giả: Phạm Văn Quang"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/textGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Thể loại: Tiểu thuyết"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/textCreateAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Ngày phát hành: 21/08/2021"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/textReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Review: kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+            android:layout_marginTop="20dp"
+            />
+        <Button
+            android:id="@+id/readBooks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Đọc Truyện"
+            android:paddingLeft="60dp"
+            android:layout_marginBottom="15dp"
+            android:onClick="ReadBooks"
+            android:paddingRight="60dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/heart"
+                    android:scaleType="fitCenter"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/cardview_light_background"
+
+                    />
+
+                <TextView
+                    android:id="@+id/textViewHeart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.3K"
+                    android:textSize="20dp"
+                    android:layout_below="@id/imageButton"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+
+                <ImageButton
+                    android:id="@+id/imageButtonStar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/star"
+                    android:scaleType="fitCenter"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/cardview_light_background"
+
+                    />
+
+                <TextView
+                    android:id="@+id/textViewStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.3K"
+                    android:textSize="20dp"
+                    android:layout_below="@id/imageButtonStar"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/eye"
+                    android:scaleType="fitCenter"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/cardview_light_background"
+
+                    />
+
+                <TextView
+                    android:id="@+id/textViewView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.3K"
+                    android:textSize="20dp"
+                    android:layout_below="@id/imageButton3"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
+<!--            <RelativeLayout-->
+<!--                xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                >-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imageButton4"-->
+<!--                    android:layout_width="70dp"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:src="@drawable/save"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:backgroundTint="@color/cardview_light_background"-->
+
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="4.3K"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:layout_below="@id/imageButton4"-->
+<!--                    android:layout_centerHorizontal="true"/>-->
+
+<!--            </RelativeLayout>-->
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bình luận"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="30dp"
+                android:layout_marginRight="20dp"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="false">
+
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ninh_image_avatar_test" />
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="comment"
+                android:padding="10dp"
+                android:layout_gravity="bottom"
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listViewComment"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/activity_one_comment">
+            <!--            đổ hết các bình luận ở đây-->
+
+
+        </ListView>
+    </LinearLayout>
+
+
+</ScrollView>

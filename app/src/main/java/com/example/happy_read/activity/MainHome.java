@@ -106,6 +106,9 @@ public class MainHome extends AppCompatActivity {
             }
         });
 
+        //Hien thi thong tin khi nguoi dung đăng truyện thành công
+        Toast.makeText(this, getIntent().getStringExtra("InsertStory"), Toast.LENGTH_SHORT).show();
+
     }
 
     private void AnhXa() {
@@ -118,12 +121,12 @@ public class MainHome extends AppCompatActivity {
         arrayList = new ArrayList<>();
         Cursor cursor1 = database.getData1();
         while (cursor1.moveToNext()) {
-            int id = cursor1.getInt(0);
+            String id = cursor1.getString(0);
             String tentruyen = cursor1.getString(1);
             String noidung = cursor1.getString(2);
             String anh = cursor1.getString(7);
-            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh));
-            arrayList.add(new Story(id, tentruyen, noidung, anh));
+            TruyenArrayList.add(new Story(id, tentruyen, noidung, anh,null));
+            arrayList.add(new Story(id, tentruyen, noidung, anh,null));
         }
         adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
         lv.setAdapter(adapterTruyen);
@@ -141,7 +144,6 @@ public class MainHome extends AppCompatActivity {
             if(item.getTitle().toLowerCase().contains(text.toLowerCase())){
                 //them item vao filteredList
                 filteredList.add(item);
-
                 //them vao mang
                 arrayList.add(item);
             }

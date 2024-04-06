@@ -46,7 +46,18 @@ public class User extends ActionUser {
     }
 
     public String GetImagePath() {
-        return _imagePath;
+        if(_imagePath == null){
+            return "drawable/avatar_default.jpg";
+        }
+        else {
+            return _imagePath;
+        }
+    }
+    public boolean IsImagePathNull(){
+        if(_imagePath == null){
+            return  true;
+        }
+        return false;
     }
     public String GetRender() {
         return _gender;
@@ -121,16 +132,17 @@ public class User extends ActionUser {
         SetEmail(_email);
     }
 
-    public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay) throws Exception {
-        SetName(_userName);
-        SetPassword(_password);
-        SetEmail(_email);
-        SetFullName(_fullName);
+    public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay) {
+        this._userName = _userName;
+        this._password = _password;
+        this._email = _email;
+        this._fullName = _fullName;
         this._role = _role;
-        SetImagePath(_imagePath);
-        SetGender(_gender);
-        SetBirhDay(_birthDay);
+        this._imagePath = _imagePath;
+        this._gender = _gender;
+        this._birthDay = _birthDay;
     }
+
     public void UpdateInformation(String _fullName, String _imagePath, String _gender, Date _birthDay) throws Exception{
         SetFullName(_fullName);
         SetImagePath(_imagePath);
@@ -141,10 +153,14 @@ public class User extends ActionUser {
     public boolean isMale(){
         return GetGender().equals("male");
     }
+    @Override
+    public String toString() {
+        return String.format("Hello my name is %si have birthday is %s", _userName, _birthDay);
+    }
     public String UpdateUserInDb(database db){
         return super.UpdateInDb(db,this);
     }
     public static User GetUserByIdA(database db, String user_name){
-        return new User().GetUserById(db,user_name);
+        return GetUserById(db,user_name);
     }
 }
