@@ -46,7 +46,6 @@ public class MainComment extends AppCompatActivity {
     protected void onCreate (Bundle comment) {
         super.onCreate(comment);
         setContentView(R.layout.activity_comment);
-        database db = new database(MainComment.this);
         textViewStar = findViewById(R.id.textViewStar);
         textViewHeart = findViewById(R.id.textViewHeart);
         textViewView = findViewById(R.id.textViewView);
@@ -125,15 +124,19 @@ public class MainComment extends AppCompatActivity {
     }
     public void ReadBooks(View view){
         SwitchPage(this,ConTent.class,story.ExtractDataInBooks(),"data");
+        //KHi ma nguoi dung an vao doc truyen tang len 1
+        story.UpdateView(db);
     }
     public void ButtonLove(View view){
-        //Thag nay chua danh gia di thi insert danh gia moi
-        if(myRating == null){
+        //Thag nay chua like di thi insert like moi
+        if(myRating == null || myRating.GetIsFavorite() == null){
             myRating = new Rating(user,story.getId());
             myRating.SetIsFavorite(true);
             user.InsertRating(db,myRating);
+            //Becase you dont have key id this here it is auto increment you should get it after update
+            myRating = user.GetRatingByUserNameAndBook(db,story);
         }
-        //Neu nhu ma da danh gia roi thi chi viec update lai cai danh gia day thoi
+        //Neu nhu da like roi thi chi can cap nhat lai
         else{
             myRating.SetIsFavorite(!myRating.GetIsFavorite());
             user.UpdateRating(db,myRating);

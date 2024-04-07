@@ -23,7 +23,7 @@ public class ConTent extends AppCompatActivity {
         JSONObject story;
         try {
             story = new JSONObject(getIntent().getStringExtra("data"));
-            textTitle.setText(story.getString("Title"));
+            textTitle.setText("Thể loại: "+story.getString("Title"));
             textGenre.setText(story.getString("Genre"));
             textContent.setText(story.getString("Content"));
         }

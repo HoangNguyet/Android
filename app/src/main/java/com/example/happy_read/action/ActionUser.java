@@ -113,12 +113,12 @@ public class ActionUser {
         try{
             SQLiteStatement statement = db.getWritableDatabase().compileStatement(query);
             UpdateStatment(String.valueOf(rating.GetRatting()),1,statement);
-            UpdateStatment(rating.GetIsFavorite()?"1":"0",2,statement);
-            UpdateStatment(rating.GetIsFavorite()==null?null:rating.GetIsFavorite()?"1":"0",3,statement);
+            UpdateStatment(rating.GetIsFavorite()==null?null:rating.GetIsFavorite()?"1":"0",2,statement);
+            UpdateStatment(rating.GetComment(),3,statement);
             UpdateStatment(rating.GetId(),4,statement);
             statement.execute();
         }catch (Exception ex){
-
+            Log.d("EroorUpdate",ex.getMessage());
         }
         finally {
             db.close();
@@ -126,17 +126,26 @@ public class ActionUser {
     }
     //Insert action with rating
     protected boolean InsertRating(database database, User user, Rating rating){
-        SQLiteDatabase db = database.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_RATINGS_USER_NAME,user.GetName());
-        values.put(COLUMN_RATINGS_STORY_ID,rating.GetStoryId());
-        values.put(COLUMN_RATINGS_RATING,rating.GetRatting());
-        values.put(COLUMN_RATINGS_COMMENT,rating.GetComment());
-        values.put(COLUMN_RATINGS_ISFAVORITE,rating.GetIsFavorite()==null?null:rating.GetIsFavorite()?"1":"0");
-        long result = db.insert(database.TABLE_RATINGS, null, values);
-        if(result!=-1){
-            return true;
+        try {
+            SQLiteDatabase db = database.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_RATINGS_USER_NAME, user.GetName());
+            values.put(COLUMN_RATINGS_STORY_ID, rating.GetStoryId());
+            values.put(COLUMN_RATINGS_RATING, rating.GetRatting());
+            values.put(COLUMN_RATINGS_COMMENT, rating.GetComment());
+            values.put(COLUMN_RATINGS_ISFAVORITE, rating.GetIsFavorite() == null ? null : rating.GetIsFavorite() ? "1" : "0");
+            long result = db.insert(database.TABLE_RATINGS, null, values);
+            if(result!=-1){
+                return true;
+            }
+            return false;
         }
-        return false;
+        catch (Exception ex){
+            Log.d("EroorInsert",ex.getMessage());
+        }
+        finally {
+            database.close();
+        }
+        return  false;
     }
 }
