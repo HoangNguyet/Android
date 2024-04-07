@@ -47,11 +47,11 @@ public class RatingAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Rating rating = _ratings.get(position);
         convertView = _inflater.inflate(R.layout.activity_one_comment,null);
         ImageView imageAvatarComment = convertView.findViewById(R.id.imageAvatarRating);
         TextView textPersonRating = convertView.findViewById(R.id.namePersonRating);
         TextView textContentComment = convertView.findViewById(R.id.contenComent);
-        Rating rating = _ratings.get(position);
         if(rating.GetUser().IsImagePathNull()){
             Picasso.get().load(GetImageResId(rating.GetUser().GetImagePath(),_context)).into(imageAvatarComment);
         }

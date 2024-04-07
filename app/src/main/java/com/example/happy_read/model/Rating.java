@@ -1,6 +1,9 @@
 package com.example.happy_read.model;
 
 
+import static com.example.happy_read.database.database.COLUMN_RATINGS_ISFAVORITE;
+import static com.example.happy_read.database.database.COLUMN_RATINGS_RATING;
+
 import android.database.Cursor;
 
 import com.example.happy_read.action.ActionRating;
@@ -10,7 +13,7 @@ public class Rating extends ActionRating {
     private String _id;
     private String _bookId;
     private User _user;
-    private int _ratting = -1;
+    private float _ratting = -1;
     private String _comment;
     private Boolean _isFavorite;
     private String _storyId;
@@ -26,7 +29,7 @@ public class Rating extends ActionRating {
     public String GetStoryId(){
         return  _storyId;
     }
-    public int GetRatting() {
+    public Float GetRatting() {
         return _ratting;
         }
 
@@ -42,7 +45,7 @@ public class Rating extends ActionRating {
         return _isFavorite;
     }
 
-    public void SetRating(int _ratting) {
+    public void SetRating(float _ratting) {
         this._ratting = _ratting;
     }
 
@@ -66,15 +69,16 @@ public class Rating extends ActionRating {
         _comment = comment;
         _isFavorite = isFavorite;
     }
+    public Rating(User user, String storyId){
+        _user= user;
+        _storyId = storyId;
+    }
     @Override
     public String toString(){
         return String.format("Hello this is ratting have %sAnd comment is %s", _user.GetName(), GetComment());
     }
-    public void UpdateStoryInDB(database db){
-        UpdateRatingInDb(this,db);
-    }
     public static Rating GetRatting(Cursor cursor, database db){
         return GetRatting(db,cursor);
     }
-    public void InsertRating(database db){InsertRating(this,db);}
+//    public static Rating GetRatingById(String id,database db){return GetRattingById(id,db);}
 }

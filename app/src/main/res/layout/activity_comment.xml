@@ -95,11 +95,12 @@
 
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imageButtonHeart"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/heart"
+                    android:src="@drawable/heart1"
                     android:scaleType="fitCenter"
+                    android:onClick="ButtonLove"
                     android:layout_centerHorizontal="true"
                     android:backgroundTint="@color/cardview_light_background"
 
@@ -111,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:text="4.3K"
                     android:textSize="20dp"
-                    android:layout_below="@id/imageButton"
+                    android:layout_below="@id/imageButtonHeart"
                     android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
@@ -128,6 +129,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/star"
+                    android:onClick="RatingStory"
                     android:scaleType="fitCenter"
                     android:layout_centerHorizontal="true"
                     android:backgroundTint="@color/cardview_light_background"

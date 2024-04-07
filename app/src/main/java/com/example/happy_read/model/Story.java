@@ -60,6 +60,7 @@ public class Story extends ActionBook {
     public List<Rating> GetRattings() {
         return ratings;
     }
+    public void SetRatings(database db){ratings = getAllRattingByBook(db);}
     public String getGenre() {
         return  genre;
     }
@@ -185,4 +186,6 @@ public class Story extends ActionBook {
         return ExtractDataInBooks(this);
     }
     public boolean InsertStory(database db){return InsertStory(this,db);}
+    public void UpdateView(database db){UpdateView(db,this);}
+    public List<Rating> getRatingsHaveCommentConTent(){return GetRatingsHaveComment(GetRattings());}
 }

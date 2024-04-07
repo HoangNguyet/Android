@@ -66,7 +66,7 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_STORIES_DESCRIPTION + " TEXT NOT NULL, " +
                     COLUMN_STORIES_CREATED_AT + " TEXT NOT NULL, " +
                     COLUMN_STORIES_UPDATED_AT + " TEXT NOT NULL, " +
-                    COLUMN_STORIES_IMAGE + " TEXT, " +
+                    COLUMN_STORIES_IMAGE + " TEXT NOT NULL, " +
                     COLUMN_STORIES_VIEWS + " INTEGER NOT NULL, " +
                     COLUMN_STORIES_USERS_NAME + " TEXT NOT NULL, " +
                     "FOREIGN KEY (" + COLUMN_STORIES_USERS_NAME + ") REFERENCES " +
@@ -80,9 +80,9 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_RATINGS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_RATINGS_USER_NAME + " TEXT NOT NULL, " +
                     COLUMN_RATINGS_STORY_ID + " INTEGER NOT NULL, " +
-                    COLUMN_RATINGS_RATING + " INTEGER NOT NULL, " +
-                    COLUMN_RATINGS_COMMENT + " TEXT NOT NULL, " +
-                    COLUMN_RATINGS_ISFAVORITE + " INTEGER NOT NULL CHECK (" + COLUMN_RATINGS_ISFAVORITE + " IN (0,1)), " +
+                    COLUMN_RATINGS_RATING + " REAL, " +
+                    COLUMN_RATINGS_COMMENT + " TEXT, " +
+                    COLUMN_RATINGS_ISFAVORITE + " INTEGER CHECK (" + COLUMN_RATINGS_ISFAVORITE + " IN (0,1)), " +
                     "CONSTRAINT fk_user FOREIGN KEY ("+ COLUMN_RATINGS_USER_NAME +") REFERENCES "+ TABLE_USERS + "("+ COLUMN_USERS_NAME +")," +
                     "CONSTRAINT fk_story FOREIGN KEY ("+ COLUMN_RATINGS_STORY_ID +") REFERENCES "+ TABLE_STORIES + "("+ COLUMN_STORIES_ID +")," +
                     "CONSTRAINT UC_Unique_Rating  UNIQUE (" + COLUMN_RATINGS_USER_NAME + ", " + COLUMN_RATINGS_STORY_ID + ")" +

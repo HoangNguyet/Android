@@ -76,17 +76,19 @@ public class MainHanhDong extends AppCompatActivity {
         Cursor cursor = db.getDataByGenre("Hành động");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
+            int idIndex = cursor.getColumnIndex(db.COLUMN_STORIES_ID);
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
             int imageIndex = cursor.getColumnIndex(db.COLUMN_STORIES_IMAGE);
 
             // Check if the column indexes are valid
             if (titleIndex != -1 && imageIndex != -1) {
                 // Retrieve title and image using column indexes
+                String id = cursor.getString(idIndex);
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                hanhDongList.add(new Story("0", title, "", image,null));
-                arrayList.add(new Story("0", title, "", image,null));
+                hanhDongList.add(new Story(id, title, "", image,null));
+                arrayList.add(new Story(id, title, "", image,null));
 
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");
@@ -95,7 +97,7 @@ public class MainHanhDong extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), hanhDongList);
+        adapter = new StoryAdapter(getApplicationContext(), hanhDongList,this);
         lv.setAdapter(adapter);
     }
     //    Search

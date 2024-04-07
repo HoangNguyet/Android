@@ -128,7 +128,7 @@ public class MainHome extends AppCompatActivity {
             TruyenArrayList.add(new Story(id, tentruyen, noidung, anh,null));
             arrayList.add(new Story(id, tentruyen, noidung, anh,null));
         }
-        adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList);
+        adapterTruyen = new StoryAdapter(getApplicationContext(),TruyenArrayList,this);
         lv.setAdapter(adapterTruyen);
         cursor1.moveToFirst();
         cursor1.close();

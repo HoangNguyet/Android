@@ -53,16 +53,18 @@ public class MainYourBook extends AppCompatActivity {
         Cursor cursor = database.getFavoriteStoriesWithImage();
         while (cursor.moveToNext()) {
             // Get the column index for title and image
+            int idIndex = cursor.getColumnIndex(database.COLUMN_STORIES_ID);
             int titleIndex = cursor.getColumnIndex(database.COLUMN_STORIES_TITLE);
             int imageIndex = cursor.getColumnIndex(database.COLUMN_STORIES_IMAGE);
 
             // Check if the column indexes are valid
             if (titleIndex != -1 && imageIndex != -1) {
                 // Retrieve title and image using column indexes
+                String id = cursor.getString(idIndex);
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                TruyenArrayList.add(new Story("0", title, "", image,null));
+                TruyenArrayList.add(new Story(id, title, "", image,null));
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");
             }
@@ -70,7 +72,7 @@ public class MainYourBook extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList);
+        adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList,this);
         lv.setAdapter(adapterTruyen);
         }
     }

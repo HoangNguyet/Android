@@ -35,6 +35,7 @@ import java.util.Objects;
 //Tu mot quyen sach ta co the lay ra danh sach cac comment nen cac hanh dong nay thuoc ve lop book
 public class ActionBook {
     //Lay du lieu tu ratting cua truyen co id la id
+    //hành động lấy tất cả comment thuộc về cuốn sách bởi vì
     protected static List<Rating> getAllRattingByBook(String book_id, database db){
         //Bien chua tat ca cac comment
         ArrayList<Rating> ratings = new ArrayList<>();
@@ -61,9 +62,20 @@ public class ActionBook {
         }
         return ratings;
     }
+    //Filter rating have content comment
+    protected static List<Rating> GetRatingsHaveComment(List<Rating> ratings){
+        List<Rating> ratingsHaveComment = new ArrayList<>();
+        for (Rating r: ratings) {
+            if(r.GetComment() != null){
+                ratingsHaveComment.add(r);
+            }
+        }
+        return ratingsHaveComment;
+    }
     //Tinh trung binh luot danh gia
     protected String[] GetMediumStarAndCountHeart(List<Rating> ratings){
-        long mediumStart = 0;
+        //Van de de bi tran bo nho
+        float mediumStart = 0;
         long peoPlesRating = 0;
         long count = 0;
         for (Rating r: ratings) {
@@ -83,6 +95,7 @@ public class ActionBook {
         };
     }
     //Get Story by id
+    //Một hành động của chính nó hoặc có thể một hành động nhiều khi người dùng có thê lấy tất cả các cuốn sách của mình đã viết
     protected static Story GetStorieyById(database db, String id){
         String query = String.format("SELECT * FROM %s WHERE %s = ?",TABLE_STORIES,COLUMN_STORIES_ID);
         try(Cursor cursor = db.getReadableDatabase().rawQuery(query,new String[]{id})){
@@ -124,6 +137,7 @@ public class ActionBook {
         catch (Exception ex){}
         return books.toString();
     }
+    //Hành động insert chính nó có vẽ không hợp lý mà phải
     protected Boolean InsertStory(Story story, database database){
         SQLiteDatabase db = database.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -142,18 +156,17 @@ public class ActionBook {
         }
         return false;
     }
-    protected void Update(Story story, database database,String query){
-        try {
-            SQLiteStatement statement = database.getWritableDatabase().compileStatement(query);
+    protected void UpdateView(database db,Story story){
+        String query = "UPDATE stories SET views = views+1 where id = ?";
+        try{
+            SQLiteStatement statement = db.getWritableDatabase().compileStatement(query);
             UpdateStatment(story.getId(),1,statement);
             statement.execute();
-        }
-        catch (Exception e){
-            //Write is eror
+        }catch (Exception ex){
+
         }
         finally {
-            database.close();
+            db.close();
         }
-
     }
 }

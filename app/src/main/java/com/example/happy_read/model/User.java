@@ -1,5 +1,8 @@
 package com.example.happy_read.model;
 
+import static com.example.happy_read.database.database.COLUMN_RATINGS_ISFAVORITE;
+import static com.example.happy_read.database.database.COLUMN_RATINGS_RATING;
+
 import com.example.happy_read.action.ActionUser;
 import com.example.happy_read.database.database;
 
@@ -163,4 +166,7 @@ public class User extends ActionUser {
     public static User GetUserByIdA(database db, String user_name){
         return GetUserById(db,user_name);
     }
+    public Rating GetRatingByUserNameAndBook(database db, Story story){return GetRatingByUSerNameAndBook(this,db,story);}
+    public void UpdateRating(database db, Rating rating){UpdateRating(db,this,rating);}
+    public boolean InsertRating(database db, Rating rating){return InsertRating(db,this,rating);}
 }

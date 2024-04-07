@@ -1,6 +1,8 @@
 
 package com.example.happy_read.adapter;
 
+import static com.example.happy_read.until.until.SwitchPage;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,10 +18,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionBarPolicy;
 
 
 import com.example.happy_read.R;
+import com.example.happy_read.activity.MainComment;
 import com.example.happy_read.model.Story;
 import com.example.happy_read.until.until;
 import com.squareup.picasso.Picasso;
@@ -30,11 +34,13 @@ import java.util.List;
 
 public class StoryAdapter extends BaseAdapter {
     private Context context;
+    AppCompatActivity activity;
     private ArrayList<Story> listTruyen;
 
-    public StoryAdapter(Context context, ArrayList<Story> listTruyen) {
+    public StoryAdapter(Context context, ArrayList<Story> listTruyen,AppCompatActivity activity) {
         this.context = context;
         this.listTruyen = listTruyen;
+        this.activity = activity;
     }
 
 
@@ -89,6 +95,10 @@ public class StoryAdapter extends BaseAdapter {
 //            Log.e("Error Image", "Không tìm thấy ảnh trong tài nguyên");
             viewHolder.imgtruyen.setImageBitmap(BitmapFactory.decodeFile(truyen.getImagePathDes()));
         }
+        //Event after click each story
+        convertView.setOnClickListener(v -> {
+            SwitchPage(activity, MainComment.class,truyen.getId(),"storyId");
+        });
         return convertView;
     }
 

@@ -81,17 +81,19 @@ public class MainThieuNhi extends AppCompatActivity {
         Cursor cursor = db.getDataByGenre("Thiếu nhi");
         while (cursor.moveToNext()) {
             // Get the column index for title and image
+            int idIndex = cursor.getColumnIndex(db.COLUMN_STORIES_ID);
             int titleIndex = cursor.getColumnIndex(db.COLUMN_STORIES_TITLE);
             int imageIndex = cursor.getColumnIndex(db.COLUMN_STORIES_IMAGE);
 
             // Check if the column indexes are valid
             if (titleIndex != -1 && imageIndex != -1) {
                 // Retrieve title and image using column indexes
+                String id = cursor.getString(idIndex);
                 String title = cursor.getString(titleIndex);
                 String image = cursor.getString(imageIndex);
                 // Create a Story object and add it to the ArrayList
-                thieuNhiList.add(new Story("0", title, "", image,null));
-                arrayList.add(new Story("0", title, "", image,null));
+                thieuNhiList.add(new Story(id, title, "", image,null));
+                arrayList.add(new Story(id, title,"", image,null));
 
             } else {
                 Log.e("MainYourBook", "Invalid column index for title or image");
@@ -100,7 +102,7 @@ public class MainThieuNhi extends AppCompatActivity {
         cursor.close();
 
         // Khởi tạo adapter và đặt adapter cho ListView
-        adapter = new StoryAdapter(getApplicationContext(), thieuNhiList);
+        adapter = new StoryAdapter(getApplicationContext(), thieuNhiList,this);
         lv.setAdapter(adapter);
     }
     //    Search
