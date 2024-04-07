@@ -1,5 +1,6 @@
 package com.example.happy_read.activity;
 
+import static com.example.happy_read.until.Log._USER_NAME;
 import static com.example.happy_read.until.until.getRealPathFromUri;
 import static com.example.happy_read.until.until.initDatePicker;
 
@@ -38,7 +39,6 @@ public class UserProfileEditActivity extends AppCompatActivity {
     RadioButton _male, _female;
     Uri selectedImageUri = null;
     //Test with id static
-    String _userName = "ninh";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         database db = new database(UserProfileEditActivity.this);
-        _user = User.GetUserByIdA(db,_userName);
+        _user = User.GetUserByIdA(db,_USER_NAME);
 
         _textDate = (TextView) findViewById(R.id.textDate);
         _textDate.setKeyListener(null);

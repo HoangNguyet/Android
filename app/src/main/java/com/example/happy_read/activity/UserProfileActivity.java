@@ -4,6 +4,7 @@ import static com.example.happy_read.until.until.SwitchPage;
 
 import com.example.happy_read.database.database;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,15 +20,13 @@ import com.example.happy_read.R;
 import com.example.happy_read.model.User;
 import com.example.happy_read.until.until;
 import com.squareup.picasso.Picasso;
+import static com.example.happy_read.until.Log._USER_NAME;
 
 import java.io.IOException;
 
 public class UserProfileActivity extends AppCompatActivity {
 //    Hiển thị thông tin người dùng và truyện mà họ đã đọc và yêu thích
 
-    //Test with dynamic data
-    //test
-    String _userName = "ninh";
     User _use;
     ImageView imageAvatar;
     TextView fullName;
@@ -34,12 +34,11 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        database myDatabase = new database(UserProfileActivity.this);
-        _use = User.GetUserByIdA(myDatabase,_userName);
+        database myDatabase = new database(UserProfileActivity.this);;
+        _use = User.GetUserByIdA(myDatabase,_USER_NAME);
         imageAvatar = (ImageView) findViewById(R.id.imgAvatar);
         fullName = (TextView) findViewById(R.id.fullName);
         if(_use != null){
-            int resImageId = until.GetImageResId(_use.GetImagePath(),this);
             if(_use.IsImagePathNull()){
                 Picasso.get().load(until.GetImageResId(_use.GetImagePath(),this)).into(imageAvatar);
             }
@@ -54,15 +53,20 @@ public class UserProfileActivity extends AppCompatActivity {
         SwitchPage(this,UserProfileEditActivity.class,null,null);
     }
     public void FavoriteBooks(View v){
-        //Open Your FavoriteBook
+        Intent intent = new Intent(this,MainYourBook.class);
+        startActivity(intent);
     }
     public void ChangeYourPassword(View v){
+        Intent intent = new Intent(this, ChangePassWordActivity.class);
+        startActivity(intent);
         //Open activity Change Your password
     }
     public void WriteSomething(View v){
         SwitchPage(this,AddContent.class,null,null);
     }
     public void Logout(View v){
-        //Logout
+        _USER_NAME = null;
+        Intent intent = new Intent(this,MainHome.class);
+        startActivity(intent);
     }
 }

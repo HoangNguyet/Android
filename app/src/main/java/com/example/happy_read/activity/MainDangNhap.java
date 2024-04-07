@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
+import static com.example.happy_read.until.Log._USER_NAME;
 
 public class MainDangNhap extends AppCompatActivity {
 
@@ -40,8 +41,6 @@ public class MainDangNhap extends AppCompatActivity {
                 String password = edPassword.getText().toString().trim();
                 //Kiểm tra xem người dùng đã nhập đầy đủ thông tin chưa
                 if (username.isEmpty() || password.isEmpty()) {
-                    Intent intent = new Intent(MainDangNhap.this,UserProfileActivity.class);
-                    startActivity(intent);
                     Toast.makeText(MainDangNhap.this, "Vui lòng nhập tên đăng nhập và mật khẩu", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -53,12 +52,10 @@ public class MainDangNhap extends AppCompatActivity {
                 String[] selectionArgs = {username, password};
                 Cursor cursor = db.rawQuery(selection, selectionArgs);
                 if (cursor != null && cursor.moveToFirst()) {
+                    _USER_NAME = username;
                     //Đăng nhập thành công
                     Toast.makeText(MainDangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     // Chuyển sang trang quên mật khẩu
-                    Intent intent = new Intent(MainDangNhap.this, ChangePassWordActivity.class);
-                    intent.putExtra("USERNAME", username); //Truyền tên người dùng qua intent
-                    startActivity(intent);
                     finish(); // Kết thúc Activity hiện tại sau khi chuyển sang trang quên mật khẩu
                 } else {
                     //Đăng nhập thất bại

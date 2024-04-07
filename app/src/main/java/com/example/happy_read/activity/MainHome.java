@@ -1,5 +1,7 @@
 package com.example.happy_read.activity;
 
+import static com.example.happy_read.until.Log._USER_NAME;
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -84,9 +86,17 @@ public class MainHome extends AppCompatActivity {
         });
         btnProfile = findViewById(R.id.menu_toi);
         btnProfile.setOnClickListener(new View.OnClickListener() {
+            //Neu nhu chua dang nhap thi phai dang nhap con da dang nhap thi hien thi giao dien nguoi dung
             @Override
             public void onClick(View v) {
-
+                if(_USER_NAME == null){
+                    Intent intent = new Intent(MainHome.this,MainDangNhap.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(MainHome.this,UserProfileActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         //Anh xa va gan su kien cho nut "phan loai"

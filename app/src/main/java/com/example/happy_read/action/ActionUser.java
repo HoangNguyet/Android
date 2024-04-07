@@ -64,7 +64,8 @@ public class ActionUser {
                     String role = cursor.getString(4);
                     String imagePath = cursor.getString(5);
                     String gender = cursor.getString(6);
-                    Date birthDay = cursor.getString(7) != null? new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(7)):null;
+                    Log.d("asdsadsadsa",String.valueOf(cursor.getString(7).isEmpty()));
+                    Date birthDay = cursor.getString(7).isEmpty()?null: new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(7));
                     //public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay)
                     return new User(userName,passWord,email,fullName,role,imagePath,gender,birthDay);
                 }
@@ -91,6 +92,7 @@ public class ActionUser {
         try(Cursor cursor = db.getReadableDatabase().rawQuery(query,new String[]{user.GetName(),story.getId()})){
             if(cursor.getCount()>0){
                 while (cursor.moveToNext()){
+                    Log.d("adasdasdsas",cursor.getString(1));
                     return Rating.GetRatting(db,cursor);
                 }
             }

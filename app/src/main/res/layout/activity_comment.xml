@@ -237,9 +237,11 @@
             </androidx.cardview.widget.CardView>
 
             <EditText
+                android:onClick="OpenDiaglogComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="comment"
+                android:editable="false"
                 android:padding="10dp"
                 android:layout_gravity="bottom"
                 />

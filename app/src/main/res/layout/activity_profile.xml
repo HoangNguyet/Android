@@ -124,22 +124,22 @@
             android:textColor="@color/black"
             android:textSize="18dp"></Button>
 
-<!--        <Button-->
-<!--            android:id="@+id/Logout"-->
-<!--            android:onClick="Logout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="30dp"-->
-<!--            android:background="@drawable/ninh_button"-->
-<!--            android:drawableStart="@drawable/ninh_logout_icon"-->
-<!--            android:fontFamily="@font/roboto_medium"-->
-<!--            android:paddingLeft="65dp"-->
-<!--            android:paddingTop="13dp"-->
-<!--            android:paddingRight="65dp"-->
-<!--            android:paddingBottom="13dp"-->
-<!--            android:text="Đăng Xuất"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="18dp"></Button>-->
+        <Button
+            android:id="@+id/logout"
+            android:onClick="Logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ninh_button"
+            android:drawableStart="@drawable/ninh_logout_icon"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingLeft="65dp"
+            android:paddingTop="13dp"
+            android:paddingRight="65dp"
+            android:paddingBottom="13dp"
+            android:text="Đăng Xuất"
+            android:textColor="@color/black"
+            android:textSize="18dp"></Button>
 
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

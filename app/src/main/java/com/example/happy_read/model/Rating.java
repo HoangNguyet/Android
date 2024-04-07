@@ -52,8 +52,9 @@ public class Rating extends ActionRating {
     public void SetIsFavorite(Boolean _isFavorite) {
         this._isFavorite = _isFavorite;
     }
+    public void SetComment(String comment){_comment = comment;}
     //Insert
-    public Rating(User user, int ratting, String comment, Boolean isFavorite,String storyId) {
+    public Rating(User user, int ratting, String comment, boolean isFavorite,String storyId) {
         _user = user;
         _ratting = ratting;
         _comment = comment;
@@ -61,7 +62,7 @@ public class Rating extends ActionRating {
         _storyId = storyId;
     }
     //Select
-    public Rating(String id,String bookId, String userName,int ratting,String comment, Boolean isFavorite,database db ){
+    public Rating(String id,String bookId, String userName,int ratting,String comment, boolean isFavorite,database db ){
         this._bookId = bookId;
         _id = id;
         _user = User.GetUserByIdA(db,userName);

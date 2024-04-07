@@ -38,7 +38,7 @@ public class User extends ActionUser {
     }
 
     public String GetFullName() {
-        if(_fullName == null){
+        if(_fullName.isEmpty()){
             return _userName;
         }
         return _fullName;
@@ -67,7 +67,7 @@ public class User extends ActionUser {
     }
 
     public String GetGender() {
-        if(_gender == null){
+        if(_gender.isEmpty()){
             return null;
         }
         return _gender.trim().toLowerCase();
@@ -144,6 +144,9 @@ public class User extends ActionUser {
         this._imagePath = _imagePath;
         this._gender = _gender;
         this._birthDay = _birthDay;
+    }
+    public User(String userName){
+        _userName = userName;
     }
 
     public void UpdateInformation(String _fullName, String _imagePath, String _gender, Date _birthDay) throws Exception{

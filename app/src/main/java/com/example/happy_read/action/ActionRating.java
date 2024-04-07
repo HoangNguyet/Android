@@ -56,7 +56,8 @@ public class ActionRating {
         String storyId = cursor.getString(2);
         String ratting = cursor.getString(3);
         String comment = cursor.getString(4);
-        Boolean isFavorite = cursor.getString(5).equals("1");
+        Boolean isFavorite = cursor.getString(5)==null?null:cursor.getString(5).equals("1");
+        Log.d("Check",String.valueOf(isFavorite));
         //Lay user tu userName
         return new Rating(id,storyId,userName,Integer.parseInt(ratting),comment,isFavorite,db);
     }
