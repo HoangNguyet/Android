@@ -1,5 +1,7 @@
 package com.example.happy_read.activity;
 
+import static com.example.happy_read.until.Log._USER_NAME;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,7 +33,6 @@ public class MainYourBook extends AppCompatActivity {
 
         database = new database(this);
         lv = findViewById(R.id.listviewNew);
-
         AnhXa();
 
     }
@@ -50,7 +51,7 @@ public class MainYourBook extends AppCompatActivity {
     private void AnhXa(){
         TruyenArrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
-        Cursor cursor = database.getFavoriteStoriesWithImage();
+        Cursor cursor = database.getFavoriteStoriesWithImage(_USER_NAME);
         while (cursor.moveToNext()) {
             // Get the column index for title and image
             int idIndex = cursor.getColumnIndex(database.COLUMN_STORIES_ID);
@@ -58,7 +59,7 @@ public class MainYourBook extends AppCompatActivity {
             int imageIndex = cursor.getColumnIndex(database.COLUMN_STORIES_IMAGE);
 
             // Check if the column indexes are valid
-            if (titleIndex != -1 && imageIndex != -1) {
+            if (titleIndex != -1 && imageIndex != -1 && idIndex !=-1) {
                 // Retrieve title and image using column indexes
                 String id = cursor.getString(idIndex);
                 String title = cursor.getString(titleIndex);

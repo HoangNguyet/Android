@@ -1760,13 +1760,13 @@ public class database extends SQLiteOpenHelper {
 
     //Lay ra truyen duoc yeu thich
 
-    public Cursor getFavoriteStoriesWithImage() {
+    public Cursor getFavoriteStoriesWithImage(String userName) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + TABLE_STORIES + "." + COLUMN_STORIES_TITLE + ", " + TABLE_STORIES + "." + COLUMN_STORIES_IMAGE +
+        String query = "SELECT "+TABLE_STORIES+"."+COLUMN_STORIES_ID+", " + TABLE_STORIES + "." + COLUMN_STORIES_TITLE + ", " + TABLE_STORIES + "." + COLUMN_STORIES_IMAGE +
                 " FROM " + TABLE_RATINGS +
                 " INNER JOIN " + TABLE_STORIES +
                 " ON " + TABLE_RATINGS + "." + COLUMN_RATINGS_STORY_ID + " = " + TABLE_STORIES + "." + COLUMN_STORIES_ID +
-                " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1";
+                " WHERE " + COLUMN_RATINGS_ISFAVORITE + " = 1" + " AND "+ TABLE_RATINGS +"."+ COLUMN_STORIES_USERS_NAME +" = '"+userName+"'";
         return db.rawQuery(query, null);
     }
 

@@ -192,8 +192,14 @@ public class MainHome extends AppCompatActivity {
     }
 
     public void goToBookYour(View view){
-        Intent intent = new Intent(MainHome.this, MainYourBook.class);
-        startActivity(intent);
+        if(_USER_NAME != null) {
+            Intent intent = new Intent(MainHome.this, MainYourBook.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(MainHome.this,MainDangNhap.class);
+            startActivity(intent);
+        }
     }
 
     public void goToHome(View view){
