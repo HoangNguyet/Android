@@ -49,9 +49,20 @@ public class MainDangKy extends AppCompatActivity {
                     Toast.makeText(MainDangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                // Thêm người dùng vào cơ dữ liệu
-                addUserToDatabase(username, password, email);
+                // Kiểm tra định dạng email
+                else if (!isValidEmail(email)) {
+                    Toast.makeText(MainDangKy.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //kiểm tra xem mật khẩu có trùng nhau
+                else if(!password.equals(password2))
+                {
+                    Toast.makeText(MainDangKy.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else
+                    // Thêm người dùng vào cơ dữ liệu
+                    addUserToDatabase(username, password, email);
             }
         });
 
@@ -70,6 +81,12 @@ public class MainDangKy extends AppCompatActivity {
             super.onBackPressed();
             finish();
         }
+    // Phương thức kiểm tra địa chỉ email có đúng định dạng @gmail.com không
+        private boolean isValidEmail(String email) {
+        // Biểu thức chính quy kiểm tra định dạng email
+        String emailPattern = "[a-zA-Z0-9._-]+@gmail\\.com$";
+        return email.matches(emailPattern);
+    }
 
         // Phương thức thêm người dùng vào cơ sở dữ liệu
         private void addUserToDatabase(String username, String password, String email) {
@@ -94,6 +111,8 @@ public class MainDangKy extends AppCompatActivity {
                 // Username đã tồn tại
                 Toast.makeText(this, "Username đã tồn tại", Toast.LENGTH_SHORT).show();
             }
+            //kiểm tra xem địa chỉ email có đúng định dạng không
+
             else {
                 // Thực hiện insert dữ liệu vào bảng USERS
                 long newRowId = db.insert(database.TABLE_USERS, null, values);

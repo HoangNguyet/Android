@@ -45,6 +45,9 @@ public class ChangePassWordActivity extends AppCompatActivity {
                 if(!mk1.equals(mk2)){
                     Toast.makeText(ChangePassWordActivity.this, "Mật khẩu mới không khớp", Toast.LENGTH_SHORT).show();
                 }
+                else if(mk1.equals(mkcu)){
+                    Toast.makeText(ChangePassWordActivity.this, "Mật khẩu mới không được giống mật khẩu cũ", Toast.LENGTH_SHORT).show();
+                }
                 //Thực hiện cập nhật mật khẩu mới vào cơ sở dữ liệu
                 else{
                     SQLiteDatabase db = database.getWritableDatabase();
