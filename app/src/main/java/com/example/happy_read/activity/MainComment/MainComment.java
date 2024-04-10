@@ -15,21 +15,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.happy_read.R;
 import com.example.happy_read.activity.ConTent;
 import com.example.happy_read.activity.MainDangNhap;
-import com.example.happy_read.adapter.RatingAdapter;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Rating;
 import com.example.happy_read.model.Story;
 import com.example.happy_read.model.User;
-import com.example.happy_read.until.until;
-import com.squareup.picasso.Picasso;
 
 public class MainComment extends AppCompatActivity {
     TextView textViewStar,textViewHeart,textViewView,textTitle,textAuthor,textGenre,textCreateAt,textReview;
@@ -91,7 +86,7 @@ public class MainComment extends AppCompatActivity {
                         myRating.SetComment(coment);
                         user.UpdateRating(db,myRating);
                     }
-                    LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,MainComment.this);
+                    LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,writeComment,story,db,MainComment.this);
                 }
                 diaglogComment.dismiss();
             }
@@ -123,14 +118,14 @@ public class MainComment extends AppCompatActivity {
                     myRating.SetRating(rateValue);
                     user.UpdateRating(db,myRating);
                 }
-                LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,MainComment.this);
+                LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,writeComment,story,db,MainComment.this);
                 dialog.dismiss();
             }
         });
         mBuild.setView(mView);
         dialog=mBuild.create();
         LoadStaticData(textTitle,textAuthor,textGenre,textCreateAt,textReview,imageViewDescription,story,this);
-        LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,this);
+        LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,writeComment,story,db,this);
         //End Rating
     }
     public void ReadBooks(View view){
@@ -158,7 +153,7 @@ public class MainComment extends AppCompatActivity {
                 myRating.SetIsFavorite(!myRating.GetIsFavorite());
                 user.UpdateRating(db, myRating);
             }
-            LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,this);
+            LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,writeComment,story,db,this);
         }
         else{
             Intent intent = new Intent(MainComment.this, MainDangNhap.class);

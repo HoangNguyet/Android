@@ -3,6 +3,8 @@ package com.example.happy_read.model;
 import static com.example.happy_read.database.database.COLUMN_RATINGS_ISFAVORITE;
 import static com.example.happy_read.database.database.COLUMN_RATINGS_RATING;
 
+import android.util.Log;
+
 import com.example.happy_read.action.ActionUser;
 import com.example.happy_read.database.database;
 
@@ -43,21 +45,27 @@ public class User extends ActionUser {
         }
         return _fullName;
     }
+    public String GetFillName(){
+        return _fullName;
+    }
 
     public String GetRole() {
         return _role;
     }
 
     public String GetImagePath() {
-        if(_imagePath == null){
+        if(_imagePath == null || _imagePath.trim().isEmpty()){
             return "drawable/avatar_default.jpg";
         }
         else {
             return _imagePath;
         }
     }
+    public String GetFillImage(){
+        return _imagePath;
+    }
     public boolean IsImagePathNull(){
-        if(_imagePath == null){
+        if(_imagePath == null ||_imagePath.trim().isEmpty()){
             return  true;
         }
         return false;
@@ -67,7 +75,7 @@ public class User extends ActionUser {
     }
 
     public String GetGender() {
-        if(_gender.isEmpty()){
+        if(_gender == null || _gender.isEmpty()){
             return null;
         }
         return _gender.trim().toLowerCase();
@@ -75,7 +83,7 @@ public class User extends ActionUser {
 
     public String GetBirthDay(String format) {
         if(_birthDay == null){
-            return  null;
+            return  "";
         }
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.format(_birthDay);
@@ -170,6 +178,6 @@ public class User extends ActionUser {
         return GetUserById(db,user_name);
     }
     public Rating GetRatingByUserNameAndBook(database db, Story story){return GetRatingByUSerNameAndBook(this,db,story);}
-    public void UpdateRating(database db, Rating rating){UpdateRating(db,this,rating);}
+    public void UpdateRating(database db, Rating rating){super.UpdateRating(db,rating);}
     public boolean InsertRating(database db, Rating rating){return InsertRating(db,this,rating);}
 }

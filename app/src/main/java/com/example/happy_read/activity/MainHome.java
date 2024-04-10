@@ -1,41 +1,26 @@
 package com.example.happy_read.activity;
 
 import static com.example.happy_read.until.Log._USER_NAME;
-
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
-import com.google.android.material.navigation.NavigationView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

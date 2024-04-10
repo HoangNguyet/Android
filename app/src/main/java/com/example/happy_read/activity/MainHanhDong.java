@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
 import com.example.happy_read.database.database;

@@ -8,21 +8,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.happy_read.R;
 import com.example.happy_read.model.User;
 import com.example.happy_read.until.until;
 import com.squareup.picasso.Picasso;
 import static com.example.happy_read.until.Log._USER_NAME;
-
-import java.io.IOException;
 
 public class UserProfileActivity extends AppCompatActivity {
 //    Hiển thị thông tin người dùng và truyện mà họ đã đọc và yêu thích

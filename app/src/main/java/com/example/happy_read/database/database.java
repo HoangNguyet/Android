@@ -49,7 +49,7 @@ public class database extends SQLiteOpenHelper {
                     COLUMN_USERS_NAME + " TEXT PRIMARY KEY NOT NULL, " +
                     COLUMN_USERS_PASSWORD + " TEXT NOT NULL, " +
                     COLUMN_USERS_EMAIL + " TEXT NOT NULL, " +
-                    COLUMN_USERS_FULLNAME + " TEXT NOT NULL, " +
+                    COLUMN_USERS_FULLNAME + " TEXT, " +
                     COLUMN_USERS_ROLE + " TEXT NOT NULL, " +
                     COLUMN_USERS_IMAGE + " TEXT, " +
                     COLUMN_USERS_GENDER + " TEXT, " +

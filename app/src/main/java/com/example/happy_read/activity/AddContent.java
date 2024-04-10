@@ -2,18 +2,13 @@ package com.example.happy_read.activity;
 
 import static com.example.happy_read.until.Log._USER_NAME;
 import static com.example.happy_read.until.until.SwitchPage;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.happy_read.R;
 import com.example.happy_read.model.Story;
-import com.example.happy_read.until.Log;
 
 public class AddContent extends AppCompatActivity {
 

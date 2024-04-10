@@ -23,7 +23,6 @@ public class MainClassify extends AppCompatActivity {
     ArrayList<Story> arrayList;
     StoryAdapter adapterTruyen;
     database database;
-    EditText edt;
     ListView lv;
     Button tieuthuyet, thieuNhi, hanhDong, phieuLuu, kinhDi;
     @Override
@@ -38,8 +37,6 @@ public class MainClassify extends AppCompatActivity {
         hanhDong = findViewById(R.id.hanh_dong);
         phieuLuu = findViewById(R.id.phieu_lieu);
         kinhDi = findViewById(R.id.kinh_di);
-
-
 
         AnhXa();
 

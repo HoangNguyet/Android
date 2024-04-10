@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
 import static com.example.happy_read.until.Log._USER_NAME;

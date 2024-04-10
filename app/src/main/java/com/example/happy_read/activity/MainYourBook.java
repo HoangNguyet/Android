@@ -19,6 +19,7 @@ import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
+import com.example.happy_read.until.untilListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,8 @@ public class MainYourBook extends AppCompatActivity {
         adapterBookYourWrite = new StoryAdapter(getApplicationContext(), listBookYourWrite,this);
         lv.setAdapter(adapterTruyen);
         booksYourWrite.setAdapter(adapterBookYourWrite);
+        untilListView.setDynamicHeight(lv);
+        untilListView.setDynamicHeight(booksYourWrite);
     }
     public static ArrayList<Story> getStory(Cursor cursor){
         ArrayList<Story> TruyenArrayList = new ArrayList<>();

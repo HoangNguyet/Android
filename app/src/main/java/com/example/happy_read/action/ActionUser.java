@@ -19,7 +19,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Rating;
@@ -28,14 +27,13 @@ import com.example.happy_read.model.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 public class ActionUser {
     protected String UpdateInDb(database db, User user){
         String sql = String.format("UPDATE %s SET %s = ?, %s = ?,%s = ?, %s = ?  WHERE %s = ?", TABLE_USERS, COLUMN_USERS_FULLNAME, COLUMN_USERS_IMAGE, COLUMN_USERS_GENDER, COLUMN_USERS_BIRTHDAY, COLUMN_USERS_NAME);
         SQLiteStatement statement = db.getWritableDatabase().compileStatement(sql);
-        UpdateStatment(user.GetFullName(),1,statement);
-        UpdateStatment(user.GetImagePath(),2,statement);
+        UpdateStatment(user.GetFillName(),1,statement);
+        UpdateStatment(user.GetFillImage(),2,statement);
         UpdateStatment(user.GetGender(),3,statement);
         UpdateStatment(user.GetBirthDay("yyyy-MM-dd"),4,statement);
         UpdateStatment(user.GetName(),5,statement);
@@ -44,7 +42,6 @@ public class ActionUser {
             return "Cập nhật thông tin thành công";
         }
         catch (SQLException e){
-            Log.d("sqleroor", Objects.requireNonNull(e.getMessage()));
             return "Cập nhật thông tin thất bại";
         }
         finally {
@@ -74,7 +71,7 @@ public class ActionUser {
             }
         }
         catch (Exception ex){
-            Log.d("ERRR", Objects.requireNonNull(ex.getMessage()));
+            //Do some thing
         }
         finally {
             db.close();
@@ -87,11 +84,9 @@ public class ActionUser {
     //Vấn đề cần thiết của việc lập kế hoạch:0)
     protected static Rating GetRatingByUSerNameAndBook(User user, database db, Story story){
         String query = String.format("SELECT * FROM %s WHERE %s = ? AND %s = ?",TABLE_RATINGS,COLUMN_RATINGS_USER_NAME,COLUMN_RATINGS_STORY_ID);
-        Log.d("query",query);
         try(Cursor cursor = db.getReadableDatabase().rawQuery(query,new String[]{user.GetName(),story.getId()})){
             if(cursor.getCount()>0){
                 while (cursor.moveToNext()){
-                    Log.d("adasdasdsas",cursor.getString(1));
                     return Rating.GetRatting(db,cursor);
                 }
             }
@@ -100,7 +95,7 @@ public class ActionUser {
             }
         }
         catch (Exception ex){
-            Log.d("ERRR", Objects.requireNonNull(ex.getMessage()));
+            //Do som thing
         }
         finally {
             db.close();
@@ -109,7 +104,7 @@ public class ActionUser {
     }
 
     //USer action with rating update khi chỉ có 1 sự thay đổi thật sự
-    protected void UpdateRating(database db,User user,Rating rating){
+    protected void UpdateRating(database db,Rating rating){
         String query = String.format("UPDATE ratings SET %s = ?,%s = ?, %s = ? where id = ?",COLUMN_RATINGS_RATING,COLUMN_RATINGS_ISFAVORITE,COLUMN_RATINGS_COMMENT);
         try{
             SQLiteStatement statement = db.getWritableDatabase().compileStatement(query);
@@ -119,7 +114,7 @@ public class ActionUser {
             UpdateStatment(rating.GetId(),4,statement);
             statement.execute();
         }catch (Exception ex){
-            Log.d("EroorUpdate",ex.getMessage());
+            //Do some thing
         }
         finally {
             db.close();
@@ -135,15 +130,11 @@ public class ActionUser {
             values.put(COLUMN_RATINGS_RATING, rating.GetRatting());
             values.put(COLUMN_RATINGS_COMMENT, rating.GetComment());
             values.put(COLUMN_RATINGS_ISFAVORITE, rating.GetIsFavorite()?"1":"0");
-            Log.d("HELLOW","asdsad");
-            long result = db.insert(database.TABLE_RATINGS, null, values);
-            if(result!=-1){
-                return true;
-            }
-            return false;
+            long result = db.insert(TABLE_RATINGS, null, values);
+            return result != -1;
         }
         catch (Exception ex){
-            Log.d("EroorInsert",ex.getMessage());
+            //Do some thiing
         }
         finally {
             database.close();

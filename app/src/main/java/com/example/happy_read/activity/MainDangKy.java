@@ -2,7 +2,6 @@ package com.example.happy_read.activity;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.RadioGroup;
-
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
 

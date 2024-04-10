@@ -9,16 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
 import com.example.happy_read.until.until;
-
 import org.json.JSONObject;
 
 public class MoTa extends AppCompatActivity {

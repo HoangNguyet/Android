@@ -89,12 +89,9 @@ public class UserProfileEditActivity extends AppCompatActivity {
     public void SaveProFile(View view) throws Exception {
         Date birthDay = null;
         String gender = null;
-        String ImagePath = null;
+        String ImagePath = _user.GetFillImage();
         if (selectedImageUri != null) {
             ImagePath = getRealPathFromUri(this, selectedImageUri);
-        }
-        else{
-            ImagePath = _user.GetImagePath();
         }
         if (!_textDate.getText().toString().isEmpty()) {
             String[] birth = _textDate.getText().toString().trim().split("/");
@@ -106,6 +103,7 @@ public class UserProfileEditActivity extends AppCompatActivity {
         if (_male.isChecked()) {
             gender = "male";
         }
+        Log.d("CHEKC IMAGE PATH",ImagePath);
         try {
             _user.UpdateInformation(_fullName.getText().toString(), ImagePath, gender, birthDay);
             database db = new database(UserProfileEditActivity.this);

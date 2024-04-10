@@ -1,14 +1,9 @@
 package com.example.happy_read.activity;
 
 import android.os.Bundle;
-import android.service.quicksettings.Tile;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.happy_read.R;
-
 import org.json.JSONObject;
 
 public class ConTent extends AppCompatActivity {

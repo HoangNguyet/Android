@@ -9,21 +9,13 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.happy_read.R;
 import com.example.happy_read.adapter.StoryAdapter;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainPhieuLuu extends AppCompatActivity {
 

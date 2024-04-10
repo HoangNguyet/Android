@@ -1,24 +1,8 @@
 package com.example.happy_read.action;
 
-import static com.example.happy_read.database.database.COLUMN_RATINGS_COMMENT;
-import static com.example.happy_read.database.database.COLUMN_RATINGS_ID;
-import static com.example.happy_read.database.database.COLUMN_RATINGS_ISFAVORITE;
-import static com.example.happy_read.database.database.COLUMN_RATINGS_RATING;
-import static com.example.happy_read.database.database.TABLE_RATINGS;
-import static com.example.happy_read.until.until.UpdateStatment;
-
-import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
-
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Rating;
-
-import java.util.List;
-import java.util.Objects;
 
 public class ActionRating {
     //Mình có 3 bảng user stories với bảng rating tạo một cái lớp cho mỗi bảng
