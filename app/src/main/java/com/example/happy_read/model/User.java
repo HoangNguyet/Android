@@ -135,7 +135,7 @@ public class User extends ActionUser {
         }
         _email = email;
     }
-    private User(){}
+    public User(){}
     public User(String _userName, String _password,String _email, String _role) throws  Exception{
         this._role = _role;
         SetName(_userName);
@@ -152,6 +152,11 @@ public class User extends ActionUser {
         this._imagePath = _imagePath;
         this._gender = _gender;
         this._birthDay = _birthDay;
+    }
+    public boolean isValidEmail(String email) {
+        // Biểu thức chính quy kiểm tra định dạng email
+        String emailPattern = "[a-zA-Z0-9._-]+@gmail\\.com$";
+        return email.matches(emailPattern);
     }
     public User(String userName){
         _userName = userName;

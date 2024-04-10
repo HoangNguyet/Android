@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.happy_read.R;
 import com.example.happy_read.database.database;
+import com.example.happy_read.model.User;
 
 public class MainDangKy extends AppCompatActivity {
 
@@ -43,14 +44,14 @@ public class MainDangKy extends AppCompatActivity {
                 String password = edpassword.getText().toString().trim();
                 String password2 = edpassword2.getText().toString().trim();
                 String email = edemail.getText().toString().trim();
-
+                User user = new User();
                 //Kiểm tra xem người dùng nhập đầy đủ thông tin chưa
                 if (username.isEmpty() || email.isEmpty() || password.isEmpty() || password2.isEmpty()) {
                     Toast.makeText(MainDangKy.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Kiểm tra định dạng email
-                else if (!isValidEmail(email)) {
+                else if (!user.isValidEmail(email)) {
                     Toast.makeText(MainDangKy.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -81,12 +82,12 @@ public class MainDangKy extends AppCompatActivity {
             super.onBackPressed();
             finish();
         }
-    // Phương thức kiểm tra địa chỉ email có đúng định dạng @gmail.com không
-        private boolean isValidEmail(String email) {
-        // Biểu thức chính quy kiểm tra định dạng email
-        String emailPattern = "[a-zA-Z0-9._-]+@gmail\\.com$";
-        return email.matches(emailPattern);
-    }
+     //Phương thức kiểm tra địa chỉ email có đúng định dạng @gmail.com không
+//        private boolean isValidEmail(String email) {
+//        // Biểu thức chính quy kiểm tra định dạng email
+//        String emailPattern = "[a-zA-Z0-9._-]+@gmail\\.com$";
+//        return email.matches(emailPattern);
+//    }
 
         // Phương thức thêm người dùng vào cơ sở dữ liệu
         private void addUserToDatabase(String username, String password, String email) {
