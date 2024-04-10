@@ -13,9 +13,9 @@ public class Rating extends ActionRating {
     private String _id;
     private String _bookId;
     private User _user;
-    private float _ratting = -1;
+    private float _ratting = -1.0f;
     private String _comment;
-    private Boolean _isFavorite;
+    private boolean _isFavorite = false;
     private String _storyId;
     public User GetUser() {
         return _user;
@@ -29,7 +29,7 @@ public class Rating extends ActionRating {
     public String GetStoryId(){
         return  _storyId;
     }
-    public Float GetRatting() {
+    public float GetRatting() {
         return _ratting;
         }
 
@@ -41,7 +41,7 @@ public class Rating extends ActionRating {
         return _comment;
     }
     //neu nhu ma thich thi tra ve true khong thi tra ve false
-    public Boolean GetIsFavorite() {
+    public boolean GetIsFavorite() {
         return _isFavorite;
     }
 
@@ -49,12 +49,12 @@ public class Rating extends ActionRating {
         this._ratting = _ratting;
     }
 
-    public void SetIsFavorite(Boolean _isFavorite) {
+    public void SetIsFavorite(boolean _isFavorite) {
         this._isFavorite = _isFavorite;
     }
     public void SetComment(String comment){_comment = comment;}
     //Insert
-    public Rating(User user, int ratting, String comment, boolean isFavorite,String storyId) {
+    public Rating(User user, float ratting, String comment, boolean isFavorite,String storyId) {
         _user = user;
         _ratting = ratting;
         _comment = comment;
@@ -62,7 +62,7 @@ public class Rating extends ActionRating {
         _storyId = storyId;
     }
     //Select
-    public Rating(String id,String bookId, String userName,int ratting,String comment, boolean isFavorite,database db ){
+    public Rating(String id,String bookId, String userName,float ratting,String comment, boolean isFavorite,database db ){
         this._bookId = bookId;
         _id = id;
         _user = User.GetUserByIdA(db,userName);

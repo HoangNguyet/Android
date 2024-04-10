@@ -23,9 +23,9 @@ public class ConTent extends AppCompatActivity {
         JSONObject story;
         try {
             story = new JSONObject(getIntent().getStringExtra("data"));
-            textTitle.setText("Thể loại: "+story.getString("Title"));
-            textGenre.setText(story.getString("Genre"));
-            textContent.setText(story.getString("Content"));
+            textTitle.setText(story.getString("Title"));
+            textGenre.setText("Thể loại: "+story.getString("Genre"));
+            textContent.setText(story.getString("Contet"));
         }
         catch (Exception e){}
     }

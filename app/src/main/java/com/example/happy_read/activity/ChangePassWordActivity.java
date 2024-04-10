@@ -18,6 +18,7 @@ import com.example.happy_read.database.database;
 public class ChangePassWordActivity extends AppCompatActivity {
     private Button btnSave, btnBack;
     private EditText edmkcu, edmk1, edmk2;
+    private TextView userName;
     private database database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class ChangePassWordActivity extends AppCompatActivity {
         edmk2 = findViewById(R.id.mk_moi2);
         btnSave = findViewById(R.id.button);
         btnBack = findViewById(R.id.button2);
+        userName = findViewById(R.id.txtusername);
+        userName.setText(_USER_NAME);
         database = new database(this);
 
         //Xử lý khi người dùng bấm nút lưu

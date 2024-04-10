@@ -1778,6 +1778,10 @@ public class database extends SQLiteOpenHelper {
         String[] selectionArgs = { genre};
         return db.rawQuery(query, selectionArgs);
     }
-
-
+    public Cursor getBookYourWrite(String userName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORIES_USERS_NAME + " = ?";
+        String[] selectionArgs = { userName};
+        return db.rawQuery(query, selectionArgs);
+    }
 }

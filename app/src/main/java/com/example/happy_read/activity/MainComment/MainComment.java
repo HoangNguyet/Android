@@ -1,11 +1,12 @@
-package com.example.happy_read.activity;
+package com.example.happy_read.activity.MainComment;
 
+import static com.example.happy_read.activity.MainComment.LoadDataComment.LoadDataDynamic;
+import static com.example.happy_read.activity.MainComment.LoadDataComment.LoadStaticData;
 import static com.example.happy_read.until.Log._USER_NAME;
 import static com.example.happy_read.until.until.SwitchPage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.happy_read.R;
+import com.example.happy_read.activity.ConTent;
+import com.example.happy_read.activity.MainDangNhap;
 import com.example.happy_read.adapter.RatingAdapter;
 import com.example.happy_read.database.database;
 import com.example.happy_read.model.Rating;
@@ -27,8 +30,6 @@ import com.example.happy_read.model.Story;
 import com.example.happy_read.model.User;
 import com.example.happy_read.until.until;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class MainComment extends AppCompatActivity {
     TextView textViewStar,textViewHeart,textViewView,textTitle,textAuthor,textGenre,textCreateAt,textReview;
@@ -43,8 +44,6 @@ public class MainComment extends AppCompatActivity {
     float rateValue;
     User user;
     RatingBar ratebar;
-    String love = "drawable/heart.png";
-    String unLove = "drawable/heart1.png";
     database db = new database(this);
     @Override
     protected void onCreate (Bundle comment) {
@@ -61,14 +60,12 @@ public class MainComment extends AppCompatActivity {
         imageViewDescription = findViewById(R.id.imageDescription);
         listViewComment = findViewById(R.id.listViewComment);
         imageButtonHeart = findViewById(R.id.imageButtonHeart);
-        if(_USER_NAME != null) {
-            user = new User(_USER_NAME);
-            myRating = user.GetRatingByUserNameAndBook(db,story);
-        }
         story_id = getIntent().getStringExtra("storyId");
         story = Story.GetStoryById(story_id,db);
-        LoadStaticData();
-        LoadDataDynamic();
+        if(_USER_NAME != null) {
+            user = new User(_USER_NAME);
+            myRating = user.GetRatingByUserNameAndBook(db, story);
+        }
 
         AlertDialog.Builder commenBuild = new AlertDialog.Builder(this);
         View commentView = getLayoutInflater().inflate(R.layout.activity_box_comment,null);
@@ -94,7 +91,7 @@ public class MainComment extends AppCompatActivity {
                         myRating.SetComment(coment);
                         user.UpdateRating(db,myRating);
                     }
-                    LoadDataDynamic();
+                    LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,MainComment.this);
                 }
                 diaglogComment.dismiss();
             }
@@ -121,52 +118,23 @@ public class MainComment extends AppCompatActivity {
                     myRating.SetRating(rateValue);
                     user.InsertRating(db,myRating);
                     myRating = user.GetRatingByUserNameAndBook(db,story);
-                    Toast.makeText(MainComment.this, String.valueOf(myRating==null), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(MainComment.this, ""+rateValue, Toast.LENGTH_SHORT).show();
                 }
                 else{
                     myRating.SetRating(rateValue);
                     user.UpdateRating(db,myRating);
                 }
-                LoadDataDynamic();
+                LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,MainComment.this);
                 dialog.dismiss();
             }
         });
         mBuild.setView(mView);
         dialog=mBuild.create();
+        LoadStaticData(textTitle,textAuthor,textGenre,textCreateAt,textReview,imageViewDescription,story,this);
+        LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,this);
         //End Rating
     }
-    public void LoadStaticData(){
-        //Phuong thuc GetMediaStartAndCountHeart tra ve so luot danh gia sao trung binh va so luot tym
-        textTitle.setText(story.getTitle());
-        textAuthor.setText("Tác giả: "+story.GetAuthor());
-        textGenre.setText("Thể loại: "+story.getGenre());
-        textCreateAt.setText("Ngày phát hành: "+story.getCreatedAt("dd/MM/yyyy"));
-        textReview.setText("Review: " +story.getDescription());
-        int imageResId = until.GetImageResId(story.getImagePathDes(),getApplicationContext());
-        if(imageResId!=0) {
-            Picasso.get().load(imageResId).into(imageViewDescription);
-        }
-    }
-    public void LoadDataDynamic(){
-        story.SetRatings(db);
-        if(myRating!=null && myRating.GetIsFavorite()!=null){
-            imageButtonHeart.setImageResource(until.GetImageResId(myRating.GetIsFavorite()?love:unLove,this));
-        }
-        RatingAdapter ratingAdapter = new RatingAdapter(getApplicationContext(),story.getRatingsHaveCommentConTent());
-        listViewComment.setAdapter(ratingAdapter);
-        String [] StartAndHeart = story.GetMediumStarAndCountHeartA();
-        textViewStar.setText(StartAndHeart[0]);
-        textViewHeart.setText(StartAndHeart[1]);
-        textViewView.setText(story.getView());
-        //Setrating if you change rating
-//        if(myRating!=null && myRating.GetRatting()!=null) {
-//            ratebar.setRating(myRating.GetRatting());
-//        }
-
-    }
     public void ReadBooks(View view){
-        SwitchPage(this,ConTent.class,story.ExtractDataInBooks(),"data");
+        SwitchPage(this, ConTent.class,story.ExtractDataInBooks(),"data");
         //KHi ma nguoi dung an vao doc truyen tang len 1
         story.UpdateView(db);
     }
@@ -190,10 +158,10 @@ public class MainComment extends AppCompatActivity {
                 myRating.SetIsFavorite(!myRating.GetIsFavorite());
                 user.UpdateRating(db, myRating);
             }
-            LoadDataDynamic();
+            LoadDataDynamic(myRating,imageButtonHeart,listViewComment,textViewStar,textViewHeart,textViewView,ratebar,story,db,this);
         }
         else{
-            Intent intent = new Intent(MainComment.this,MainDangNhap.class);
+            Intent intent = new Intent(MainComment.this, MainDangNhap.class);
             startActivity(intent);
         }
     }

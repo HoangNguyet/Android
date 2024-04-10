@@ -54,12 +54,10 @@ public class ActionRating {
         String id = cursor.getString(0);
         String userName = cursor.getString(1);
         String storyId = cursor.getString(2);
-        String ratting = cursor.getString(3);
+        float ratting = cursor.getFloat(3);
         String comment = cursor.getString(4);
-        Boolean isFavorite = cursor.getString(5)==null?null:cursor.getString(5).equals("1");
-        Log.d("Check",String.valueOf(isFavorite));
-        //Lay user tu userName
-        return new Rating(id,storyId,userName,Integer.parseInt(ratting),comment,isFavorite,db);
+        boolean isFavorite = cursor.getString(5).equals("1");
+        return new Rating(id,storyId,userName,ratting,comment,isFavorite,db);
     }
     //Có vẽ logic đang có vấn đề rating có thể tự tạo một rating mới có vẽ không hợp lý
     //Thay vào đấy việc tạo một rating mới là một hành động của user ?

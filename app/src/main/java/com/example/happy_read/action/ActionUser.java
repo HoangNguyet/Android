@@ -64,7 +64,6 @@ public class ActionUser {
                     String role = cursor.getString(4);
                     String imagePath = cursor.getString(5);
                     String gender = cursor.getString(6);
-                    Log.d("asdsadsadsa",String.valueOf(cursor.getString(7).isEmpty()));
                     Date birthDay = cursor.getString(7).isEmpty()?null: new SimpleDateFormat("yyyy-MM-dd").parse(cursor.getString(7));
                     //public User(String _userName, String _password, String _email, String _fullName, String _role, String _imagePath, String _gender, Date _birthDay)
                     return new User(userName,passWord,email,fullName,role,imagePath,gender,birthDay);
@@ -115,7 +114,7 @@ public class ActionUser {
         try{
             SQLiteStatement statement = db.getWritableDatabase().compileStatement(query);
             UpdateStatment(String.valueOf(rating.GetRatting()),1,statement);
-            UpdateStatment(rating.GetIsFavorite()==null?null:rating.GetIsFavorite()?"1":"0",2,statement);
+            UpdateStatment(rating.GetIsFavorite()?"1":"0",2,statement);
             UpdateStatment(rating.GetComment(),3,statement);
             UpdateStatment(rating.GetId(),4,statement);
             statement.execute();
@@ -135,7 +134,8 @@ public class ActionUser {
             values.put(COLUMN_RATINGS_STORY_ID, rating.GetStoryId());
             values.put(COLUMN_RATINGS_RATING, rating.GetRatting());
             values.put(COLUMN_RATINGS_COMMENT, rating.GetComment());
-            values.put(COLUMN_RATINGS_ISFAVORITE, rating.GetIsFavorite() == null ? null : rating.GetIsFavorite() ? "1" : "0");
+            values.put(COLUMN_RATINGS_ISFAVORITE, rating.GetIsFavorite()?"1":"0");
+            Log.d("HELLOW","asdsad");
             long result = db.insert(database.TABLE_RATINGS, null, values);
             if(result!=-1){
                 return true;

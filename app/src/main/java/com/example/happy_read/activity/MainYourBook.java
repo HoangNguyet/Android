@@ -1,5 +1,8 @@
 package com.example.happy_read.activity;
 
+import static com.example.happy_read.database.database.COLUMN_STORIES_ID;
+import static com.example.happy_read.database.database.COLUMN_STORIES_IMAGE;
+import static com.example.happy_read.database.database.COLUMN_STORIES_TITLE;
 import static com.example.happy_read.until.Log._USER_NAME;
 
 import android.content.Intent;
@@ -18,19 +21,19 @@ import com.example.happy_read.database.database;
 import com.example.happy_read.model.Story;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainYourBook extends AppCompatActivity {
-    ArrayList<Story> TruyenArrayList;
-    StoryAdapter adapterTruyen;
+    ArrayList<Story> TruyenArrayList, listBookYourWrite;
+    StoryAdapter adapterTruyen,adapterBookYourWrite;
     database database;
-    ListView lv;
-    EditText edt;
+    ListView lv,booksYourWrite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_your_book);
-
+        booksYourWrite = findViewById(R.id.listViewBookYourWrite);
         database = new database(this);
         lv = findViewById(R.id.listviewNew);
         AnhXa();
@@ -49,14 +52,26 @@ public class MainYourBook extends AppCompatActivity {
 
 
     private void AnhXa(){
-        TruyenArrayList = new ArrayList<>();
         // Lấy dữ liệu từ database
         Cursor cursor = database.getFavoriteStoriesWithImage(_USER_NAME);
+        TruyenArrayList = getStory(cursor);
+        cursor.close();
+        cursor = database.getBookYourWrite(_USER_NAME);
+        listBookYourWrite = getStory(cursor);
+        cursor.close();
+        // Khởi tạo adapter và đặt adapter cho ListView
+        adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList,this);
+        adapterBookYourWrite = new StoryAdapter(getApplicationContext(), listBookYourWrite,this);
+        lv.setAdapter(adapterTruyen);
+        booksYourWrite.setAdapter(adapterBookYourWrite);
+    }
+    public static ArrayList<Story> getStory(Cursor cursor){
+        ArrayList<Story> TruyenArrayList = new ArrayList<>();
         while (cursor.moveToNext()) {
             // Get the column index for title and image
-            int idIndex = cursor.getColumnIndex(database.COLUMN_STORIES_ID);
-            int titleIndex = cursor.getColumnIndex(database.COLUMN_STORIES_TITLE);
-            int imageIndex = cursor.getColumnIndex(database.COLUMN_STORIES_IMAGE);
+            int idIndex = cursor.getColumnIndex(COLUMN_STORIES_ID);
+            int titleIndex = cursor.getColumnIndex(COLUMN_STORIES_TITLE);
+            int imageIndex = cursor.getColumnIndex(COLUMN_STORIES_IMAGE);
 
             // Check if the column indexes are valid
             if (titleIndex != -1 && imageIndex != -1 && idIndex !=-1) {
@@ -70,12 +85,9 @@ public class MainYourBook extends AppCompatActivity {
                 Log.e("MainYourBook", "Invalid column index for title or image");
             }
         }
-        cursor.close();
-
-        // Khởi tạo adapter và đặt adapter cho ListView
-        adapterTruyen = new StoryAdapter(getApplicationContext(), TruyenArrayList,this);
-        lv.setAdapter(adapterTruyen);
-        }
+        return TruyenArrayList;
     }
+}
+
 
 

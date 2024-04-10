@@ -23,7 +23,7 @@
             android:name=".activity.ConTent"
             android:exported="false" />
         <activity
-            android:name=".activity.MainComment"
+            android:name=".activity.MainComment.MainComment"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
